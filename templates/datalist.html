@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>goto URL</title>
+<!-- $Id: datalist_en.html 1194 2011-01-10 07:29:37Z klaus $ -->
+  </head>
+  <body>
+<form>
+  <p>
+  <label for=url>Goto</label>
+  http://<input type=text id=url name=homepage 
+    list=hompages autofocus>
+  <datalist id=hompages>
+    <option value=www.google.com>
+    <option value=html5.komplett.cc/welcome>
+    <option value=slashdot.org>
+    <option value=wired.com>
+  </datalist>
+  <input type=submit
+    onclick="window.location = 
+    'http://'+document.getElementById('url').value; 
+    return false;" >
+</form>
+  </body>
+</html>

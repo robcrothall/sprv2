@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Support Form</title>
+    <script src="support_en_screenshot.js"></script>
+    <script src="support.js"></script>
+    <!-- $Id: support_en.html 1349 2011-08-08 17:52:05Z bernd $ -->
+    <script>
+window.onload = function() {
+  initEventListener();
+  prefillFields();
+}
+    </script>
+    <style>
+body { font-family: sans-serif; }
+label { width: 250px; float: left; }
+p {  clear:both; margin-top: 0.5em; margin-bottom: 0.5em; }
+:required { border-color: orange; border-style: solid; }
+    </style>
+  </head>
+  <body>
+    <h2>Support Request</h2>
+<form method=get action=support_en.html
+  oninput="updateTAMeters();updateProgress();">
+<fieldset>
+<legend>Personal information</legend>
+<div style="float:left">
+<p><label>Your name
+<input tabindex=1 type=text required autofocus
+  placeholder="John Smith" name=name></label>
+<p><label>Your e-mail address
+<input tabindex=3 type=email name=email required></label>
+</div>
+<div style="float:left;margin-left:10px;">
+<p><label>Telephone number
+<input tabindex=2 type=tel name=tel required></label>
+<p><label>Fax number
+<input tabindex=4 type=tel name=fax></label>
+</div>
+</fieldset>
+<fieldset>
+<legend>Technical information</legend>
+<p><label>Date of defect
+<input type=date name=errdate></label>
+<p><label>Error message
+<textarea placeholder="Lens error. Camera restart." 
+  name=errmsg required rows=5 cols=50
+  title="up to 200 characters">
+</textarea></label><meter value=0 max=200
+  tabindex=-1></meter> 
+<p><label>Description of problem
+<textarea placeholder="Camera lens not opening."
+  name=errdesc required rows=5 cols=50
+  title="up to 200 characters">
+</textarea></label><meter value=0 max=200
+  tabindex=-1></meter>
+<p><label>Comment
+<textarea name=comment rows=3 cols=50
+  title="up to 100 characters">
+</textarea></label><meter value=0 max=100
+  tabindex=-1></meter>
+<p><label>Product</label>
+<input type=text name=type list=typelist required>
+<datalist id=typelist>
+  <option value="Digital camera">
+  <option value="Analogue camera">
+  <option value=Printer>
+  <option value=Scanner>
+</datalist>
+<p><label>Serial number</label>
+<input type=number name=sernr
+  min=10000 max=35000 required>
+<output onforminput="innerHTML = type.value+'-'+sernr.value"></output>
+</fieldset>
+<fieldset>
+<label>Progress:
+  <progress id=formProgress value=0 
+    tabindex=-1></progress></label>
+</fieldset>
+<p><input accesskey=S type=submit formnovalidate
+  value="Save [S]"  name=save id=save> 
+<input accesskey=T type=submit name=submit id=submit
+  value="Submit [T]">
+</form>
+</body>
+</html>

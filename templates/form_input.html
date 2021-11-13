@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>forms support</title>
+    <!-- $Id: features_en.html 1181 2011-01-07 15:05:24Z klaus $ -->
+    <style>
+        label {
+            width: 150px;
+            float: left;
+        }
+        
+        input {
+            width: 200px;
+        }
+    </style>
+    <script src="features_en_screenshot.js"></script>
+    <script>
+        window.onload = function() {
+            prefillFields();
+            inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].type == "text") {
+                    inputs[i].value = "not available";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>New input types</legend>
+        <p>
+            <label for="tel">tel</label>
+            <input type="tel" id="tel" name="tel">
+            <p>
+                <label for=" search ">search</label>
+                <input type="search " id="search " name="search ">
+            </p>
+            <p>
+                <label for=url>url</label>
+                <input type=url id=url name=url>
+                <p><label for=email>email</label>
+                    <input type=email id=email name=email>
+                    <p><label for=datetime>datetime</label>
+                        <input type=datetime id=datetime name=datetime>
+                        <p><label for=date>date</label>
+                            <input type=date id=date name=date>
+                            <p><label for=month>month</label>
+                                <input type=month id=month name=month>
+                                <p><label for=week>week</label>
+                                    <input type=week id=week name=week>
+                                    <p><label for=time>time</label>
+                                        <input type=time id=time name=time>
+                                        <p><label for=datetime>datetime-local</label>
+                                            <input type=datetime id=datetime-local name=datetime-local>
+                                            <p><label for=number>number</label>
+                                                <input type=number id=number name=number>
+                                                <p><label for=range>range</label>
+                                                    <input type=range id=range name=range>
+                                                    <p><label for=color>color</label>
+                                                        <input type=color id=color name=color>
+    </fieldset>
+</body>
+
+</html>

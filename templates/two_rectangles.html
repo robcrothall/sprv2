@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<link rel="stylesheet" type="text/css" href="../figures.css">
+<!-- $Id: two_rects.html 1139 2010-12-29 12:57:31Z klaus $ -->
+<title></title>
+</head>
+<body>
+
+<figure>
+  <canvas width="1200" height="800">
+    Ihr Browser unterstützt Canvas leider nicht. Einen Screenshot
+    dieser Grafik finden sie <a href="screenshots/two_rects.jpg">hier</a><br>
+    Your Browser does not support canvas. A screenshot of this
+    graphic is available <a href="screenshots/two_rects.jpg">here</a>
+  </canvas>
+</figure>
+
+  <script src="../figures.js"></script>
+  <script>
+    var canvas = document.querySelector("canvas");
+    var context = canvas.getContext('2d');
+    context.fillStyle = 'red';
+    context.fillRect(0,0,800,600);
+    context.fillStyle = 'rgba(255,255,0,0.5)';
+    context.fillRect(400,200,800,600);
+  </script>
+
+</body>
+</html>

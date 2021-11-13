@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<link rel="stylesheet" type="text/css" href="../figures.css">
+<!-- $Id: coordinate_system.html 1139 2010-12-29 12:57:31Z klaus $ -->
+<title></title>
+</head>
+<body>
+
+<figure>
+  <canvas width="1200" height="800" style="border: 1px dotted black;">
+    Ihr Browser unterstützt Canvas leider nicht. Einen Screenshot
+    dieser Grafik finden sie <a href="screenshots/coordinate_system.jpg">hier</a><br>
+    Your Browser does not support canvas. A screenshot of this
+    graphic is available <a href="screenshots/coordinate_system.jpg">here</a>
+  </canvas>
+</figure>
+
+  <script src="../figures.js"></script>
+  <script>
+    var canvas = document.querySelector("canvas");
+    var context = canvas.getContext('2d');
+
+    // center graphic
+    context.setTransform(1,0,0,1,100,100);
+
+    // draw grid 1000x600
+    context.strokeStyle = 'rgba(0,0,0,0.5)';
+    context.lineWidth = 0.5;
+    for (var xOff=0; xOff<=1000; xOff+=100) {
+      // vertical lines
+      context.beginPath();
+      context.moveTo(xOff,0);
+      context.lineTo(xOff,600);
+      context.stroke();
+    }
+    for (var yOff=0; yOff<=600; yOff+=100) {
+      // horizontal lines
+      context.beginPath();
+      context.moveTo(0,yOff);
+      context.lineTo(1000,yOff);
+      context.stroke();
+    }
+
+    // draw grid labels
+    context.font = '18px sans-serif';
+    window.figures.useShadow(context,true);
+    // horizontal labels
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    for (var yOff=100; yOff<600; yOff+=100) {
+      context.fillText(yOff,-30,yOff);
+    }
+    // vertical labels
+    context.textAlign = 'center';
+    context.textBaseline = 'bottom';
+    for (var xOff=100; xOff<1000; xOff+=100) {
+      context.fillText(xOff,xOff,-5);
+    }
+    window.figures.useShadow(context,false);
+
+    // mark x/y direction and 0/0
+    context.beginPath();
+    context.strokeStyle = 'rgba(0,0,0,1)';
+    context.lineWidth = 1;
+    context.beginPath();
+    context.moveTo(0,0);
+    context.lineTo(1000,0);
+    context.moveTo(0,0);
+    context.lineTo(0,600);
+    context.stroke();
+
+    // draw direction arrows
+    window.figures.drawArrow(context,1000,0);
+    window.figures.drawArrow(context,0,600,90);
+
+    // indicate point at 500,300
+    context.fillRect(497.5,297.5,5,5);
+
+    // add annotation
+    window.figures.useShadow(context,true);
+    context.font = '48px sans-serif';
+    context.textAlign = 'center';
+    context.fillText('0/0',-10,0);
+    context.textAlign = 'start';
+    context.textBaseline = 'middle';
+    context.fillText('x',1010,0);
+    context.textAlign = 'center';
+    context.textBaseline = 'top';
+    context.fillText('y',0,605);
+    context.textAlign = 'center';
+    context.textBaseline = 'bottom';
+    context.fillText('500/300',500,290);
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>setCustomValidity</title>
+    <!-- $Id: setCustomValidity.html 757 2010-08-11 17:13:02Z bernd $ -->
+    <script>
+var invalidMailDomains = [ 
+  'hotmail.com', 'gmx.com', 'gmail.com' ];
+      
+function checkMailDomain(item) {
+  for (var i=0; i<invalidMailDomains.length; i++) {
+    if (item.value.match(invalidMailDomains[i]+'$')) {
+      item.setCustomValidity('E-Mail-Adressen von '
+        +invalidMailDomains[i]+' sind nicht erlaubt.');
+    } else {
+      item.setCustomValidity('');
+    }
+    item.checkValidity();
+  }
+}
+    </script>
+    <style>
+body { font-family: sans-serif; }
+    </style>
+  </head>
+  <body>
+<form method=get action=setCustomValidity.html>
+<p><label>E-Mail
+  <input type=email name=email 
+    onchange="checkMailDomain(this);">
+</label>
+<p><input type=submit>
+</form>
+  </body>
+</html>
