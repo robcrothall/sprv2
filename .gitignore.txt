@@ -1,0 +1,10 @@
+doc/
+inc/constants.php
+inc/constants.*~
+data/
+deliver/
+# File types
+*.xls
+*.xlsx
+*.pdf
+*.docx

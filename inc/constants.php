@@ -9,7 +9,7 @@
     // your website name
     define("WEBSITE", "http://sprvdev.co.za");
 
-    // your database's name
+    // your database's name 
     define("DATABASE", "afpxyykk_sprv");
 
     // your database's password
