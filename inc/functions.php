@@ -6,16 +6,16 @@
  * Helper functions.
  */
 
-require_once("../conf/constants.php");
+require_once "../conf/constants.php";
 
 /**
  * formatDate
  */
 function formatDate($val) {
-	$tmp = explode(' ', $val);
-   //	var_dump($tmp);
-	$arr = explode('-', $tmp[0]);
-	return date('Y-m-d', mktime(0,0,0, $arr[1], $arr[2], $arr[0]));		
+    $tmp = explode(' ', $val);
+    //    var_dump($tmp);
+    $arr = explode('-', $tmp[0]);
+    return date('Y-m-d', mktime(0, 0, 0, $arr[1], $arr[2], $arr[0]));
 }
 /**
  * Check Department
@@ -23,19 +23,19 @@ function formatDate($val) {
 function check_dept($requested) {
     $rows = query("select id from dept where dept_name = ?", $requested);
     if (count($rows) == 0) {
-	     return false;
+         return false;
     }
-    if(!empty($rows[0]["id"])) {
-	    $my_dept_id = $rows[0]["id"];
+    if (!empty($rows[0]["id"])) {
+        $my_dept_id = $rows[0]["id"];
     } else {
-	    $my_dept_id = 0;    
+        $my_dept_id = 0;    
     }
     $sql = "select * from dept_role where user_id = " . $_SESSION["id"] . " and dept_id = " . $my_dept_id;
     $rows = query($sql);
     if (count($rows) == 1) {
-	     return true; 
+         return true; 
     } else {
-	     return false;
+         return false;
     }
 }
 /**
@@ -48,8 +48,8 @@ function check_role($requested) {
         $rows = query($sql);
         $rows = query("select id from roles where role_name = ?", $requested);
     }
-    if(!empty($rows[0]["id"])) {
-	     $my_role_id = $rows[0]["id"];
+    if (!empty($rows[0]["id"])) {
+         $my_role_id = $rows[0]["id"];
     } else {
         $my_role_id = 0;    
     }
@@ -64,29 +64,32 @@ function check_role($requested) {
 /**
  * Check and clean up data input
  */
-function test_input($data) {
-	if(!empty($data)) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data,ENT_QUOTES);
-	} else {
-		$data = '';
-	}
-	return $data;
+function test_input($data) 
+{
+    if (!empty($data)) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data,ENT_QUOTES);
+    } else {
+        $data = '';
+    }
+    return $data;
 }
-function test_email($email) {
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		return true;	// the email address is syntactically valid
-	} else {
-		return false;	// the email address is invalid
-	}
+function test_email($email) 
+{
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;    // the email address is syntactically valid
+    } else {
+        return false;    // the email address is invalid
+    }
 }
-function test_url($url) {
-	if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
-		return false;	// the URL is not valid
-	} else {
-		return true;	// yjr URL is valid
-	}
+function test_url($url) 
+{
+    if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$url)) {
+        return false;    // the URL is not valid
+    } else {
+        return true;    // yjr URL is valid
+    }
 } 
 /**
  * Apologizes to user with message.
@@ -103,18 +106,18 @@ function apologize($message)
  */
 function dump($variable)
 {
-    require("../view/dump.php");
+    include "../view/dump.php";
     //exit;
 }
 
-	/**
-	 * Validates dates entered
-	 */
-	function validateDate($date, $format = 'Y-m-d')
-	{
-		$d = DateTime::createFromFormat($format, $date);
-		return $d && $d->format($format) === $date;
-	}
+    /**
+     * Validates dates entered
+     */
+function validateDate($date, $format = 'Y-m-d')
+{
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) === $date;
+}
 /**
  * Logs out current user, if any.  Based on Example #1 at
  * http://us.php.net/manual/en/function.session-destroy.php.
@@ -125,8 +128,7 @@ function logout()
     $_SESSION = [];
 
     // expire cookie
-    if (!empty($_COOKIE[session_name()]))
-    {
+    if (!empty($_COOKIE[session_name()])) {
         setcookie(session_name(), "", time() - 42000);
     }
 
@@ -134,32 +136,25 @@ function logout()
     session_destroy();
 }
 
-	 /**
-	  * extract the actual SQL query submitted.
-	  */
-	 function showQuery($query, $params)
+     /**
+      * extract the actual SQL query submitted.
+      */
+function showQuery($query, $params) 
 {
     $keys = array();
     $values = array();
     
-    # build a regular expression for each parameter
-    foreach ($params as $key=>$value)
-    {
-        if (is_string($key))
-        {
+    // build a regular expression for each parameter
+    foreach ($params as $key=>$value) {
+        if (is_string($key)) {
             $keys[] = '/:'.$key.'/';
-        }
-        else
-        {
+        } else {
             $keys[] = '/[?]/';
         }
         
-        if(is_numeric($value))
-        {
+        if (is_numeric($value)) {
             $values[] = intval($value);
-        }
-        else
-        {
+        } else {
             $values[] = '"'.$value .'"';
         }
     }
@@ -182,8 +177,7 @@ function query(/* $sql [, ... ] */)
     $parameters = array_slice(func_get_args(), 1);
     // try to connect to database
     static $handle;
-    if (!isset($handle))
-    {
+    if (!isset($handle)) {
         try
         {
             // connect to database
@@ -202,31 +196,27 @@ function query(/* $sql [, ... ] */)
             exit;
         }
     }
-		  //logit($fullsql,$_SESSION["module"]);
+          //logit($fullsql,$_SESSION["module"]);
     // prepare SQL statement
     $statement = $handle->prepare($sql);
 //        $_SESSION["final_sql"] = $statement;
-    if ($statement === false)
-    {
+    if ($statement === false) {
         // trigger (big, orange) error
-//		$_SESSION["sql_error"] = $handle->errorInfo();
+//        $_SESSION["sql_error"] = $handle->errorInfo();
         trigger_error($handle->errorInfo()[2], E_USER_ERROR);
         exit;
     }
     // execute SQL statement
     $results = $statement->execute($parameters);
-//		$_SESSION["sql_error"] = $handle->error;
-//	$_SESSION["sql_error0"] = $handle->errorInfo()[0];
-//	$_SESSION["sql_error1"] = $handle->errorInfo()[1];
-//	$_SESSION["sql_error2"] = $handle->errorInfo()[2];
-  	$_SESSION["inserted_row_id"] = $handle->lastInsertId();
+//        $_SESSION["sql_error"] = $handle->error;
+//    $_SESSION["sql_error0"] = $handle->errorInfo()[0];
+//    $_SESSION["sql_error1"] = $handle->errorInfo()[1];
+//    $_SESSION["sql_error2"] = $handle->errorInfo()[2];
+      $_SESSION["inserted_row_id"] = $handle->lastInsertId();
     // return result set's rows, if any
-    if ($results !== false)
-    {
+    if ($results !== false) {
         return $statement->fetchAll(PDO::FETCH_ASSOC);
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
@@ -241,22 +231,13 @@ function query(/* $sql [, ... ] */)
 function redirect($destination)
 {
     // handle URL
-    if (preg_match("/^https?:\/\//", $destination))
-    {
+    if (preg_match("/^https?:\/\//", $destination)) {
         header("Location: " . $destination);
-    }
-
-    // handle absolute path
-    else if (preg_match("/^\//", $destination))
-    {
+    } else if (preg_match("/^\//", $destination)) {  // handle absolute path
         $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
         $host = $_SERVER["HTTP_HOST"];
         header("Location: $protocol://$host$destination");
-    }
-
-    // handle relative path
-    else
-    {
+    } else {    // handle relative path
         // adapted from http://www.php.net/header
         $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
         $host = $_SERVER["HTTP_HOST"];
@@ -275,24 +256,19 @@ function render($template, $values = [])
 {
     // if template exists, render it
     //print_r($template);
-    if (file_exists("$template"))
-    {
+    if (file_exists("$template")) {
         // extract variables into local scope
         extract($values);
 
         // render header
-        require("../view/header.php");
+        include "../view/header.php";
 
         // render template
-        require("$template");
+        include "$template";
 
         // render footer
-        require("../view/footer.php");
-    }
-
-    // else err
-    else
-    {
+        include "../view/footer.php";
+    } else {     // else err
         trigger_error("Invalid template: $template", E_USER_ERROR);
     }
 }
@@ -305,7 +281,7 @@ function logit($cmd, $module)
 }
 function log_search($values = [])
 {
-	  extract($values);
+      extract($values);
     $cmd1 = "insert into search_log (";
     $cmd2 = ") values (";
     $cmd3 = ")";
@@ -316,38 +292,32 @@ function log_search($values = [])
     
     $cmd1 = $cmd1 . ", user_id";
     $cmd2 = $cmd2 . ", " . $_SESSION["id"];
-    if (!empty($values["surname"]))
-    {        
+    if (!empty($values["surname"])) {        
         $cmd1 = $cmd1 . ", surname";
         $cmd2 = $cmd2 . ", '" . $values["surname"] . "'";
     }
     
-    if (!empty($values["first_name"]))
-    {
+    if (!empty($values["first_name"])) {
         $cmd1 = $cmd1 . ", first_name";
         $cmd2 = $cmd2 . ", '" . $values["first_name"] . "'";
     }
     
-    if (!empty($values["ref_no"]))
-    {        
+    if (!empty($values["ref_no"])) {        
         $cmd1 = $cmd1 . ", ref_no";
         $cmd2 = $cmd2 . ", " . $values["ref_no"];
     }
     
-    if (!empty($values["occupation"]))
-    {        
+    if (!empty($values["occupation"])) {        
         $cmd1 = $cmd1 . ", occupation";
         $cmd2 = $cmd2 . ", " . $values["occupation"];
     }
     
-    if (!empty($values["party"]))
-    {        
+    if (!empty($values["party"])) {        
         $cmd1 = $cmd1 . ", party";
         $cmd2 = $cmd2 . ", " . $values["party"];
     }
     
-    if (!empty($values["ship"]))
-    {
+    if (!empty($values["ship"])) {
         $cmd1 = $cmd1 . ", ship";
         $cmd2 = $cmd2 . ", '" . $values["ship"] . "'";
     }
@@ -367,35 +337,29 @@ function login_log($user_name_given, $password_given, $success)
     $cmd1 = "insert into logon_log (";
     $cmd2 = ") values (";
     $cmd3 = ")";
-    if (!empty($user_name_given))
-    {        
+    if (!empty($user_name_given)) {        
         $cmd1 = $cmd1 . "user_name_given";
         $cmd2 = $cmd2 . "'" . $user_name_given . "'";
     }
     
-    if (!empty($password_given))
-    {
+    if (!empty($password_given)) {
         $cmd1 = $cmd1 . ", password_given";
         $cmd2 = $cmd2 . ", '" . $password_given . "'";
     }
     
-    if (!empty($success))
-    {        
+    if (!empty($success)) {        
         $cmd1 = $cmd1 . ", success";
         $cmd2 = $cmd2 . ", " . $success;
     }
-    if (!empty($_SESSION["id"]))
-    {        
+    if (!empty($_SESSION["id"])) {        
         $cmd1 = $cmd1 . ", user_id";
         $cmd2 = $cmd2 . ", " . $_SESSION["id"];
         $cmd1 = $cmd1 . ", changed";
         $cmd2 = $cmd2 . ", now()";
     }
-    
     $cmd = $cmd1 . $cmd2 . $cmd3;
-  //  $fullsql = showquery($sql, $parameters);
-		//  dump($fullsql);
-
+    //  $fullsql = showquery($sql, $parameters);
+    //  dump($fullsql);
     $result = query("$cmd");
     return $result;
 }

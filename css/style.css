@@ -1,31 +1,45 @@
 body {
-	font-size: 12px;
-	font-family: Verdana;
-	background-color: #EAF6F6;
+    font-size: 12px;
+    font-family: Verdana;
+    background-color: #EAF6F6;
 }
+
 #hrX {
-	border-style: dotted none none none;
-	border-width: 5px;
-   margin: auto;
-   height: 10px;
-	width: 10%;
-	align-items: center;
+    border-style: dotted none none none;
+    border-width: 5px;
+    margin: auto;
+    height: 10px;
+    width: 10%;
+    align-items: center;
 }
-h1, h2 {
-	color: #66BFBF;
+
+table,
+th,
+td {
+    border: 1px solid black;
 }
+
+h1,
+h2 {
+    color: #66BFBF;
+}
+
 #contact-form {
-	width: 100%;
+    width: 100%;
 }
+
 #contact-form label {
-	display: block;
-	margin: 10px 0px;
+    display: block;
+    margin: 10px 0px;
 }
-#contact-form input, #contact-form textarea {
-	padding: 4px;
+
+#contact-form input,
+#contact-form textarea {
+    padding: 4px;
 }
+
 #contact-form .full-width {
-	width: 100%;
+    width: 100%;
 }
 #contact-form textarea {
 	height: 100px;
