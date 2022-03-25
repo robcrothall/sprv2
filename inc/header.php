@@ -7,17 +7,17 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
    <!-- SCRIPTS -->
-   <script src="../assets/js/myscripts.js"></script>
+   <script src="../js/myscripts.js"></script>
    <!-- JQuery -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../assets/js/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery-3.5.1.min.js"></script>
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="../assets/css/style.css">
-   <link rel="stylesheet" media="print" href="../assets/css/print.css"/>
+   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" media="print" href="../css/print.css"/>
    <?php if (isset($title)): ?>
     <title><?php echo CLIENT_NAME ?> : <?php echo htmlspecialchars($title) ?>
     </title>
@@ -32,7 +32,7 @@
              <table border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
                     <td align="center" bgcolor="#5d8eb6" valign="top">
-                        <h1><font color="white"><?php echo CLIENT_NAME ?><br><?php echo SYSTEM_NAME ?></font></h1>
+                        <h1><font color="white"><?php echo CLIENT_NAME . " : " . SYSTEM_NAME ?></font></h1>
                     </td>
                 </tr>
            </table>
@@ -43,7 +43,7 @@
              </tr>
            </table>
                 <?php
-                require "../view/menu.php";
+                require "../inc/menu.php";
                 ?>
        </div>
             <?php

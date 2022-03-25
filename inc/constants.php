@@ -7,13 +7,19 @@
      */
 
     // your website name
-    define("WEBSITE", "http://sprvdev.co.za");
+    define("WEBSITE", "https://sprvdev.co.za");
+    // home directory
+    define("HOME_DIR", "sprv_v2");
+    // home
+    define("HOME", WEBSITE . "/" . HOME_DIR);
 
     // your database's name 
-    define("DATABASE", "afpxyykk_sprv");
+    //define("DATABASE", "afpxyykk_sprv");
+    define("DATABASE", "afpxyykk_sprv_v1");
 
     // your database's password
-    define("PASSWORD", "KnitZerosHeaveLungs94");
+    //define("PASSWORD", "KnitZerosHeaveLungs94");
+    define("PASSWORD", "RippleFrenchTaskedRef82");
 
     // your database's server
     define("SERVER", "localhost");

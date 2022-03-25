@@ -20,8 +20,8 @@ error_reporting(E_ALL);
 // requirements
 date_default_timezone_set("Africa/Johannesburg");
 //$WEBSITE = "sprvdev.co.za/";
-require_once "../conf/constants.php";
-require_once "../conf/functions.php";
+require_once "../inc/constants.php";
+require_once "../inc/functions.php";
 
 // enable sessions
 session_start();

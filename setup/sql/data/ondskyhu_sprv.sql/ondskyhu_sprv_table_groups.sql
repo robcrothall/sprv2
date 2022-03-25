@@ -1,0 +1,8 @@
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `group_name`, `status`, `fee_reqd`, `fee`, `duration_in_months`, `start_month`, `description`, `welcome_email`, `user_id`, `changed`) VALUES
+(1, 'Settlers Park Library', 'open', 'N', '0.00', 12, 3, 'The Settlers Park Library is open to approved Residents of Settlers Park Retirement Village and Associate Members of Settlers Park Association in good standing.', 'Welcome to the Settlers Park Library.<p>Membership is free.  You may join at any time of the year.<p>Failure to follow good library practice may result in your membership being terminated.<p>We hope you will enjoy all of the services that the Library offer.', 1, '2022-01-07 06:27:43'),
+(2, 'Associate Members of Settlers Park Association', 'open', 'Y', '350.00', 12, 3, 'Associate Members of Settlers Park Association pay an annual membership fee of R350 and are entitled to various services offered by the association. There is a discount when partners join together. Services include:<ol><li>Preferential access through the \"Residents\" lane at the main gate<li>Access to the Library<li>Access to the Hibiscus Room<li>Visitor rights at Glen`s Den<li>Access to the Trust Shop<li>An emailed complementary copy of Silver Threads</ol><br>', 'Welcome as an Associate Member of Settlers Park!<p>If you have not yet paid your annual subscription, please do so at Reception, Hibiscus Room, or via EFT. Banking details are available, on request, from Reception (046 604 0200 or info@settlerspark.co.za). Once you are a paid-up member, you may collect a windscreen sticker from Reception that gives you the right to enter via the `Residents` lane at the main gate.<p>Please not the following:<p>', 1, '2022-01-07 06:26:42');

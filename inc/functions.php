@@ -6,7 +6,7 @@
  * Helper functions.
  */
 
-require_once "../conf/constants.php";
+require_once "../inc/constants.php";
 
 /**
  * formatDate
@@ -53,7 +53,7 @@ function check_role($requested) {
     } else {
         $my_role_id = 0;    
     }
-    $sql = "select * from user_roles where user_id = " . $_SESSION["id"] . " and role_id = " . $my_role_id . " and role_expiry > CURDATE()";
+    $sql = "select * from user_roles where user_id = " . $_SESSION["id"] . " and role_id = " . $my_role_id . " and expiry > CURDATE()";
     $rows = query($sql);
     if (count($rows) == 1) {
         return true; 
@@ -172,7 +172,7 @@ function query(/* $sql [, ... ] */)
 {
     // SQL statement
     $sql = func_get_arg(0);
-
+    //var_dump("175");
     // parameters, if any
     $parameters = array_slice(func_get_args(), 1);
     // try to connect to database
@@ -185,7 +185,7 @@ function query(/* $sql [, ... ] */)
             //print_r(USERNAME);
             //print_r(PASSWORD);
             $handle = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD);
-
+            //var_dump("188");
             // ensure that PDO::prepare returns false when passed invalid SQL
             $handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
         }
@@ -199,20 +199,22 @@ function query(/* $sql [, ... ] */)
           //logit($fullsql,$_SESSION["module"]);
     // prepare SQL statement
     $statement = $handle->prepare($sql);
-//        $_SESSION["final_sql"] = $statement;
+    //var_dump("203", $statement);
     if ($statement === false) {
         // trigger (big, orange) error
-//        $_SESSION["sql_error"] = $handle->errorInfo();
+        //$_SESSION["sql_error"] = $handle->errorInfo();
+        //var_dump("207", $_SESSION["sql_error"]);
         trigger_error($handle->errorInfo()[2], E_USER_ERROR);
         exit;
     }
     // execute SQL statement
     $results = $statement->execute($parameters);
-//        $_SESSION["sql_error"] = $handle->error;
-//    $_SESSION["sql_error0"] = $handle->errorInfo()[0];
-//    $_SESSION["sql_error1"] = $handle->errorInfo()[1];
-//    $_SESSION["sql_error2"] = $handle->errorInfo()[2];
-      $_SESSION["inserted_row_id"] = $handle->lastInsertId();
+    //    $_SESSION["sql_error"] = $handle->error;
+    //    $_SESSION["sql_error0"] = $handle->errorInfo()[0];
+    //    $_SESSION["sql_error1"] = $handle->errorInfo()[1];
+    //    $_SESSION["sql_error2"] = $handle->errorInfo()[2];
+    $_SESSION["inserted_row_id"] = $handle->lastInsertId();
+    //var_dump("218", $_SESSION["inserted_row_id"]);
     // return result set's rows, if any
     if ($results !== false) {
         return $statement->fetchAll(PDO::FETCH_ASSOC);
