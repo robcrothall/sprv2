@@ -16,7 +16,7 @@ require "../inc/config.php";
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 require "../inc/head.php";
 require "../inc/body.php";
-require "../page/menu.php";
+require "../inc/menu.php";
 require "../inc/msg.php";
 echo '<h1>Delete an address type</h1>';
 $errorList = [];

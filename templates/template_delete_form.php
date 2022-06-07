@@ -14,7 +14,7 @@
 ?>
 <h2>This %name% is about to be deleted!</h2>
   <div class="container">
-  <form action="../ctl/%name%_delete.php" method="post">
+  <form action="../page/%name%_delete.php" method="post">
    <table border="0" cellpadding="0" cellspacing="10" width="100%">
 	      <tr>
 				<td align="right" width="30%">Name:</td>
@@ -66,7 +66,7 @@
 
    <div class="form-actions">
    	<input type='submit' value='Delete' class='btn btn-danger' />
-      <a class="btn btn-success" href="../ctl/%name%.php">Cancel</a>
+      <a class="btn btn-success" href="../page/%name%.php">Cancel</a>
    </div>
   </div>
 </form>

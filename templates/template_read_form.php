@@ -42,6 +42,6 @@
 	      </tr>
 	</table> 
    <div class="form-actions">
-      <a class="btn btn-success" href="../ctl/%name%.php">Back</a>
+      <a class="btn btn-success" href="../page/%name%.php">Back</a>
    </div>
   </div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>meter element</title>
+    <!-- $Id: meter_en.html 1309 2011-03-14 06:19:37Z root $ -->
+<style>
+.tt { font-family: monospace; }
+</style>
+    <script>
+window.onload = function() {
+  var today = new Date();
+  var m = document.getElementById("m");
+  m.min = new Date(today.getFullYear(), 0, 1);
+  m.max = new Date(today.getFullYear(), 11, 31);
+  // m.optimum = m.min-m.max/2;
+  m.value = today;
+  var op = document.getElementById("op");
+  op.value = 
+    Math.round(100/(m.max-m.min)*(m.value-m.min));
+  var innerDIV = document.getElementById("innerDIV");
+  innerDIV.style.width=op.value+"%";
+  innerDIV.style.background = "green";
+  var google = document.getElementById("google");
+  google.src = "http://chart.apis.google.com/chart?chs=200x125&cht=gom&chd=t:"+op.value;
+  var gSrc = document.getElementById("googleSrc");
+  gSrc.innerHTML = google.src;
+}
+    </script>
+    </head>
+<body>
+<h1>What percentage of the year has already passed?</h1>
+<h2>Text</h2>
+<p><output id=op></output>
+  % of the year has passed.</p>
+<h2>The new <span class=tt>meter</span> element</h2>
+<meter value=0 id=m></meter>
+<h2>Nested <span class=tt>div</span> elements</h2>
+<div id=outer style="background:lightgray;width:150px;" >
+<div id=innerDIV>&nbsp;</div></div>
+<h2>Google Chart API</h2>
+<img id=google src="">
+<p id=googleSrc class=tt></p>
+</body>
+</html>

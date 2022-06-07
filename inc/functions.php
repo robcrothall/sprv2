@@ -96,7 +96,7 @@ function test_url($url)
  */
 function apologize($message)
 {
-    render("../view/apology.php", ["message" => $message]);
+    render("../page/apology.php", ["message" => $message]);
     exit;
 }
 
@@ -106,7 +106,7 @@ function apologize($message)
  */
 function dump($variable)
 {
-    include "../view/dump.php";
+    include "../page/dump.php";
     //exit;
 }
 
@@ -263,13 +263,13 @@ function render($template, $values = [])
         extract($values);
 
         // render header
-        include "../view/header.php";
+        include "../page/header.php";
 
         // render template
         include "$template";
 
         // render footer
-        include "../view/footer.php";
+        include "../page/footer.php";
     } else {     // else err
         trigger_error("Invalid template: $template", E_USER_ERROR);
     }

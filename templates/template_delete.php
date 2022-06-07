@@ -8,7 +8,7 @@
     {
 	$rows = query("DELETE from %table% where id = ?", $_SESSION["selected_%table%_id"]);
         $message = $_SESSION["%name%"] . " has been deleted.";
-       	render("../view/%name%_form.php", ["message" => $message]);
+       	render("../page/%name%_form.php", ["message" => $message]);
     }
     else
     {
@@ -20,7 +20,7 @@
     	if ( null==$id ) {
         header("Location: index.php");
     	} else {
-        render("../view/%table%_delete_form.php", ["title" => "Delete a %table% entry",
+        render("../page/%table%_delete_form.php", ["title" => "Delete a %table% entry",
             "form_id" => "$id"]);
          }
     }

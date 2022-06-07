@@ -14,7 +14,7 @@
 ?>
 <h2>Update a %name%</h2>
 
-<form action="../ctl/%name%_update.php" method="post">
+<form action="../page/%name%_update.php" method="post">
     <table class='table table-hover table-responsive table-bordered'>
         <tr>
             <td>Name</td> 

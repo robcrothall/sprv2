@@ -12,13 +12,13 @@
  * @version  GIT: <git_id> 
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 echo '<h1>List of address types</h1>';
 if (check_role("STAFF")) {
     echo '<a href="addtyp_add.php" class="w3-button w3-green">';
@@ -42,9 +42,9 @@ foreach ($handle->query($sql) as $row) {
     echo '  <td>' . $row['addr_type'] . '</td>';
     echo '  <td>';
     if (check_role("STAFF")) {
-        echo '<a class="w3-button w3-green" href="../view/addtyp_edit.php?id=';
+        echo '<a class="w3-button w3-green" href="../page/addtyp_edit.php?id=';
         echo $row['id'] . '">Update</a>';
-        echo '<a class="w3-button w3-red" href="../view/addtyp_delete.php?id=';
+        echo '<a class="w3-button w3-red" href="../page/addtyp_delete.php?id=';
         echo $row['id'] . '">Delete</a>';
     }
     echo '  </td>';
@@ -54,6 +54,6 @@ foreach ($handle->query($sql) as $row) {
   </tbody>
 </table>
 <?php
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

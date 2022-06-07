@@ -27,7 +27,7 @@
 				}
 				else 
 				{
-					render("../view/%name%_update_form.php", ["title" => "Update %title%s", "form_id" => "$rec_id", "message" => "Update was successful."]);        
+					render("../page/%name%_update_form.php", ["title" => "Update %title%s", "form_id" => "$rec_id", "message" => "Update was successful."]);        
         		}
     }
     else
@@ -37,7 +37,7 @@
       	$id = htmlspecialchars(strip_tags($_GET['id']));
       }
 		$_SESSION["rec_id"] = $id;
-      render("../view/%name%_update_form.php", ["title" => "Update a %title%",
+      render("../page/%name%_update_form.php", ["title" => "Update a %title%",
             "form_id" => "$id", "message" => ""]);
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: assphone_list
+ * Program: asset_list
  * 
  * Display details about an unattended phone in an asset.
  * php version 7.2.10
@@ -47,9 +47,9 @@ foreach ($handle->query($sql) as $row) {
     echo '  <td>' . $row['asset_size'] . '</td>';
     echo '  <td>';
     if (check_role("STAFF")) {
-        echo '<a class="w3-button w3-green" href="../view/asset_edit.php?id=';
+        echo '<a class="w3-button w3-green" href="../page/asset_edit.php?id=';
         echo $row['id'] . '">Update</a>';
-        echo '<a class="w3-button w3-red" href="../view/asset_delete.php?id=';
+        echo '<a class="w3-button w3-red" href="../page/asset_delete.php?id=';
         echo $row['id'] . '">Delete</a>';
     }
     echo '  </td>';

@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     <td colspan=2><input type="submit" name="submit" value="Update" 
         class='w3-button w3-green'/>&nbsp;
    <a class="w3-button w3-green" 
-       href="../view/news_list.php">Return to News List</a>&nbsp;
+       href="../page/news_list.php">Return to News List</a>&nbsp;
     </td>
 
 </tr>
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     // $_SESSION["module"] = $_SERVER["PHP_SELF"];
     // require ("../assets/inc/head.php");
     // require ("../assets/inc/body.php");
-    // require ("../view/menu.php");
+    // require ("../inc/menu.php");
     include "../assets/inc/msg.php";
     echo '<h1>Add a news item</h1>';
     $errorList = array();
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo '</ul>';    
     }
-    echo '<a href="../view/news_list.php" class="w3-button w3-green">Back to News List</a>';
+    echo '<a href="../page/news_list.php" class="w3-button w3-green">Back to News List</a>';
     include "../inc/msg.php";
     include "../inc/footer.php";
 }

@@ -53,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message .= "Failed to add the record - please call support!";
         }
     }
-    render("../view/%table%_form.php", ["title" => "List of %title%s", "message" => "$message"]);
+    render("../page/%table%_form.php", ["title" => "List of %title%s", "message" => "$message"]);
 } else {
     $_SESSION["%lookupName%_select"] = 1; // Default to South Africa
-    render("../view/%table%_create_form.php", ["title" => "Record Details of a new %title%"]);
+    render("../page/%table%_create_form.php", ["title" => "Record Details of a new %title%"]);
 }
 ?>

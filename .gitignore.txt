@@ -1,9 +1,10 @@
-doc/
-inc/constants.php
-inc/constants.*~
-data/
+assets/docs
+conf/
+Data/
 deliver/
+docs
 # File types
+*.txt
 *.xls
 *.xlsx
 *.pdf

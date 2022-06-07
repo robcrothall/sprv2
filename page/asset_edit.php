@@ -16,7 +16,7 @@ require "../inc/config.php";
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 require "../inc/head.php";
 require "../inc/body.php";
-require "../page/menu.php";
+require "../inc/menu.php";
 require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     include "../inc/db_open.php";

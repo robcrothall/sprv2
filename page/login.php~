@@ -14,7 +14,7 @@
  * href="http://creativecommons.org/licenses/by/4.0/">
  * Creative Commons Attribution 4.0 International License</a>. CC0
  * @version  GIT: 
- * @link     ../ctl/search.php
+ * @link     ../page/search.php
  */
 // configuration
 require "../conf/config.php"; 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $today, $_SESSION["id"]
             );
             // redirect to search
-            redirect("../view/news_list.php");
+            redirect("../page/news_list.php");
         }
     } else {
         $rows = query(
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //$rows = query("update users set last_logon = ? where id = ?", 
                 //    $today, $_SESSION["id"]);
                 // redirect to search
-                redirect("../view/news_list.php");
+                redirect("../page/news_list.php");
             } else {
                 $success = false;
                 print_r(strtoupper($row["account_no"]));
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     apologize("Invalid username and/or password.");
 } else {
     // else render form
-    //render("../view/login_form.php", ["title" => "Log In"]);
+    //render("../page/login_form.php", ["title" => "Log In"]);
     echo "<p>Employees should use the User Name and password assigned to them.</p>\n";
     echo "<p>Residents should use their Account Code (from their monthly statement)"; 
     echo " as a User Name, and their ID No as a password.</p>\n";

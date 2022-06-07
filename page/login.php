@@ -14,7 +14,7 @@
  * href="http://creativecommons.org/licenses/by/4.0/">
  * Creative Commons Attribution 4.0 International License</a>. CC0
  * @version  GIT: 
- * @link     ../ctl/search.php
+ * @link     ../page/search.php
  */
 // configuration
 require "../inc/config.php"; 

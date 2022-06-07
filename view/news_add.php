@@ -1,9 +1,9 @@
 
 <?php
 /**
- * Sample File 3, phpDocumentor Quickstart
+ * Program: news_add.php
  * 
- * This file demonstrates the use of the @name tag
+ * Add a news item
  * 
  * PHP version 7.1
  * 
@@ -14,14 +14,14 @@
  * @version  GIT: <git_id>
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     ?>
 <h1>Add a news item</h1>
 <table cellspacing="5" cellpadding="5">
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     <td colspan=2>
         <input type="submit" name="submit" value="Add" 
             class="w3-button w3-green"/>&nbsp;
-        <a class="w3-button w3-green" href="../view/news_list.php">
+        <a class="w3-button w3-green" href="../page/news_list.php">
             Return to News List</a>&nbsp;
     </td>
 
@@ -69,12 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </table>
     <?php
 } else {
-    //   require("../conf/config.php"); 
-    //    $_SESSION["module"] = $_SERVER["PHP_SELF"];
-    //   require("../assets/inc/head.php");
-    //   require("../assets/inc/body.php");
-    //    require("../view/menu.php");
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add a news item</h1>';
     $errorList = array();
     $title = test_input($_POST["title"]);
@@ -90,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $errorList[] = "Please select a contact person.";
     }
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         $sql = "insert into news (title, content, contact_id) values ('";
         $sql .= $title . "','" . $content . "'," . $person_id . ")";
         $result = mysqli_query($handle, $sql) 
@@ -105,9 +100,9 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo '</ul>';    
     }
-    echo '<a class="w3-button w3-green" href="../view/news_list.php">';
+    echo '<a class="w3-button w3-green" href="../page/news_list.php">';
     echo 'Back to News List</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

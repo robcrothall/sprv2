@@ -96,7 +96,7 @@ function test_url($url) {
      */
     function apologize($message)
     {
-        render("../view/apology.php", ["message" => $message]);
+        render("../page/apology.php", ["message" => $message]);
         exit;
     }
 
@@ -106,7 +106,7 @@ function test_url($url) {
      */
     function dump($variable)
     {
-        require("../view/dump.php");
+        require("../page/dump.php");
         //exit;
     }
 
@@ -334,13 +334,13 @@ function test_url($url) {
             extract($values);
 
             // render header
-            require("../view/header.php");
+            require("../page/header.php");
 
             // render template
             require("$template");
 
             // render footer
-            require("../view/footer.php");
+            require("../page/footer.php");
         }
 
         // else err

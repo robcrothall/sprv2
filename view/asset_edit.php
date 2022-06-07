@@ -12,14 +12,14 @@
  * @version  GIT: <git_id>
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $id = test_input($_GET["id"]);
     if (trim($id) == '') {
         die("No ID specified - please inform SysAdmin.");
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td colspan=2><input type="submit" name="submit" value="Update" 
         class='w3-button w3-green'/>&nbsp;
-        <a class="w3-button w3-green" href="../view/asset_list.php">
+        <a class="w3-button w3-green" href="../page/asset_list.php">
             Return to asset list</a>
         &nbsp;
     </td>
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </form>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Edit an asset</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $errorList[] = "Please enter a name or Cottage number.";
     }
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         $sql = "update asset set asset_name='" . $asset_name . "'";
         $sql .= ", asset_type=" . $asset_type;
         $sql .= ", asset_size=" . $asset_size;
@@ -115,9 +115,9 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo '</ul>';    
     }
-    echo '<a href="../view/asset_list.php" class="w3-button w3-green">';
+    echo '<a href="../page/asset_list.php" class="w3-button w3-green">';
     echo 'Back to asset list</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

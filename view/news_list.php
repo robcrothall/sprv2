@@ -13,13 +13,13 @@
  * @link     http://www.sprv.co.za
  * @PHP      7.1
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 echo '<h1>List of news items</h1>';
 if (check_role("PR")) {
     echo '<a href="news_add.php" class="w3-button w3-green">Add News</a>';
@@ -50,7 +50,7 @@ echo '</ol>';
 if ($unread == 0) {
     echo "You have no unread messages.  Well done!<br><br>";
 }
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 // Now check for tasks outstanding for more than three weeks and send to HoD
 ?>

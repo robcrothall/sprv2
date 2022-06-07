@@ -6,7 +6,7 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-       render("../view/construction_form.php");
+       render("../page/construction_form.php");
     }
     else
     {
@@ -18,7 +18,7 @@
     	if ( null==$id ) {
         header("Location: index.php");
     	} else {
-        render("../view/%name%_read_form.php", ["title" => "Display details about a %title%",
+        render("../page/%name%_read_form.php", ["title" => "Display details about a %title%",
             "form_id" => "$id"]);
          }
     }

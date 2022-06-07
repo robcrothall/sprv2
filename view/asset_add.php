@@ -14,14 +14,14 @@
  * @version  GIT: <git_id>
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     ?>
 <h1>Add an asset</h1>
 <table cellspacing="5" cellpadding="5">
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     <td colspan=2>
         <input type="submit" name="submit" value="Add" 
             class="w3-button w3-green"/>&nbsp;
-        <a class="w3-button w3-green" href="../view/asset_list.php">
+        <a class="w3-button w3-green" href="../page/asset_list.php">
             Return to Asset List</a>&nbsp;
     </td>
 
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </table>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add an Asset</h1>';
     $errorList = array();
     $asset_name = test_input($_POST["asset_name"]);
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (trim($asset_name) == '') {
         $errorList[] = "Please enter a name for the asset.";
     }
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $sql = 'select count(*) as kount from asset where asset_name = "';
     $sql .= $asset_name . '"';
     $result = mysqli_query($handle, $sql)
@@ -114,9 +114,9 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo '</ul>';    
     }
-    echo '<a class="w3-button w3-green" href="../view/asset_list.php">';
+    echo '<a class="w3-button w3-green" href="../page/asset_list.php">';
     echo 'Back to Asset List</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

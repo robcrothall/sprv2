@@ -12,14 +12,14 @@
  * @version  GIT: <git_id>
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $id = test_input($_GET["id"]);
     if (trim($id) == '') {
         die("No ID specified - please inform SysAdmin.");
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td colspan=2><input type="submit" name="submit" value="Update" 
         class='w3-button w3-green'/>&nbsp;
-        <a class="w3-button w3-green" href="../view/addtyp_list.php">
+        <a class="w3-button w3-green" href="../page/addtyp_list.php">
             Return to address type list</a>
         &nbsp;
     </td>
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </form>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Edit an address type</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $errorList[] = "Please enter an address type.";
     }
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         $sql = "update address_type set addr_type='" . $addr_type . "'";
         $sql .= ", user_id='" . $user_id . "'";
         $sql .= " where id = $id";
@@ -82,9 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo '</ul>';    
     }
-    echo '<a href="../view/addtyp_list.php" class="w3-button w3-green">';
+    echo '<a href="../page/addtyp_list.php" class="w3-button w3-green">';
     echo 'Back to address type list</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

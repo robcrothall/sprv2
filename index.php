@@ -8,8 +8,8 @@ require "sprv_v2/inc/constants.php";
 ?>
     <head>
         <title><?php echo $_SERVER["SERVER_NAME"]; ?></title>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="Keywords" CONTENT="<?php echo $_SERVER["SERVER_NAME"]; ?>, Settlers Park" />
         <meta name="Description" CONTENT="<?php echo $_SERVER["SERVER_NAME"]; ?> is an intranet for Settlers Park" />

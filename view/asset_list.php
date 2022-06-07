@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: assphone_list
+ * Program: asset_list
  * 
  * Display details about an unattended phone in an asset.
  * php version 7.2.10
@@ -12,13 +12,13 @@
  * @version  GIT: <git_id> 
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
-require "../view/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/head.php";
+require "../inc/body.php";
+require "../inc/menu.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 echo '<h1>List of assets</h1>';
 if (check_role("STAFF")) {
     echo '<a href="asset_add.php" class="w3-button w3-green">Add an asset</a>';
@@ -47,9 +47,9 @@ foreach ($handle->query($sql) as $row) {
     echo '  <td>' . $row['asset_size'] . '</td>';
     echo '  <td>';
     if (check_role("STAFF")) {
-        echo '<a class="w3-button w3-green" href="../view/asset_edit.php?id=';
+        echo '<a class="w3-button w3-green" href="../page/asset_edit.php?id=';
         echo $row['id'] . '">Update</a>';
-        echo '<a class="w3-button w3-red" href="../view/asset_delete.php?id=';
+        echo '<a class="w3-button w3-red" href="../page/asset_delete.php?id=';
         echo $row['id'] . '">Delete</a>';
     }
     echo '  </td>';

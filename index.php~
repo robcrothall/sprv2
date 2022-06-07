@@ -81,7 +81,7 @@
 			<h2><?php echo $_SERVER["SERVER_NAME"]; ?></h2>
 			is the intranet for Settlers Park Retirement Village.  Authorised access is required.
 			<p>
-			<a href="https://sprv.co.za/sprv/ctl/login.php">Staff and Residents only</a>
+			<a href="https://sprv.co.za/sprv/page/login.php">Staff and Residents only</a>
 <!--			<p>
 			<a href="https://sprv.co.za/dolibarr">Settlers Park Administration</a>
 -->		</section>

@@ -39,4 +39,7 @@
     // Email configuration
     define("HELPDESK_EMAIL", "rob@crothall.co.za");
     define("HELPDESK_CC", "");
+
+    // Copyright Text
+    define("COPYRIGHT", "Settlers Park Association");
 ?>

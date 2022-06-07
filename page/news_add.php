@@ -3,7 +3,7 @@
 /**
  * Program: news_add.php
  * 
- * This file demonstrates the use of the @name tag
+ * Add a news item
  * 
  * PHP version 7.1
  * 

@@ -49,7 +49,7 @@ $sql .= $req_id .", " . $_SESSION["id"] . ")";
 $result = mysqli_query($handle, $sql); 
 // or die("Error in query: $sql. " . mysqli_error($handle));
 echo '<br><br><a class="w3-button w3-green" ';
-echo 'href="../view/news_list.php">Back to News List</a>';
+echo 'href="../page/news_list.php">Back to News List</a>';
 echo "&nbsp;";
 echo "This item will be removed from your news list.";
 require "../inc/msg.php";
