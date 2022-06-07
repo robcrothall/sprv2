@@ -20,7 +20,7 @@
                                 echo '<td>' . $row['country'] . '</td>';
                                 echo '<td>';
                                     echo '<a class="w3-button w3-green" href="../page/country_read.php?id=' . $row['id'] . '">Read</a>';
-												if ($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN" ) {
+												if (check_role("STAFF") | check_role("ADMIN")) {
                                     	echo '<a class="w3-button w3-green" href="../page/country_update.php?id=' . $row['id'] . '">Update</a>';
                                     	if ($row['id'] > 0) {
                                     	    echo '<a class="w3-button w3-red" href="../page/country_delete.php?id=' . $row['id'] . '">Delete</a>';

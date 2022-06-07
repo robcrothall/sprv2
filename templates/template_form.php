@@ -22,7 +22,7 @@
                                 echo '<td>' . $row['%lookupName%'] . '</td>';
                                 echo '<td>';
                                     echo '<a class="btn btn-success" href="../page/%name%_read.php?id=' . $row['id'] . '">Read</a>';
-												if ($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN" ) {
+												if (check_role("STAFF" | check_role("ADMIN" ) {
                                     	echo '<a class="btn btn-success" href="../page/%name%_update.php?id=' . $row['id'] . '">Update</a>';
                                     	echo '<a class="btn btn-danger" href="../page/%name%_delete.php?id=' . $row['id'] . '">Delete</a>';
                                     }

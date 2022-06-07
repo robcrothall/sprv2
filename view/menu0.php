@@ -36,7 +36,7 @@
 			?>	
       </li>
       <?php
-      if($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN") {
+      if(check_role("STAFF" | check_role("ADMIN") {
       	echo '<li class="nav-item dropdown">';
         echo '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
         echo 'Administration';
@@ -49,7 +49,7 @@
         echo '<a class="dropdown-item" href="../page/password_force.php">Password force</a>';
         echo '<a class="dropdown-item" href="../page/roles.php">Roles</a>';
         //echo '<a class="dropdown-item" href="../page/users.php">Users</a>';
-        if($_SESSION["user_role"] == "ADMIN") {
+        if(check_role("ADMIN") {
             echo '<div class="dropdown-divider"></div>';
             //echo '<a class="dropdown-item" href="../page/history_date_fix.php">History date fix</a>';
         }

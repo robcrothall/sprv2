@@ -24,7 +24,6 @@ $_SESSION["username"] = "Unknown";
 $_SESSION["user_first_name"] = "";
 $_SESSION["user_surname"] = "Unknown";
 $_SESSION["member_exp"] = "Unknown";
-$_SESSION["user_role"] = "Visitor";
 $_SESSION["selected_people_id"] = 0;
 $_SESSION["search_name_start"] = "";
 require "../inc/header.php";
@@ -49,10 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // remember that user's now logged in by storing user's ID in session
             $_SESSION["id"] = $row["id"];
             $_SESSION["username"] = $row["username"];
+            $_SESSION["member_exp"] = $row["member_exp"];
+            $people_id = $row["people_id"];
+            $rows = query("SELECT * FROM people WHERE id = ?", $people_id);
+            $row = $rows[0];
             $_SESSION["user_first_name"] = $row["first_name"];
             $_SESSION["user_surname"] = $row["surname"];
-            $_SESSION["member_exp"] = $row["member_exp"];
-            $_SESSION["user_role"] = $row["user_role"];
             // log it
             $success = true;
             login_log($user_name_given, $password_given, $success);
@@ -92,7 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["username"] = $row["account_no"];
                 $_SESSION["user_first_name"] = $row["first_name"];
                 $_SESSION["user_surname"] = $row["surname"];
-                $_SESSION["user_role"] = "RESIDENT";
                 // log it
                 $success = true;
                 login_log($user_name_given, $password_given, $success);

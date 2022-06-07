@@ -25,7 +25,7 @@
                                 echo '<td>' . $row['co_name'] . '</td>';
                                 echo '<td>';
                                     echo '<a class="btn btn-success" href="../page/people_read.php?id=' . $row['id'] . '">Read</a>';
-												if ($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN" ) {
+												if (check_role("STAFF" | check_role("ADMIN" ) {
                                     	echo '<a class="btn btn-success" href="../page/people_update.php?id=' . $row['id'] . '">Update</a>';
                                     	echo '<a class="btn btn-danger" href="../page/people_delete.php?id=' . $row['id'] . '">Delete</a>';
                                     }

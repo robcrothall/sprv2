@@ -74,7 +74,7 @@ if (empty($_SESSION["selected_people_id"]) or check_role("RESIDENT")) {
             $_SESSION["selected_people_id"]
         );
         $cottage = $rows[0]["cottage"];
-        if ($_SESSION["user_role"] == "RESIDENT") {
+        if (check_role("RESIDENT")) {
         //if ($_SESSION["user_surname"] . $_SESSION["user_first_name"] <> $rows[0]["surname"] . $rows[0]["first_name"]) {
         //    $cottage = 0;
         //    $message .= "Residents may only see their own electricity usage";
@@ -126,8 +126,7 @@ if (empty($_SESSION["selected_people_id"]) or check_role("RESIDENT")) {
              <tr>
                 <td align="left" width="50%">User: 
                     <?php echo $_SESSION["user_surname"] . ", " . 
-                    $_SESSION["user_first_name"] . " [" . 
-                    $_SESSION["user_role"] . "]"; ?> </td>
+                    $_SESSION["user_first_name"]; ?> </td>
                 <td align="right" width="50%">Timestamp: 
                     <?php echo date("Y-m-d H:i:s T"); ?></td>
              </tr>

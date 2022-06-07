@@ -6,7 +6,7 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-      if($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN") {
+      if(check_role("STAFF") | check_role("ADMIN")) {
         // validate submission
         if (empty($_POST["username"]))
         {

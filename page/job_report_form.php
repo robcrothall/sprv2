@@ -24,7 +24,7 @@ $no_of_jobs = 0;
 <br>
 <div id="print-content" class="row">
 <?php
-if ($_SESSION["user_role"] <> "RESIDENT") {
+if (check_role("RESIDENT")) {
     echo '<select name="dept_id">' . "\n";
     $selected = "";
     if ($_SESSION["dept_id"] == 0) {
@@ -281,7 +281,7 @@ $cmd1 = "SELECT a.*";
 $cmd1 .= " from jobs a ";
 $where = " where ";
 $cmd2 = " ";
-if ($_SESSION["user_role"] == "RESIDENT") {
+if (check_role("RESIDENT")) {
     $cmd2 .= $where . " originator_id = '" . $_SESSION["originator_id"] . "' ";
     $where = " and ";
 }
@@ -309,7 +309,7 @@ if ($_SESSION["assigned_to"] != 0) {
     $cmd2 .= $where . " assigned_to = '" . $_SESSION["assigned_to"] . "' ";
     $where = " and ";
 }
-//  if ($_SESSION["user_role"] <> "RESIDENT") {
+//  if (check_role("RESIDENT") {
 switch($_SESSION["status"]) {
 case "open":
     $cmd2 .= $where . " date_closed < '1900-01-02' "; 

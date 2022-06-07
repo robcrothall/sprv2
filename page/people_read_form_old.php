@@ -122,7 +122,7 @@
 				<td align="left" width="70%"><?php echo $sex; ?></td>
 	      </tr>
 		<?php
-		if ($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN" ) {
+		if (check_role("STAFF") | check_role("ADMIN") ) {
 	      echo '<tr>';
 				echo '<td align="right" valign="top" width="30%">R&amp;S Representative:</td>';
 				echo '<td width="2%"></td>';
@@ -181,7 +181,7 @@
 				<td align="left" width="70%"><?php echo $changed; ?></td>
 	      </tr>
           <?php
-            if($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN") {
+            if(check_role("STAFF") | check_role("ADMIN")) {
 				echo '<tr>';
 					echo '<td align="right" valign="top" width="25%">Notes:</td>';
 					echo '<td width="2%"></td>';

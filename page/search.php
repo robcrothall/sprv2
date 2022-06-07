@@ -24,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cmd_select .= "a.occupation_id, a.status, b.occupation, c.co_name";
     $cmd_tables = " from people a, occupation b, company c";
     $cmd_where = " where b.id = occupation_id and c.id = a.company_id";
-    if ($_SESSION["user_role"] == "RESIDENT") {
+    if (check_role("RESIDENT")) {
         $cmd_where .= " and a.company_id < 3 and a.company_id > 0 ";
     }
     $cmd_order_by = " order by surname, first_name";
-    if ($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN" ) {
+    if (check_role("STAFF") | check_role("ADMIN")) {
         $cmd_limit = " limit 250";
     } else {
         $cmd_limit = " limit 50";

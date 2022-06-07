@@ -107,7 +107,7 @@ $_SESSION["module"] = $_SERVER["PHP_SELF"];
 	       </table>
 	       <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	         <tr>
-		        <td align="left" width="50%">User: <?php echo $_SESSION["user_first_name"] . " " . $_SESSION["user_surname"] . " [" . $_SESSION["user_role"] . "]"; ?> </td>
+		        <td align="left" width="50%">User: <?php echo $_SESSION["user_first_name"] . " " . $_SESSION["user_surname"]; ?> </td>
 		        <td align="right" width="50%">Timestamp: <?php echo date("Y-m-d H:i:s T"); ?></td>
 	         </tr>
 	       </table>

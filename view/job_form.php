@@ -362,7 +362,6 @@ if ($_SESSION["assigned_to"] != 0) {
     $cmd2 .= $where . " assigned_to = '" . $_SESSION["assigned_to"] . "' "; 
     $where = " and ";
 }
-// if($_SESSION["user_role"] <> "RESIDENT") {
 switch($_SESSION["status"]) {
 case "open":
     $cmd2 .= $where . " date_closed < '1900-01-02' "; 

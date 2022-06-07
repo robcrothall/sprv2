@@ -45,13 +45,13 @@
                             echo '<a class="w3-button w3-green"';
                             echo 'href="../page/people_read.php?id=' . $row['id'];
                             echo '">Read</a>' . '&nbsp;';
-                            if ($_SESSION["user_role"] == "STAFF" 
-                                or $_SESSION["user_role"] == "ADMIN" 
+                            if (check_role("STAFF" 
+                                or check_role("ADMIN" 
                             ) {
                                 echo '<a class="w3-button w3-green" ';
                                 echo 'href="../page/people_update.php?id=';
                                 echo $row['id'] . '">Update</a>' . '&nbsp;';
-                                if ($_SESSION["user_role"] == "ADMIN" ) {
+                                if (check_role("ADMIN" ) {
                                     echo '<a class="w3-button w3-red" ';
                                     echo 'href="../page/people_delete.php?id=';
                                     echo $row['id'] . '">Delete</a>';

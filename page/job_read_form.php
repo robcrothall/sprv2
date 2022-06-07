@@ -101,7 +101,7 @@ if (count($data) > 0) {
 }
 $data = query("select username from users where id = ?", $user_id);
 $username = $data[0]["username"];
-if ($_SESSION["user_role"] == "STAFF") {
+if (check_role("STAFF")) {
     $sql = "update jobs set read_date = now(), user_id = ? ";
     $sql .= "where id = ? and read_date is null";
     $data = query($sql, $_SESSION["id"], $rec_id);

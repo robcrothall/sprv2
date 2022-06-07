@@ -18,7 +18,7 @@
                                 echo '<td>' . $row['occupation'] . '</td>';
                                 echo '<td>';
                                     echo '<a class="w3-button w3-green" href="../page/occupation_read.php?id=' . $row['id'] . '">Read</a>' . '&nbsp;';
-												if ($_SESSION["user_role"] == "STAFF" | $_SESSION["user_role"] == "ADMIN" ) {
+												if (check_role("STAFF" | check_role("ADMIN" ) {
                                     	echo '<a class="w3-button w3-green" href="../page/occupation_update.php?id=' . $row['id'] . '">Update</a>' . '&nbsp;';
                                     	if ($row['id'] > 0) {
                                     	    echo '<a class="w3-button w3-red" href="../page/occupation_delete.php?id=' . $row['id'] . '">Delete</a>';

@@ -28,13 +28,16 @@ $_SESSION["module"] = $_SERVER["PHP_SELF"];
         var data = google.visualization.arrayToDataTable([
           ['Month', 'Units'],
 <?php
-if ($_SESSION["user_role"] == "RESIDENT") {
+if (check_role("RESIDENT")) {
 
 }
 //$rows = query("select create_date as `Date`, count(*) as `Created` " .
 //"from jobs where create_date > date_add(now(), interval -30 days) order by create_date"
 //);
-$rows = query("SELECT date(create_date) as Created, count(*) as Jobs FROM `jobs` where create_date > date_add(now(), interval -30 day) group by date(create_date);");
+$sql = "SELECT date(create_date) as Created, count(*) as Jobs ";
+$sql .= "FROM `jobs` where create_date > date_add(now(), interval -30 day) ";
+$sql .= "group by date(create_date)";
+$rows = query($sql);
 foreach ($rows as $row) { 
     echo "['" . $row["Created"] . "', " . $row["Jobs"] . "],\r";
 } 
@@ -68,7 +71,7 @@ echo "'Tasks created, by day'";
 	       </table>
 	       <table border="0" cellpadding="0" cellspacing="0" width="100%">
 	         <tr>
-		        <td align="left" width="50%">User: <?php echo $_SESSION["user_first_name"] . " " . $_SESSION["user_surname"] . " [" . $_SESSION["user_role"] . "]"; ?> </td>
+		        <td align="left" width="50%">User: <?php echo $_SESSION["user_first_name"] . " " . $_SESSION["user_surname"]; ?> </td>
 		        <td align="right" width="50%">Timestamp: <?php echo date("Y-m-d H:i:s T"); ?></td>
 	         </tr>
 	       </table>

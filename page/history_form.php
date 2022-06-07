@@ -36,7 +36,7 @@
                                 echo '<td>' . $row['notes'] . '</td>';
                                 echo '<td valign="top" style="width:280px">';
                                     echo '<a class="w3-button w3-green" href="../page/history_read.php?id=' . $row['id'] . '">Read</a> &nbsp;'; 
-									if ($_SESSION["user_role"] == "ADMIN" ) {
+									if (check_role("ADMIN" )) {
                                     	echo '<a class="w3-button w3-green" href="../page/history_update.php?id=' . $row['id'] . '">Update</a> &nbsp;'; 
                                     	echo '<a class="w3-button w3-red" href="../page/history_delete.php?id=' . $row['id'] . '">Delete</a>';
                                     }
