@@ -13,7 +13,7 @@
  * @link     http://www.sprv.co.za
  */
 // configuration
-require "../conf/config.php";
+require "../inc/config.php";
     
 // if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

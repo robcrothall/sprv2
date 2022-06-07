@@ -1,7 +1,7 @@
 <?php
 
     // configuration
-	require("../conf/config.php"); 
+	require("../inc/config.php"); 
 	$_SESSION["module"] = $_SERVER["PHP_SELF"];
 	$message = "";
 	if(empty($_SESSION["selected_people_id"])) {

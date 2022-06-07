@@ -20,7 +20,7 @@
  * @version   SVN: $Id$
  * @link      http://pear.php.net/package/PackageName
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $requested = $_SERVER["PHP_SELF"];
 if (!check_role($_SERVER["PHP_SELF"])) {

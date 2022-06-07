@@ -17,7 +17,7 @@
  * @link     ../page/search.php
  */
 // configuration
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $_SESSION["id"] = "0";
 $_SESSION["username"] = "Unknown";

@@ -1,10 +1,11 @@
 <div>
 <h2>Contact us</h2>
-    <p class="text-center">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
-        matter of hours to help you.</p>
+    <p class="text-center">Do you have any questions? Please do not hesitate to contact us directly. 
+		Our team will come back to you within a matter of hours to help you.</p>
 </div>
 <div>
-<form id="contact-form" name="contact-form" class="form-control full-width" action="../page/contact.php" method="POST">
+<form id="contact-form" name="contact-form" class="form-control full-width" 
+action="../page/contact.php" method="POST">
 	<label for="name">Your first name and surname</label> 
 	<input type="text" id="name" name="name" class="full-width">
 	<label for="email">Your email address</label>

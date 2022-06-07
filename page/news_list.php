@@ -49,6 +49,8 @@ foreach ($handle->query($sql) as $row) {
 echo '</ol>';
 if ($unread == 0) {
     echo "You have no unread messages.  Well done!<br><br>";
+    var_dump("User first name:", $_SESSION["user_first_name"]);
+    var_dump("User surname;", $_SESSION["user_surname"]);
 }
 require "../inc/msg.php";
 require "../inc/footer.php";

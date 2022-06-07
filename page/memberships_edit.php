@@ -12,7 +12,7 @@
  * @version  GIT: <git_id>
  * @link     http://www.sprv.co.za
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $return_to = $_SESSION["module"];
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 require "../assets/inc/head.php";

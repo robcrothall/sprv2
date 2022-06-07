@@ -1,5 +1,5 @@
 <?php
-    require("../conf/config.php"); 
+    require("../inc/config.php"); 
 	 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 	 //print_r($_SERVER["REQUEST_METHOD"]);
     if ($_SERVER["REQUEST_METHOD"] == "POST")

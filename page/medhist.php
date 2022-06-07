@@ -15,7 +15,7 @@
  */
 
 // configuration
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 // if form was submitted
 $requested = $_SERVER["PHP_SELF"];

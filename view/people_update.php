@@ -24,7 +24,7 @@
  * @since      File available since Release 1.2.0
  * @deprecated File deprecated in Release 2.0.0
  */
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rec_id = $_SESSION["rec_id"];

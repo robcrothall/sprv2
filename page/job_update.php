@@ -14,7 +14,7 @@
  * @PHP      7.1
  */
 
-require "../conf/config.php"; 
+require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rec_id = $_SESSION["rec_id"];

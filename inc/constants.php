@@ -41,5 +41,9 @@
     define("HELPDESK_CC", "");
 
     // Copyright Text
-    define("COPYRIGHT", "Settlers Park Association");
+    define("COPYRIGHT", "Settlers Park Association, Horton Road, Port Alfred, South Africa");
+
+    // Physical and Postal Addresses
+    define("PHYSICAL_ADDR", "Settlers Park Retirement Village, Horton Road, Port Alfred 6170, South Africa");
+    define("POSTAL_ADDR", "Settlers Park Association, Private Bag 6125, Port Alfred 6170, South Africa"); 
 ?>

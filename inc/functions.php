@@ -263,13 +263,13 @@ function render($template, $values = [])
         extract($values);
 
         // render header
-        include "../page/header.php";
+        include "../inc/header.php";
 
         // render template
         include "$template";
 
         // render footer
-        include "../page/footer.php";
+        include "../inc/footer.php";
     } else {     // else err
         trigger_error("Invalid template: $template", E_USER_ERROR);
     }

@@ -77,7 +77,7 @@ require "sprv_v2/inc/constants.php";
     </head>
     <body>
         <section id="content">
-            <img src="<?php echo HOME_DIR; ?>/img/logo.jpg" alt="Settlers Park logo" />
+            <img src="logo.jpg" alt="Settlers Park logo" />
             <span>
             <a href="https://sacoronavirus.co.za/">Click here</a> to visit the Government's COVID-19 portal at <a href="https://sacoronavirus.co.za/">https://sacoronavirus.co.za</a>
             </span>
