@@ -6,10 +6,10 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-		$rows = query("DELETE from jobs where id = ?", $_SESSION["rec_id"]);
-   	$message = "The job has been deleted.";
-		$_SESSION["current_job"] = '';
-      render("../page/job_form.php", ["message" => $message]);
+		$rows = query("DELETE from tasks where id = ?", $_SESSION["rec_id"]);
+   	$message = "The task has been deleted.";
+		$_SESSION["current_task"] = '';
+      render("../page/task_form.php", ["message" => $message]);
     }
     else
     {
@@ -21,7 +21,7 @@
     	if ( null==$id ) {
         header("Location: index.php");
     	} else {
-        render("../page/job_delete_form.php", ["title" => "Delete a job entry",
+        render("../page/task_delete_form.php", ["title" => "Delete a task entry",
             "form_id" => "$id"]);
          }
     }

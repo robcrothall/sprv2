@@ -20,7 +20,7 @@
 		$project_id = 0;
 		$_SESSION["sql_error"] = "Initialised";
 		$user_id = $_SESSION["id"];
-//		$_SESSION["selected_job_id"]
+//		$_SESSION["selected_task_id"]
 		$assigned_to = test_input($_POST["assigned_to"]);
 		if(empty($assigned_to)) {$assigned_to = 0;}
 		$short_list = test_input($_POST["short_list"]);
@@ -70,12 +70,12 @@
 				}
 			}
 		}
-      render("../page/job_ass_form.php", ["title" => "Task assignments", "message" => "$message"]);
+      render("../page/task_ass_form.php", ["title" => "Task assignments", "message" => "$message"]);
     }
     else
     {
 		$_SESSION["event_select"] = 1;
-		render("../page/job_ass_create_form.php", ["title" => "Add a resource to a task"]);
+		render("../page/task_ass_create_form.php", ["title" => "Add a resource to a task"]);
     }
 
 ?>

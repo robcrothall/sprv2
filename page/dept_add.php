@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top">Task email address</td>
     <td><input size="50" maxlength="250" type="text" 
-        name="job_email"></td>
+        name="task_email"></td>
 </tr>
 <tr>
     <td colspan=2>
@@ -106,14 +106,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if ($dept_manager_id == 0) {
         $errorList[] = "Please select a manager.";
     } 
-    $job_email = "";
-    if (isset($_POST["job_email"])) {
-        $job_email = $_POST["job_email"];
+    $task_email = "";
+    if (isset($_POST["task_email"])) {
+        $task_email = $_POST["task_email"];
     }
     if (sizeof($errorList) == 0) {
-        $sql = "insert into dept (dept_name, dept_manager_id, job_email, ";
+        $sql = "insert into dept (dept_name, dept_manager_id, task_email, ";
         $sql .= "user_id) values ('";
-        $sql .= $dept_name . "'," . $dept_manager_id . ",'" . $job_email . "',";
+        $sql .= $dept_name . "'," . $dept_manager_id . ",'" . $task_email . "',";
         $sql .= $user_id . ")";
         echo "<br>" . $sql . "</br>";
         $result = mysqli_query($handle, $sql) 

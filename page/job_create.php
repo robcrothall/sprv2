@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: job_read_form
+ * Program: task_read_form
  * 
  * Display the detail about a task.
  * 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["sql_error"] = "Initialised";
     $user_id = $_SESSION["id"];
     if (empty($_POST["subject"])) {
-        $message .= "You must provide a job summary.  "; 
+        $message .= "You must provide a task summary.  "; 
         $error = true;
     } else {
         $subject = test_input($_POST['subject']);
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $criteria = substr($criteria, 0, 750);
         }
         $rowCount = query(
-            "insert into jobs (originator_id, dept_id, " .
+            "insert into tasks (originator_id, dept_id, " .
             "severity, subject, description, criteria, " . 
             "asset_id, discipline, type, " . 
             "due_date, create_id, project_id, user_id) " .
@@ -107,15 +107,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message .= "Failed to add the Job record - please call support!  ";
         } else {
             $message .= "Job inserted successfully.  ";
-            $job_no = $_SESSION["inserted_row_id"];
-            $sql = "select dept_name, job_email from dept where id=?";
+            $task_no = $_SESSION["inserted_row_id"];
+            $sql = "select dept_name, task_email from dept where id=?";
             $rows = query($sql, $dept_id);
             if (!$rowCount == true) {
                 $dept_name = $rows[0]["dept_name"];
-                $job_email = $rows[0]["job_email"];            
+                $task_email = $rows[0]["task_email"];            
             } else {
                 $dept_name = "Unknown " . $dept_id;
-                $job_email = "";            
+                $task_email = "";            
             }
             $originator_name = "unknown " . $originator_id;
             $sql = "select first_name, given_name, surname, home_email, ";
@@ -155,11 +155,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $originator_email = ", " . $originator_email;
             }
             
-            $to = $job_email;
-            $mail_subject = "New Task - $job_no : $subject";
+            $to = $task_email;
+            $mail_subject = "New Task - $task_no : $subject";
          
-            $txt  = "<h1>New Task (#" . $job_no . ") has been created</h1>";
-            $txt .= "<br>Task No: $job_no\r\n ";
+            $txt  = "<h1>New Task (#" . $task_no . ") has been created</h1>";
+            $txt .= "<br>Task No: $task_no\r\n ";
             $txt .= "<br>Subject: $subject\r\n ";
             $txt .= "<br>Severity: $severity\r\n ";
             $txt .= "<br>Type: $type\r\n ";
@@ -173,10 +173,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $txt .= "<br>Submitter: $user_name\r\n";
             $txt .= "<br>Created: $create_date\r\n";
             $txt .= "<br><br>Regards...\r\n ";
-            $txt .= "<br>jobcards@settlerspark.co.za";
+            $txt .= "<br>taskcards@settlerspark.co.za";
              
             $header = "From: " . HELPDESK_EMAIL . " \r\n";
-            $header .= "CC: " . $job_email . $originator_email . " \r\n";
+            $header .= "CC: " . $task_email . $originator_email . " \r\n";
             $header .= "BCC: rob@crothall.co.za \r\n";
             $header .= "MIME-Version: 1.0\r\n";
             $header .= "Content-type: text/html\r\n";
@@ -222,10 +222,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "SQL Error=";
     var_dump($_SESSION["sql_error"]);
     */
-    $_SESSION["current_job"] = $job_no;
+    $_SESSION["current_task"] = $task_no;
     render(
-        "../page/job_form.php", 
-        ["title" => "List of jobs", "message" => "$message"]
+        "../page/task_form.php", 
+        ["title" => "List of tasks", "message" => "$message"]
     );
 } else {
     if (!isset($_SESSION["originator_id"])) {
@@ -250,7 +250,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["assigned_to"] = 0;
     }
     render(
-        "../page/job_create_form.php", 
+        "../page/task_create_form.php", 
         ["title" => "Record Details of a new task"]
     );
 }

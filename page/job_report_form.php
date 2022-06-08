@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: job_report_form
+ * Program: task_report_form
  * 
  * Display a list of tasks, depending on selected criteria.
  * PHP version 5.1
@@ -14,10 +14,10 @@
  * @PHP      7.1
  */
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-$no_of_jobs = 0;
+$no_of_tasks = 0;
 ?>
 <h2 align="center">List of Tasks</h2>
-<form action="../page/job.php" method="post">
+<form action="../page/task.php" method="post">
 <input type='submit' value='Show Tasks' class='w3-button w3-green'/>&nbsp;
 <input type="button" onclick="myPrint('print-content')" value="Print" 
     class='w3-button w3-green'>
@@ -50,7 +50,7 @@ if (check_role("RESIDENT")) {
         $selected = " selected";
     }
     echo '<option value="any"' . $selected . ">All disciplines</option>\n";
-    $rows = query("SELECT distinct discipline FROM jobs order by discipline");
+    $rows = query("SELECT distinct discipline FROM tasks order by discipline");
     foreach ($rows as $row) {
         if ($row["discipline"] == $_SESSION["discipline"]) {
             $selected = " selected";
@@ -67,7 +67,7 @@ if (check_role("RESIDENT")) {
         $selected = " selected";
     }
     echo '<option value="any"' . $selected . '>Any severity</option>';
-    $rows = query("SELECT distinct severity FROM jobs order by severity");
+    $rows = query("SELECT distinct severity FROM tasks order by severity");
     foreach ($rows as $row) {
         if ($row["severity"] == $_SESSION["severity"]) {
             $selected = " selected";
@@ -85,7 +85,7 @@ if (check_role("RESIDENT")) {
     }
     echo '<option value="0"' . $selected . ">Any originator</option>\n";
     $sql = "SELECT distinct b.id, b.surname, b.first_name, b.given_name ";
-    $sql .= "FROM jobs a, people b ";
+    $sql .= "FROM tasks a, people b ";
     $sql .= "where a.originator_id = b.id and b.id > 0 ";
     $sql .= "order by b.surname, b.first_name";
     $rows = query($sql);
@@ -114,7 +114,7 @@ if (check_role("RESIDENT")) {
     echo '<option value="any"' . $selected . '>Any project</option>';
     $selected = "";
     $sql = "SELECT distinct j.project_id as project_id, a.proj_name ";
-    $sql .= "FROM jobs j, projects a where j.project_id = a.id ";
+    $sql .= "FROM tasks j, projects a where j.project_id = a.id ";
     $sql .= "order by proj_name";
     $rows = query($sql);
     foreach ($rows as $row) {
@@ -141,7 +141,7 @@ if (check_role("RESIDENT")) {
     }
     echo '<option value="any"' . $selected . '>Any asset</option>';
     $sql = "SELECT distinct j.asset_id as asset_id, a.asset_name ";
-    $sql .= "FROM jobs j, asset a where j.asset_id = a.id order by asset_name";
+    $sql .= "FROM tasks j, asset a where j.asset_id = a.id order by asset_name";
     $rows = query($sql);
     foreach ($rows as $row) {
         $selected = "";
@@ -166,7 +166,7 @@ if (check_role("RESIDENT")) {
     }
     echo '<option value="0"' . $selected . ">Any technician</option>\n";
     $sql = "SELECT distinct b.id, b.surname, b.first_name, b.given_name ";
-    $sql .= "FROM jobs a, people b ";
+    $sql .= "FROM tasks a, people b ";
     $sql .= "where a.assigned_to = b.id and b.id > 0 ";
     $sql .= "order by b.surname, b.first_name";
     $rows = query($sql);
@@ -278,7 +278,7 @@ if (check_role("RESIDENT")) {
   <tbody>
 <?php 
 $cmd1 = "SELECT a.*"; 
-$cmd1 .= " from jobs a ";
+$cmd1 .= " from tasks a ";
 $where = " where ";
 $cmd2 = " ";
 if (check_role("RESIDENT")) {
@@ -350,7 +350,7 @@ $cmd = $cmd1 . $cmd2 . $cmd3;
 var_dump($cmd);
 $rows = query($cmd);
 if (count($rows) > 0) {
-    $no_of_jobs = count($rows);
+    $no_of_tasks = count($rows);
     foreach ($rows as $row) {
         $date_closed = $row["date_closed"];
         $read_date = $row["read_date"];
@@ -448,7 +448,7 @@ if (count($rows) > 0) {
 </tbody>
 </table>
 <?php
-echo "<br>Number of Tasks selected = " . $no_of_jobs;
+echo "<br>Number of Tasks selected = " . $no_of_tasks;
 ?>
 </div>
 <script>

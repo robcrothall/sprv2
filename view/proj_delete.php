@@ -25,7 +25,7 @@ if ((!isset($_GET['id'])) || (trim($_GET['id'] == ''))) {
 } else {
     $req_id = test_input($_GET['id']);
     include "../inc/db_open.php";
-    $sql = "select count(*) as kount from jobs where project_id = ";
+    $sql = "select count(*) as kount from tasks where project_id = ";
     $sql .= $req_id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));

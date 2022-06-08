@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (trim($id) == '') {
         die("No ID specified - please inform SysAdmin.");
     }
-    $sql = "select id, dept_name, dept_manager_id, job_email ";
+    $sql = "select id, dept_name, dept_manager_id, task_email ";
     $sql .= "from dept where id = " . $id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $id = $row["id"];
     $dept_name = $row["dept_name"];
     $dept_manager_id = $row["dept_manager_id"];
-    $job_email = $row["job_email"];
+    $task_email = $row["task_email"];
     ?>
 <h1>Edit department</h1>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
@@ -81,8 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </tr>
 <tr>
     <td valign="top">Email address for Tasks</td>
-    <td><input size="50" maxlength="250" type="email" name="job_email"
-        value="<?php echo trim($job_email); ?>"></td>
+    <td><input size="50" maxlength="250" type="email" name="task_email"
+        value="<?php echo trim($task_email); ?>"></td>
 </tr>
 <tr>
     <td colspan=2><input type="submit" name="submit" value="Update" 
@@ -114,12 +114,12 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if ($dept_manager_id == 0) {
         $errorList[] = "Please select a manager.";
     } 
-    $job_email = "";
-    if (isset($_POST["job_email"])) {
-        $job_email = test_input($_POST["job_email"]);
+    $task_email = "";
+    if (isset($_POST["task_email"])) {
+        $task_email = test_input($_POST["task_email"]);
     }
-    if (strlen($job_email) > 0) {
-        if (!filter_var($job_email, FILTER_VALIDATE_EMAIL)) {
+    if (strlen($task_email) > 0) {
+        if (!filter_var($task_email, FILTER_VALIDATE_EMAIL)) {
             $errorList[] = "Invalid email format.";
         }
     }
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (sizeof($errorList) == 0) {
         $sql = "update dept set dept_name='" . $dept_name . "'";
         $sql .= ", dept_manager_id=" . $dept_manager_id;
-        $sql .= ", job_email='" . $job_email . "'";
+        $sql .= ", task_email='" . $task_email . "'";
         $sql .= ", user_id='" . $user_id . "'";
         $sql .= " where id = $id";
         $result = mysqli_query($handle, $sql) 

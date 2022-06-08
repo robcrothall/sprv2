@@ -32,9 +32,9 @@
 		
 	   }
 //		$rows = query("select create_date as `Date`, count(*) as `Created` " .
-//			"from jobs where create_date > date_add(now(), interval -30 days) order by create_date"
+//			"from tasks where create_date > date_add(now(), interval -30 days) order by create_date"
 //		);
-		$rows = query("SELECT date(actual_date) as Closed, sum(actual_hours) as Hours FROM `jobs` where actual_date > date_add(now(), interval -30 day) group by date(actual_date);");
+		$rows = query("SELECT date(actual_date) as Closed, sum(actual_hours) as Hours FROM `tasks` where actual_date > date_add(now(), interval -30 day) group by date(actual_date);");
 		foreach ($rows as $row){ 
 			echo "['" . $row["Closed"] . "', " . $row["Hours"] . "],\r";
 		} 

@@ -37,20 +37,20 @@ if ($_SESSION["id"] !== "0") {
     echo '<div class="w3-dropdown-hover">';
         echo '<button class="w3-button">Tasks</button>';
             echo '<div class="w3-dropdown-content w3-bar-block w3-card-4">';
-              echo '<a href="../page/job_create.php" class="w3-bar-item w3-button">';
+              echo '<a href="../page/task_create.php" class="w3-bar-item w3-button">';
               echo 'Create a new task</a> ';
-              echo '<a href="../page/job.php" class="w3-bar-item w3-button">';
+              echo '<a href="../page/task.php" class="w3-bar-item w3-button">';
               echo 'Show tasks</a> ';
     if (check_role("STAFF") | check_role("ADMIN")) {
             echo '<a href="../page/proj_list.php" class="w3-bar-item w3-button">';
             echo 'Projects</a>';
-              // echo '<a href="../page/job_report.php" ';
+              // echo '<a href="../page/task_report.php" ';
               //echo 'class="w3-bar-item w3-button">Tasks Report</a> ';
-              echo '<hr><a href="../page/jobsrep01.php" ';
+              echo '<hr><a href="../page/tasksrep01.php" ';
               echo 'class="w3-bar-item w3-button">Tasks created</a>';
-              echo '<a href="../page/jobsrep02.php" ';
+              echo '<a href="../page/tasksrep02.php" ';
               echo 'class="w3-bar-item w3-button">Tasks closed</a>';
-              echo '<a href="../page/jobsrep03.php" ';
+              echo '<a href="../page/tasksrep03.php" ';
               echo 'class="w3-bar-item w3-button">Hours worked</a>';
     }
             echo '</div>';

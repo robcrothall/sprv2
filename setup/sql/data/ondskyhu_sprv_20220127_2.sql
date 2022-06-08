@@ -1586,13 +1586,13 @@ ALTER TABLE `groups`
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `jobs`
+ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `jobs_hist`
+ALTER TABLE `tasks_hist`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `jobs_history`
+ALTER TABLE `tasks_history`
   ADD PRIMARY KEY (`id`,`changed`);
 
 ALTER TABLE `logon_log`
@@ -1641,8 +1641,8 @@ ALTER TABLE `people_bak`
 ALTER TABLE `people_discipline`
   ADD UNIQUE KEY `people_id` (`people_id`,`discipline_id`);
 
-ALTER TABLE `people_jobs`
-  ADD UNIQUE KEY `job_id` (`job_id`,`people_id`);
+ALTER TABLE `people_tasks`
+  ADD UNIQUE KEY `task_id` (`task_id`,`people_id`);
 
 ALTER TABLE `people_log`
   ADD PRIMARY KEY (`id`,`changed`);
@@ -1777,10 +1777,10 @@ ALTER TABLE `groups`
 ALTER TABLE `history`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
-ALTER TABLE `jobs`
+ALTER TABLE `tasks`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5470;
 
-ALTER TABLE `jobs_hist`
+ALTER TABLE `tasks_hist`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `logon_log`

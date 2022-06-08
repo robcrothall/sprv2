@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: job_update
+ * Program: task_update
  * 
  * Update a task.
  * php version 7.2.10
@@ -18,12 +18,12 @@ require "../inc/config.php";
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rec_id = $_SESSION["rec_id"];
-    $job_no = $rec_id;
+    $task_no = $rec_id;
     $error = false;
     $message = "";
     $email_subject = "updated";
     $date_assigned = strtotime("0000-00-00");
-    $sql = "select * from jobs where id=?";
+    $sql = "select * from tasks where id=?";
     $rows = query($sql, $rec_id);
 
     $subject = $rows[0]["subject"];
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date_closed = $rows[0]["date_closed"];
 
     if (empty($_POST["subject"])) {
-        $message .= "You must provide a job summary.  ";
+        $message .= "You must provide a task summary.  ";
         $subject="No Subject";
     } else {
         $subject = test_input($_POST["subject"]);
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($actual_hours == '') {
         $actual_hours = 0;
     }
-    $sql = "select * from jobs where id=?";
+    $sql = "select * from tasks where id=?";
     $rows = query($sql, $rec_id);
     $create_date = $rows[0]["create_date"];
     $old_assigned_to = $rows[0]["assigned_to"];
@@ -174,10 +174,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     //$message = "Date closed = $date_closed";
     // Back up the old record
-    $sql = "insert into jobs_history select * from jobs where id=?";
+    $sql = "insert into tasks_history select * from tasks where id=?";
     $rowCount = query($sql, $rec_id);
     // Tidy up old history records
-    $sql = "delete from jobs_history where date_closed > '1900-01-01' ";
+    $sql = "delete from tasks_history where date_closed > '1900-01-01' ";
     $sql .= "and date_closed < NOW() - INTERVAL 180 DAY";
     $rowCount = query($sql);
     // Tidy up some fields
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $criteria = substr($criteria, 0, 750);
     }
     // Write the updated record
-    $sql  = "update jobs set subject='" . $subject . "'";
+    $sql  = "update tasks set subject='" . $subject . "'";
     $sql .= ", description='" . $description . "'";
     $sql .= ", criteria='" . $criteria . "'";
     $sql .= ", originator_id=" . $originator_id . ", dept_id=" . $dept_id;
@@ -213,15 +213,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message .= "Failed to update the Job record - please call support!";
     } else {
         $message .= "Job $rec_id updated successfully. ";
-        $_SESSION["current_job"] = $rec_id;
-        $sql = "select dept_name, job_email from dept where id=?";
+        $_SESSION["current_task"] = $rec_id;
+        $sql = "select dept_name, task_email from dept where id=?";
         $rows = query($sql, $dept_id);
         if (!$rowCount == true) {
             $dept_name = $rows[0]["dept_name"];            
-            $job_email = $rows[0]["job_email"];            
+            $task_email = $rows[0]["task_email"];            
         } else {
             $dept_name = "Unknown " . $dept_id;            
-            $job_email = "";            
+            $task_email = "";            
         }
         $originator_name = "unknown " . $originator_id;
         $originator_email = "";
@@ -303,11 +303,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($date_assigned == "0000-00-00 00:00:00") {
             $date_assigned = "";
         }
-        $to = $job_email;
-        $mail_subject = "Updated Task - $job_no : $subject";
-        $txt  = "<html><head><title>Task (#" . $job_no . ") has been ";
+        $to = $task_email;
+        $mail_subject = "Updated Task - $task_no : $subject";
+        $txt  = "<html><head><title>Task (#" . $task_no . ") has been ";
         $txt .= $email_subject . "</title></head><body>";
-        $txt .= "<h1>Task (#" . $job_no . ") has been " . $email_subject . "</h1>";
+        $txt .= "<h1>Task (#" . $task_no . ") has been " . $email_subject . "</h1>";
         $txt .= "<br>Current status is:";
         $txt .= "<br><br>Assigned to: <strong>$assign_name</strong>\r\n";
         $txt .= "<br>Date assigned: $date_assigned\r\n";
@@ -316,7 +316,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $txt .= "<br>Previously assigned to: $old_assigned_to_name\r\n";
             }
         }
-        $txt .= "<br>Task No: $job_no\r\n ";
+        $txt .= "<br>Task No: $task_no\r\n ";
         $txt .= "<br>Subject: $subject\r\n ";
         $txt .= "<br>Severity: $severity\r\n ";
         $txt .= "<br>Type: $type\r\n ";
@@ -356,7 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     render(
-        "../page/job_update_form.php", 
+        "../page/task_update_form.php", 
         ["title" => "Update an existing Task", 
         "message" => $message]
     );
@@ -367,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $_SESSION["rec_id"] = $id;
     render(
-        "../page/job_update_form.php", ["title" => "Update a Task",
+        "../page/task_update_form.php", ["title" => "Update a Task",
         "message" => ""]
     );
 }

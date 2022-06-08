@@ -92,7 +92,7 @@ from afpxyykk_sprv.company;
 SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.dept;
 insert into afpxyykk_sprv_v1.dept (id, dept_name, hod, task_email, user_id, changed) 
-select id, dept_name, dept_manager_id, job_email, user_id, changed
+select id, dept_name, dept_manager_id, task_email, user_id, changed
 from afpxyykk_sprv.dept;
 -- Changed "Care Centre" to "Care"
 
@@ -131,9 +131,9 @@ from afpxyykk_sprv.history;
 -- int_category	
 -- int_type	
 -- interventions	
--- jobs	
--- jobs_hist	
--- jobs_history	
+-- tasks	
+-- tasks_hist	
+-- tasks_history	
 -- logon_log	
 SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.logon_log;
@@ -207,11 +207,11 @@ where parm_name = "discipline"
 order by id;
 
 SET FOREIGN_KEY_CHECKS=0;
-delete from afpxyykk_sprv_v1.job_type;
-insert into afpxyykk_sprv_v1.job_type (id, description, user_id, changed) 
+delete from afpxyykk_sprv_v1.task_type;
+insert into afpxyykk_sprv_v1.task_type (id, description, user_id, changed) 
 select id, parm_value, user_id, changed
 from afpxyykk_sprv.parms_char
-where parm_name = "job_type"
+where parm_name = "task_type"
 order by id;
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -290,7 +290,7 @@ order by id;
 
 -- people_groups	
 -- people_interventions	
--- people_jobs	
+-- people_tasks	
 -- people_log	
 -- people_news	
 -- people_occupation	

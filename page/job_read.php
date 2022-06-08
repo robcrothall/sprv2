@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: job_read
+ * Program: task_read
  * 
  * Display the detail about a task.
  * 
@@ -16,7 +16,7 @@ require "../inc/config.php";
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 // if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    render("../page/job_form.php", ["message" => $message]);
+    render("../page/task_form.php", ["message" => $message]);
 } else {
     $id = null;
     if (!empty($_GET['id'])) {
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: index.php");
     } else {
         render(
-            "../page/job_read_form.php", ["title" => "Read a job entry",
+            "../page/task_read_form.php", ["title" => "Read a task entry",
             "form_id" => "$id"]
         );
     }

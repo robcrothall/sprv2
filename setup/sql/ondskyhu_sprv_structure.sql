@@ -358,7 +358,7 @@ CREATE TABLE `dept` (
   `id` int(8) NOT NULL,
   `dept_name` varchar(50) NOT NULL,
   `dept_manager_id` int(8) DEFAULT NULL,
-  `job_email` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
+  `task_email` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `user_id` int(8) NOT NULL DEFAULT '1',
   `changed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -519,15 +519,15 @@ CREATE TABLE `history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobs`
+-- Table structure for table `tasks`
 --
 -- Creation: May 07, 2021 at 02:55 PM
 -- Last update: Jan 26, 2022 at 02:16 PM
 -- Last check: Sep 07, 2021 at 01:53 PM
 --
 
-DROP TABLE IF EXISTS `jobs`;
-CREATE TABLE `jobs` (
+DROP TABLE IF EXISTS `tasks`;
+CREATE TABLE `tasks` (
   `id` int(8) NOT NULL,
   `originator_id` int(8) NOT NULL,
   `dept_id` int(8) NOT NULL,
@@ -559,15 +559,15 @@ CREATE TABLE `jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobs_hist`
+-- Table structure for table `tasks_hist`
 --
 -- Creation: Nov 26, 2020 at 07:24 AM
 -- Last update: Nov 26, 2020 at 07:24 AM
 -- Last check: Sep 07, 2021 at 01:26 PM
 --
 
-DROP TABLE IF EXISTS `jobs_hist`;
-CREATE TABLE `jobs_hist` (
+DROP TABLE IF EXISTS `tasks_hist`;
+CREATE TABLE `tasks_hist` (
   `id` int(8) NOT NULL,
   `field` varchar(30) NOT NULL,
   `value` varchar(750) NOT NULL,
@@ -578,15 +578,15 @@ CREATE TABLE `jobs_hist` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jobs_history`
+-- Table structure for table `tasks_history`
 --
 -- Creation: Nov 26, 2020 at 07:23 AM
 -- Last update: Oct 27, 2021 at 05:37 AM
 -- Last check: Sep 07, 2021 at 01:27 PM
 --
 
-DROP TABLE IF EXISTS `jobs_history`;
-CREATE TABLE `jobs_history` (
+DROP TABLE IF EXISTS `tasks_history`;
+CREATE TABLE `tasks_history` (
   `id` int(8) NOT NULL,
   `originator_id` int(8) NOT NULL,
   `dept_id` int(8) NOT NULL,
@@ -924,14 +924,14 @@ CREATE TABLE `people_discipline` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `people_jobs`
+-- Table structure for table `people_tasks`
 --
 -- Creation: Sep 07, 2021 at 01:27 PM
 --
 
-DROP TABLE IF EXISTS `people_jobs`;
-CREATE TABLE `people_jobs` (
-  `job_id` int(8) NOT NULL,
+DROP TABLE IF EXISTS `people_tasks`;
+CREATE TABLE `people_tasks` (
+  `task_id` int(8) NOT NULL,
   `people_id` int(8) NOT NULL,
   `planned hours` decimal(7,2) NOT NULL DEFAULT '0.00',
   `actual_hours` decimal(7,2) NOT NULL DEFAULT '0.00',
@@ -1661,21 +1661,21 @@ ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jobs`
+-- Indexes for table `tasks`
 --
-ALTER TABLE `jobs`
+ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jobs_hist`
+-- Indexes for table `tasks_hist`
 --
-ALTER TABLE `jobs_hist`
+ALTER TABLE `tasks_hist`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jobs_history`
+-- Indexes for table `tasks_history`
 --
-ALTER TABLE `jobs_history`
+ALTER TABLE `tasks_history`
   ADD PRIMARY KEY (`id`,`changed`);
 
 --
@@ -1764,10 +1764,10 @@ ALTER TABLE `people_discipline`
   ADD UNIQUE KEY `people_id` (`people_id`,`discipline_id`);
 
 --
--- Indexes for table `people_jobs`
+-- Indexes for table `people_tasks`
 --
-ALTER TABLE `people_jobs`
-  ADD UNIQUE KEY `job_id` (`job_id`,`people_id`);
+ALTER TABLE `people_tasks`
+  ADD UNIQUE KEY `task_id` (`task_id`,`people_id`);
 
 --
 -- Indexes for table `people_log`
@@ -2035,15 +2035,15 @@ ALTER TABLE `history`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jobs`
+-- AUTO_INCREMENT for table `tasks`
 --
-ALTER TABLE `jobs`
+ALTER TABLE `tasks`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `jobs_hist`
+-- AUTO_INCREMENT for table `tasks_hist`
 --
-ALTER TABLE `jobs_hist`
+ALTER TABLE `tasks_hist`
   MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
 
 --

@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: job_form
+ * Program: task_form
  * 
  * Display a list of tasks, depending on selected criteria.
  * 
@@ -15,7 +15,7 @@
  * @PHP      7.1
  */
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-$no_of_jobs = 0;
+$no_of_tasks = 0;
 if (!isset($_SESSION["dept_id"])) {
     $_SESSION["dept_id"] = 0;
 }
@@ -42,27 +42,27 @@ if (!isset($_SESSION["status"])) {
 }
 ?>
 <h2 align="center">List of Tasks</h2>
-    <form action="../page/job.php" method="post">
-    <a href="../page/job_create.php" class="w3-button w3-green">Create a new Task</a>
+    <form action="../page/task.php" method="post">
+    <a href="../page/task_create.php" class="w3-button w3-green">Create a new Task</a>
     &nbsp;
     <input type='submit' value='Refresh' class='w3-button w3-green'/>&nbsp;
 <?php
 if (check_role("STAFF") | check_role("ADMIN")) {
-    if (!empty($_SESSION["current_job"])) {
-        echo '<a class="w3-button w3-green" href="../page/job_update.php?id=';
-        echo $_SESSION['current_job'] . '">Update Task ' . $_SESSION["current_job"];
+    if (!empty($_SESSION["current_task"])) {
+        echo '<a class="w3-button w3-green" href="../page/task_update.php?id=';
+        echo $_SESSION['current_task'] . '">Update Task ' . $_SESSION["current_task"];
         echo '</a>&nbsp;';
-        echo '<a class="w3-button w3-green" href="../page/job_read.php?id=';
-        echo $_SESSION['current_job'] . '">Read Task ' . $_SESSION["current_job"];
+        echo '<a class="w3-button w3-green" href="../page/task_read.php?id=';
+        echo $_SESSION['current_task'] . '">Read Task ' . $_SESSION["current_task"];
         echo '</a>&nbsp;';
     }
 }
 ?>
-    <input type="number" name="req_job_no" class="form-control" size="10" 
+    <input type="number" name="req_task_no" class="form-control" size="10" 
     placeholder="Task No">&nbsp;
     <!-- <input type="button" onclick="myPrint('print-content')" 
     value="Print" class='w3-button w3-green'> -->
-    <a class="w3-button w3-green" href="../page/job_report.php">Task Report</a>&nbsp;
+    <a class="w3-button w3-green" href="../page/task_report.php">Task Report</a>&nbsp;
     <br>
     <div id="print-content" class="row">
 <?php
@@ -97,7 +97,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
     }
     echo '<option value="any"' . $selected . ">All disciplines</option>\n";
     $selected = "";
-    $rows = query("SELECT distinct discipline FROM jobs order by discipline");
+    $rows = query("SELECT distinct discipline FROM tasks order by discipline");
     foreach ($rows as $row) {
         if ($row["discipline"] == $_SESSION["discipline"]) {
             $selected = " selected";
@@ -117,7 +117,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
     }
     echo '<option value="any"' . $selected . '>Any severity</option>';
     $selected = "";
-    $rows = query("SELECT distinct severity FROM jobs order by severity");
+    $rows = query("SELECT distinct severity FROM tasks order by severity");
     foreach ($rows as $row) {
         if ($row["severity"] == $_SESSION["severity"]) {
             $selected = " selected";
@@ -135,7 +135,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
     }
     echo '<option value="0"' . $selected . ">Any originator</option>\n";
     $selected = "";
-    $sql = "SELECT distinct b.id, b.surname, b.first_name FROM jobs a, people b ";
+    $sql = "SELECT distinct b.id, b.surname, b.first_name FROM tasks a, people b ";
     $sql .= "where a.originator_id = b.id and b.id > 0 ";
     $sql .= "order by b.surname, b.first_name";
     $rows = query($sql);
@@ -158,7 +158,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
     echo '<option value="any"' . $selected . '>Any project</option>';
     $selected = "";
     $sql = "SELECT distinct j.project_id as project_id, a.proj_name ";
-    $sql .= "FROM jobs j, projects a where j.project_id = a.id ";
+    $sql .= "FROM tasks j, projects a where j.project_id = a.id ";
     $sql .= "order by proj_name";
     $rows = query($sql);
     foreach ($rows as $row) {
@@ -186,7 +186,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
     echo '<option value="any"' . $selected . '>Any asset</option>';
     $selected = "";
     $sql = "SELECT distinct j.asset_id as asset_id, a.asset_name, a.asset_seq ";
-    $sql .= "FROM jobs j, asset a where j.asset_id = a.id order by asset_seq";
+    $sql .= "FROM tasks j, asset a where j.asset_id = a.id order by asset_seq";
     $rows = query($sql);
     foreach ($rows as $row) {
         $selected = "";
@@ -212,7 +212,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
     echo '<option value="0"' . $selected . ">Any technician</option>\n";
     $selected = "";
     $sql =  "SELECT distinct b.id, b.surname, b.first_name, b.given_name ";
-    $sql .= "FROM jobs a, people b where a.assigned_to = b.id and b.id > 0 ";
+    $sql .= "FROM tasks a, people b where a.assigned_to = b.id and b.id > 0 ";
     $sql .= "order by b.surname, b.first_name, b.given_name";
     $rows = query($sql);
     foreach ($rows as $row) {
@@ -327,7 +327,7 @@ if (check_role("STAFF") | check_role("ADMIN")) {
   <tbody>
 <?php 
 $cmd1 = "SELECT a.*"; 
-$cmd1 .= " from jobs a ";
+$cmd1 .= " from tasks a ";
 $where = " where ";
 $cmd2 = " ";
 if (!check_role("STAFF") & !check_role("ADMIN")) {
@@ -405,7 +405,7 @@ $cmd = $cmd1 . $cmd2 . $cmd3;
 //echo "<br>$cmd<br>";
 $rows = query($cmd);
 if (count($rows) > 0) {
-    $no_of_jobs = count($rows);
+    $no_of_tasks = count($rows);
     foreach ($rows as $row) {
         $date_closed = $row["date_closed"];
         $read_date = $row["read_date"];
@@ -432,7 +432,7 @@ if (count($rows) > 0) {
         }
         echo "<tr>";
         echo '<td>' . $row['severity'] . "<br>" . $myhours . ' hours</td>';
-        echo "<td>" . '<a href="../page/job_read.php?id=';
+        echo "<td>" . '<a href="../page/task_read.php?id=';
         echo $row['id'] . '">' . $row["id"] . '</a>';        
         echo "</td>";
         echo "<td>";
@@ -491,16 +491,16 @@ if (count($rows) > 0) {
         }
         echo '<td>' . $status . '</td>';
         echo '<td class="noprint">';
-        echo '<a class="w3-button w3-green noprint" href="../page/job_read.php?id=';
+        echo '<a class="w3-button w3-green noprint" href="../page/task_read.php?id=';
         echo $row['id'] . '">Read</a>' . '&nbsp;';
         if (check_role("STAFF") | check_role("ADMIN")) {
             echo '<a class="w3-button w3-green noprint" '; 
-            echo 'href="../page/job_update.php?id=' . $row['id'] . '">Update</a>';
+            echo 'href="../page/task_update.php?id=' . $row['id'] . '">Update</a>';
             echo '&nbsp;';
             if (check_role("ADMIN")) {
                 if ($row['id'] > 0) {
                     echo '<a class="w3-button w3-red noprint" '; 
-                    echo 'href="../page/job_delete.php?id=' . $row['id'];
+                    echo 'href="../page/task_delete.php?id=' . $row['id'];
                     echo '">Delete</a>';
                 }
             }
@@ -513,7 +513,7 @@ if (count($rows) > 0) {
         </tbody>
     </table>
 <?php
-echo "<br>Number of Tasks selected = " . $no_of_jobs;
+echo "<br>Number of Tasks selected = " . $no_of_tasks;
 ?>
 </div>
 <script>

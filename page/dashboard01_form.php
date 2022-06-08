@@ -87,7 +87,7 @@ if (count($rows) > 0) {
             </thead>
             <tbody>
 <?php
-$sql = "SELECT type as description, count(*) as kount FROM jobs a group by type order by kount desc limit 10";
+$sql = "SELECT type as description, count(*) as kount FROM tasks a group by type order by kount desc limit 10";
 $rows = query($sql);
 if (count($rows) > 0) {
     foreach ($rows as $row) {

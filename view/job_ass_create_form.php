@@ -1,12 +1,12 @@
 <h2>Add a person to a Task</h2>
 
-<form action="../page/job_ass_create.php" method="post">
+<form action="../page/task_ass_create.php" method="post">
 	<input type='submit' value='Save' class='w3-button w3-green' />
-	<a href='../page/job_ass.php' class='w3-button w3-green'>Back to task assignments</a> Task selected: 
+	<a href='../page/task_ass.php' class='w3-button w3-green'>Back to task assignments</a> Task selected: 
 	<?php
-		$rows = query("SELECT subject from jobs where ID = ?", $_SESSION["selected_job_id"]);
+		$rows = query("SELECT subject from tasks where ID = ?", $_SESSION["selected_task_id"]);
 		$row = $rows[0];
-		echo $_SESSION["selected_job_id"] . " : " . $row['subject'];
+		echo $_SESSION["selected_task_id"] . " : " . $row['subject'];
 	?>
 	<br>
 	<table class='w3-table-all'>
@@ -15,7 +15,7 @@
 			<td>
 		  		<select name="short_list">
 		  		<?php
-		  			$sql = "SELECT a.id, a.surname, a.first_name, a.given_name FROM people a where a.id in (select distinct ass_id from jobs_ass) order by surname, first_name";
+		  			$sql = "SELECT a.id, a.surname, a.first_name, a.given_name FROM people a where a.id in (select distinct ass_id from tasks_ass) order by surname, first_name";
 		  			$rows = query($sql);
 		  				foreach ($rows as $row) {
 		  					if ($row["id"] == $assigned_to) {
@@ -64,5 +64,5 @@
 	</table>
 	<br>
 	<input type='submit' value='Save' class='w3-button w3-green' />
-	<a href='../page/task_ass.php' class='w3-button w3-green'>Back to job assignments</a>
+	<a href='../page/task_ass.php' class='w3-button w3-green'>Back to task assignments</a>
 </form>

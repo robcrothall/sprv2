@@ -92,7 +92,7 @@ from afpxyykk_sprv.company;
 SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.dept;
 insert into afpxyykk_sprv_v1.dept (id, dept_name, hod, task_email, user_id, changed) 
-select id, dept_name, dept_manager_id, job_email, user_id, changed
+select id, dept_name, dept_manager_id, task_email, user_id, changed
 from afpxyykk_sprv.dept;
 # Changed "Care Centre" to "Care"
 
@@ -131,9 +131,9 @@ from afpxyykk_sprv.history;
 # int_category	
 # int_type	
 # interventions	
-# jobs	
-# jobs_hist	
-# jobs_history	
+# tasks	
+# tasks_hist	
+# tasks_history	
 # logon_log	
 SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.logon_log;
@@ -211,7 +211,7 @@ delete from afpxyykk_sprv_v1.task_type;
 insert into afpxyykk_sprv_v1.task_type (id, description, user_id, changed) 
 select id, parm_value, user_id, changed
 from afpxyykk_sprv.parms_char
-where parm_name = "job_type"
+where parm_name = "task_type"
 order by id;
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -300,7 +300,7 @@ order by id;
 
 # people_groups	
 # people_interventions	
-# people_jobs	
+# people_tasks	
 # people_log	
 # people_news	
 # people_occupation	
@@ -378,77 +378,77 @@ select id, originator_id, dept_id,
 subject, description, criteria, asset_id, create_id, create_date, 
 due_date, read_date, estimated_hours, sched_date, sched_time, actual_date,
 actual_time, date_closed, actual_hours, project_id, user_id, changed
-from afpxyykk_sprv.jobs
+from afpxyykk_sprv.tasks
 order by id;
 
 update afpxyykk_sprv_v1.tasks a
-set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.jobs c
+set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.type = b.description limit 1)
 where a.id between 1 and 1000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.jobs c
+set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.type = b.description limit 1)
 where a.id between 1001 and 2000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.jobs c
+set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.type = b.description limit 1)
 where a.id between 2001 and 3000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.jobs c
+set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.type = b.description limit 1)
 where a.id between 3001 and 4000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.jobs c
+set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.type = b.description limit 1)
 where a.id between 4001 and 5000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.jobs c
+set a.type = (select b.id from afpxyykk_sprv_v1.task_type b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.type = b.description limit 1)
 where a.id between 5001 and 6000;
 select type, count(*) from afpxyykk_sprv_v1.tasks group by type;
 
 update afpxyykk_sprv_v1.tasks a
-set a.severity = (select b.id from afpxyykk_sprv_v1.severity b, afpxyykk_sprv.jobs c
+set a.severity = (select b.id from afpxyykk_sprv_v1.severity b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.severity = b.sev_description limit 1)
 where a.id between 1 and 1000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.severity = (select b.id from afpxyykk_sprv_v1.severity b, afpxyykk_sprv.jobs c
+set a.severity = (select b.id from afpxyykk_sprv_v1.severity b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.severity = b.sev_description limit 1)
 where a.id between 1001 and 6000;
 
 update afpxyykk_sprv_v1.tasks a
-set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.jobs c
+set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.discipline = b.description limit 1)
 where a.id between 0 and 1001;
 
 update afpxyykk_sprv_v1.tasks a
-set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.jobs c
+set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.discipline = b.description limit 1)
 where a.id between 999 and 2001;
 
 update afpxyykk_sprv_v1.tasks a
-set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.jobs c
+set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.discipline = b.description limit 1)
 where a.id between 1999 and 3001;
 
 update afpxyykk_sprv_v1.tasks a
-set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.jobs c
+set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.discipline = b.description limit 1)
 where a.id between 2999 and 4001;
 
 update afpxyykk_sprv_v1.tasks a
-set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.jobs c
+set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.discipline = b.description limit 1)
 where a.id between 3999 and 5001;
 
 update afpxyykk_sprv_v1.tasks a
-set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.jobs c
+set a.discipline = (select b.id from afpxyykk_sprv_v1.discipline b, afpxyykk_sprv.tasks c
 	where a.id = c.id and c.discipline = b.description limit 1)
 where a.id between 4999 and 10001;
 

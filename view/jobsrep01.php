@@ -32,9 +32,9 @@ if (check_role("RESIDENT")) {
 
 }
 //$rows = query("select create_date as `Date`, count(*) as `Created` " .
-//"from jobs where create_date > date_add(now(), interval -30 days) order by create_date"
+//"from tasks where create_date > date_add(now(), interval -30 days) order by create_date"
 //);
-$rows = query("SELECT date(create_date) as Created, count(*) as Jobs FROM `jobs` where create_date > date_add(now(), interval -30 day) group by date(create_date);");
+$rows = query("SELECT date(create_date) as Created, count(*) as Jobs FROM `tasks` where create_date > date_add(now(), interval -30 day) group by date(create_date);");
 foreach ($rows as $row) { 
     echo "['" . $row["Created"] . "', " . $row["Jobs"] . "],\r";
 } 

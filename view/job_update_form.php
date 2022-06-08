@@ -1,7 +1,7 @@
 <h2>Update a Task</h2>
 <?php
 /**
- * Program: job_update
+ * Program: task_update
  * 
  * Update a task.
  * 
@@ -17,7 +17,7 @@
  */
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $rec_id = $_SESSION["rec_id"];
-$data = query("select * from jobs where id = ?", $rec_id); 
+$data = query("select * from tasks where id = ?", $rec_id); 
 $subject = $data[0]["subject"]; 
 $subject = str_replace("''", "'", $subject);
 $description = $data[0]["description"]; 
@@ -49,9 +49,9 @@ if ($date_closed == "0000-00-00 00:00:00") {
 }
 ?>
 
-<form action="../page/job_update.php" method="post">
+<form action="../page/task_update.php" method="post">
    <input type='submit' value='Save' class='w3-button w3-green' />
-   <a href='../page/job.php' 
+   <a href='../page/task.php' 
        class='w3-button w3-green'>Back to Tasks (without saving)</a>
    <table class='w3-table-all'>
         <tr>
@@ -190,7 +190,7 @@ foreach ($rows as $row) {
                   <select name="short_list">
 <?php
 $sql = "SELECT a.id, a.surname, a.first_name, a.given_name FROM people a " . 
-        "where a.id in (select distinct assigned_to from jobs) " . 
+        "where a.id in (select distinct assigned_to from tasks) " . 
         "order by surname, first_name";
 $rows = query($sql);
 foreach ($rows as $row) {
@@ -270,7 +270,7 @@ foreach ($rows as $row) {
                   <select name="type">
 <?php
 $sql = 'select parm_value from parms_char ';
-$sql .= 'where parm_name = "job_type" order by parm_value';
+$sql .= 'where parm_name = "task_type" order by parm_value';
 $rows = query($sql);
 foreach ($rows as $row) {
     if ($row["parm_value"] == $type) {
@@ -329,6 +329,6 @@ if (!empty($closed)) {
         </tr>
     </table>
     <input type='submit' value='Save' class='w3-button w3-green' />
-    <a href='../page/job.php' 
+    <a href='../page/task.php' 
     class='w3-button w3-green'>Back to Tasks (without saving)</a>
 </form>

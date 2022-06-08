@@ -1,6 +1,6 @@
 <h2 align="center">List of assignments to a Task</h2>
     <div class="container">
-        <p><a href="../page/job_ass_create.php" class="w3-button w3-green">Add a new assignment</a></p>
+        <p><a href="../page/task_ass_create.php" class="w3-button w3-green">Add a new assignment</a></p>
 			<div class="row">
 				<table class="w3-table-all">
 					<tbody>
@@ -8,12 +8,12 @@
 						<td width="20%">People assigned to Task:</td>
 						<td width="80%">
 		  				<?php
-		  					$selected_job_id = $_SESSION["selected_job_id"];
-		  					$rows = query("SELECT subject, description FROM `jobs` where id = ?", $selected_job_id);
+		  					$selected_task_id = $_SESSION["selected_task_id"];
+		  					$rows = query("SELECT subject, description FROM `tasks` where id = ?", $selected_task_id);
 		  					$row = $rows[0];
 		  					$subject = $row["subject"];
 		  					$description = $row["description"];
-		    				echo $selected_job_id . ": " . $subject;
+		    				echo $selected_task_id . ": " . $subject;
 		  				?>
 						</td>
 						</tr>
@@ -32,8 +32,8 @@
                 </thead>
                 <tbody>
                     <?php 
-                    $sql = "select surname, first_name, given_name, job_id, ass_id, budget_hrs, actual_hrs from people, jobs_ass where id = ass_id and job_id = ?";
-                    $rows = query($sql, $selected_job_id);
+                    $sql = "select surname, first_name, given_name, task_id, ass_id, budget_hrs, actual_hrs from people, tasks_ass where id = ass_id and task_id = ?";
+                    $rows = query($sql, $selected_task_id);
                     if (count($rows) > 0)
                     {
                         foreach ($rows as $row)
@@ -45,7 +45,7 @@
                                 echo '<td>' . $row['budget_hrs'] . '</td>';
                                 echo '<td>' . $row['actual_hrs'] . '</td>';
                                 echo '<td valign="top" style="width:280px">';
-                                echo '<a class="w3-button w3-red" href="../page/job_ass_delete.php?id=' . $row['ass_id'] . '">Delete</a>';
+                                echo '<a class="w3-button w3-red" href="../page/task_ass_delete.php?id=' . $row['ass_id'] . '">Delete</a>';
                                 echo '</td>';
                             echo '</tr>';
                        }

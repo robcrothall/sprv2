@@ -3,7 +3,7 @@
 -- Dumping data for table `dept`
 --
 
-INSERT INTO `dept` (`id`, `dept_name`, `dept_manager_id`, `job_email`, `user_id`, `changed`) VALUES
+INSERT INTO `dept` (`id`, `dept_name`, `dept_manager_id`, `task_email`, `user_id`, `changed`) VALUES
 (1, 'General Manager', 1081, 'gm@settlerspark.co.za', 1, '2021-01-13 13:18:31'),
 (2, 'Systems and Administration', 522, 'irene@settlerspark.co.za', 1, '2021-01-13 13:19:07'),
 (3, 'Sales', 512, 'sue@settlerspark.co.za', 1, '2021-01-13 13:19:25'),

@@ -1,6 +1,6 @@
 <?php
 /**
- * Program: job_read_form
+ * Program: task_read_form
  * 
  * Display the detail about a task.
  * PHP version 7.1
@@ -15,7 +15,7 @@
 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $rec_id = htmlspecialchars(strip_tags($form_id));
-$data = query("select * from jobs where id = ?", $rec_id); 
+$data = query("select * from tasks where id = ?", $rec_id); 
 $subject = $data[0]["subject"]; 
 $subject = str_replace("''", "'", $subject);
 $description = $data[0]["description"]; 
@@ -102,7 +102,7 @@ if (count($data) > 0) {
 $data = query("select username from users where id = ?", $user_id);
 $username = $data[0]["username"];
 if (check_role("STAFF")) {
-    $sql = "update jobs set read_date = now(), user_id = ? ";
+    $sql = "update tasks set read_date = now(), user_id = ? ";
     $sql .= "where id = ? and read_date is null";
     $data = query($sql, $_SESSION["id"], $rec_id);
     $message .= " Read date updated.";
@@ -111,7 +111,7 @@ if (check_role("STAFF")) {
 <div id="print-content">
 <h2>Details of Task</h2>
 <div class="container">
-<form action="../page/job.php" method="post">
+<form action="../page/task.php" method="post">
 <div class="form-actions">
 <input type='submit' value='Return' class='w3-button w3-green'>
 <input type="button" onclick="myPrint('print-content')" value="Print" 

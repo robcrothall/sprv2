@@ -37,7 +37,7 @@ if (check_role("STAFF")) {
   <tbody>
 <?php
 $sql = "select a.id, a.dept_name, b.surname, b.first_name, b.given_name, ";
-$sql .= "job_email ";
+$sql .= "task_email ";
 $sql .= "from dept a, people b ";
 $sql .= "where a.dept_manager_id = b.id ";
 $sql .= "order by a.dept_name";
@@ -52,7 +52,7 @@ foreach ($handle->query($sql) as $row) {
         $full_name .= "(" . trim($row["given_name"]) . ")";
     }
     echo '  <td>' . $full_name . '</td>';
-    echo '  <td>' . trim($row["job_email"]) . '</td>';
+    echo '  <td>' . trim($row["task_email"]) . '</td>';
     echo '  <td>';
     if (check_role("STAFF")) {
         echo '<a class="w3-button w3-green" href="../page/dept_edit.php?id=';

@@ -1,13 +1,13 @@
-SELECT discipline, count(*) as kount FROM `jobs` group by discipline order by kount desc limit 10;
-SELECT asset_name, count(*) as kount FROM `jobs`, asset where asset_id = asset.id group by asset_name order by kount desc limit 10;
+SELECT discipline, count(*) as kount FROM `tasks` group by discipline order by kount desc limit 10;
+SELECT asset_name, count(*) as kount FROM `tasks`, asset where asset_id = asset.id group by asset_name order by kount desc limit 10;
 
-SELECT concat(surname, ", ", first_name) as full_name, count(*) as kount FROM jobs a, people b where a.originator_id = b.id group by full_name order by kount desc limit 10;
-SELECT severity, count(*) as kount FROM jobs a group by severity order by kount desc limit 10;
- SELECT type, count(*) as kount FROM jobs a group by type order by kount desc limit 10;
-SELECT dept_name, count(*) as kount FROM jobs a, dept b where a.dept_id = b.id group by dept_name order by kount desc limit 10;
-SELECT concat(surname, ", ", first_name) as full_name, count(*) as kount FROM jobs a, users b where a.create_id = b.id group by full_name order by kount desc limit 10;
-SELECT concat(surname, ", ", first_name) as full_name, count(*) as kount FROM jobs a, people b where a.assigned_to = b.id group by full_name order by kount desc limit 10;
-SELECT proj_name, count(*) as kount FROM jobs a, projects b where a.project_id = b.id group by proj_name order by kount desc limit 10;
+SELECT concat(surname, ", ", first_name) as full_name, count(*) as kount FROM tasks a, people b where a.originator_id = b.id group by full_name order by kount desc limit 10;
+SELECT severity, count(*) as kount FROM tasks a group by severity order by kount desc limit 10;
+ SELECT type, count(*) as kount FROM tasks a group by type order by kount desc limit 10;
+SELECT dept_name, count(*) as kount FROM tasks a, dept b where a.dept_id = b.id group by dept_name order by kount desc limit 10;
+SELECT concat(surname, ", ", first_name) as full_name, count(*) as kount FROM tasks a, users b where a.create_id = b.id group by full_name order by kount desc limit 10;
+SELECT concat(surname, ", ", first_name) as full_name, count(*) as kount FROM tasks a, people b where a.assigned_to = b.id group by full_name order by kount desc limit 10;
+SELECT proj_name, count(*) as kount FROM tasks a, projects b where a.project_id = b.id group by proj_name order by kount desc limit 10;
 
 
  SELECT status, count(*) as kount FROM people a group by status order by kount desc limit 10;
@@ -17,7 +17,7 @@ SELECT occupation, count(*) as kount FROM people a, occupation b where a.occupat
 SELECT race, count(*) as kount FROM people a group by race order by kount desc limit 10;
 SELECT checked, count(*) as kount FROM people a group by checked order by kount desc limit 10;
 
-SELECT severity, a.id, subject, surname, sched_date FROM `jobs` a, people b WHERE project_id = 38 and assigned_to = b.id order by severity desc;
+SELECT severity, a.id, subject, surname, sched_date FROM `tasks` a, people b WHERE project_id = 38 and assigned_to = b.id order by severity desc;
 
 SELECT surname, first_name, account_no, old_account_no FROM `people` WHERE company_id = 2 and status = 'STAFF';
 

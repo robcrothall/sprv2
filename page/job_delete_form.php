@@ -3,7 +3,7 @@
 	$_SESSION["module"] = $_SERVER["PHP_SELF"];
 	$rec_id = htmlspecialchars(strip_tags($form_id));
 	$_SESSION["rec_id"] = $rec_id;
-	$data = query("select * from jobs where id = ?", $rec_id); 
+	$data = query("select * from tasks where id = ?", $rec_id); 
 	$subject = $data[0]["subject"]; 
 	$description = $data[0]["description"]; 
 	$originator_id = $data[0]["originator_id"]; 
@@ -37,7 +37,7 @@
 ?>
 <h2>This Task is about to be deleted!</h2>
   <div class="container">
-  <form action="../page/job_delete.php" method="post">
+  <form action="../page/task_delete.php" method="post">
    <table class="w3-table-all" border="0" cellpadding="0" cellspacing="10" width="100%">
 	      <tr>
 				<td align="right" width="30%">Task No:</td>
@@ -88,7 +88,7 @@
 
    <div class="form-actions">
    	<input type='submit' value='Delete' class='w3-button w3-red' />
-      <a class="w3-button w3-green" href="../page/job.php">Cancel</a>
+      <a class="w3-button w3-green" href="../page/task.php">Cancel</a>
    </div>
   </div>
 </form>

@@ -1,7 +1,7 @@
 <h2>Record a new Task</h2>
 <?php
 /**
- * Program: job_read_form
+ * Program: task_read_form
  * 
  * Display the detail about a task.
  *  
@@ -15,9 +15,9 @@
  * @link     http://www.sprv.co.za
  */
 ?>
-<form action="../page/job_create.php" method="post">
+<form action="../page/task_create.php" method="post">
     <input type='submit' value='Save' class='w3-button w3-green' />
-    <a href='../page/job.php' class='w3-button w3-green'>Back to Tasks</a>
+    <a href='../page/task.php' class='w3-button w3-green'>Back to Tasks</a>
     <table class='w3-table-all'>
         <tr>
             <td align="right" valign="top">Summary</td>
@@ -65,7 +65,7 @@ foreach ($rows as $row) {
                   <select name="type">
 <?php
 $sql = "select parm_value from parms_char ";
-$sql .= "where parm_name = 'job_type' order by parm_value";
+$sql .= "where parm_name = 'task_type' order by parm_value";
 $rows = query($sql);
 foreach ($rows as $row) {
     echo '<option value="' . $row["parm_value"] . '">';
@@ -166,5 +166,5 @@ foreach ($rows as $row) {
         </tr>
     </table>
     <input type="submit" value="Save" class="w3-button w3-green" />
-    <a href="../page/job.php" class="w3-button w3-green">Back to Tasks</a>
+    <a href="../page/task.php" class="w3-button w3-green">Back to Tasks</a>
 </form>

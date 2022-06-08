@@ -13,21 +13,21 @@
 	} 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        render("../page/job_ass_form.php", ["title" => "Job assignments"]);
+        render("../page/task_ass_form.php", ["title" => "Job assignments"]);
     }
     else
     {
-        if (!empty($_SESSION["selected_job_id"]))
+        if (!empty($_SESSION["selected_task_id"]))
         {
-            if ($_SESSION["selected_job_id"] == 0)
+            if ($_SESSION["selected_task_id"] == 0)
             {
-                apologize("You must select a job before looking at assignments.");
+                apologize("You must select a task before looking at assignments.");
             }
         }
         else 
         {
-            apologize("You must select a job before looking at assignments.");
+            apologize("You must select a task before looking at assignments.");
         }
-        render("../page/job_ass_form.php", ["title" => "Job assignments"]);
+        render("../page/task_ass_form.php", ["title" => "Job assignments"]);
     }
 ?>
