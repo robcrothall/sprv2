@@ -186,7 +186,7 @@ if (check_role("STAFF") | check_role("ADMIN")
     echo '<a href="../page/construction_form.php" class="w3-bar-item w3-button">';
     echo 'Electricity Records ?</a>';
     echo '<a href="../page/construction_form.php" class="w3-bar-item w3-button">';
-    echo 'Jobs History ?</a>';
+    echo 'Tasks History ?</a>';
     echo '<a href="../page/construction_form.php" class="w3-bar-item w3-button">';
     echo 'Logon History ?</a>';
     echo '<a href="../page/construction_form.php" class="w3-bar-item w3-button">';

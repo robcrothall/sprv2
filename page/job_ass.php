@@ -13,7 +13,7 @@
 	} 
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        render("../page/task_ass_form.php", ["title" => "Job assignments"]);
+        render("../page/task_ass_form.php", ["title" => "Task assignments"]);
     }
     else
     {
@@ -28,6 +28,6 @@
         {
             apologize("You must select a task before looking at assignments.");
         }
-        render("../page/task_ass_form.php", ["title" => "Job assignments"]);
+        render("../page/task_ass_form.php", ["title" => "Task assignments"]);
     }
 ?>

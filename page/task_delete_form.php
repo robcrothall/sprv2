@@ -22,7 +22,7 @@
 	$actual_date = $data[0]["actual_date"]; 
 	$actual_time = $data[0]["actual_time"]; 
 	$actual_hours = $data[0]["actual_hours"]; 
-	$date_closed = $data[0]["date_closed"]; 
+	$closed = $data[0]["closed"]; 
 	$user_id = $data[0]["user_id"];
 	$changed = $data[0]["changed"];
 //	$create_id = $data[0]["create_id"]; 

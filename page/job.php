@@ -67,44 +67,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (count($rows) > 0) {
             render(
                 "../page/task_update_form.php", ["title" => "Update a task", 
-                "message" => "Job " . $_SESSION["rec_id"] . " selected"]
+                "message" => "Task " . $_SESSION["rec_id"] . " selected"]
             );
         } else {
-            $message = "Job " .     $_SESSION["rec_id"] . " does not exist.";
+            $message = "Task " .     $_SESSION["rec_id"] . " does not exist.";
         }
     }
     $dept_id = $_SESSION["dept_id"];
     $sql = "select count(*) as kount from tasks ";
-    $sql .= "where dept_id=? and date_closed < '1900-01-02'";
+    $sql .= "where dept_id=? and closed < '1900-01-02'";
     $rows = query($sql, $dept_id);
     $message .= " Open = " . $rows[0]["kount"];
     $sql = 'select count(*) as kount from tasks where dept_id=? and ';
-    $sql .= 'due_date < date(now()) and date_closed = "0000-00-00 00:00:00"';
+    $sql .= 'due_date < date(now()) and closed = "0000-00-00 00:00:00"';
     $rows = query($sql, $dept_id);
     $message .= ",  Late = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed < '1900-01-02' and severity like '08%'";
+    $sql .= "closed < '1900-01-02' and severity like '08%'";
     $rows = query($sql, $dept_id);
     $message .= ",  Critical = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed < '1900-01-02' and severity like '06%'";
+    $sql .= "closed < '1900-01-02' and severity like '06%'";
     $rows = query($sql, $dept_id);
     $message .= ",  Urgent = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "read_date < '1900-01-02' and date_closed < '1900-01-02'";
+    $sql .= "read_date < '1900-01-02' and closed < '1900-01-02'";
     $rows = query($sql, $dept_id);
     $message .= ",  Not read = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "assigned_to = 0 and date_closed < '1900-01-02'";
+    $sql .= "assigned_to = 0 and closed < '1900-01-02'";
     $rows = query($sql, $dept_id);
     $message .= ",  Not assigned = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed > '1900-01-01'";
+    $sql .= "closed > '1900-01-01'";
     $rows = query($sql, $dept_id);
     $message .= ",  Closed = " . $rows[0]["kount"];
     render(
@@ -181,37 +181,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dept_id = $_SESSION["dept_id"];
     // -------------------
     $sql = "select count(*) as kount from tasks ";
-    $sql .= "where dept_id=? and date_closed < '1900-01-02'";
+    $sql .= "where dept_id=? and closed < '1900-01-02'";
     $rows = query($sql, $dept_id);
     $message .= " Open = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "due_date < date(now()) and date_closed < '1900-01-02'";
+    $sql .= "due_date < date(now()) and closed < '1900-01-02'";
     $rows = query($sql, $dept_id);
     $message .= ",  Late = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed < '1900-01-02' and severity like '08%'";
+    $sql .= "closed < '1900-01-02' and severity like '08%'";
     $rows = query($sql, $dept_id);
     $message .= ",  Critical = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed < '1900-01-02' and severity like '06%'";
+    $sql .= "closed < '1900-01-02' and severity like '06%'";
     $rows = query($sql, $dept_id);
     $message .= ",  Urgent = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed < '1900-01-02'  and read_date < '1900-01-02'";
+    $sql .= "closed < '1900-01-02'  and read_date < '1900-01-02'";
     $rows = query($sql, $dept_id);
     $message .= ",  Not read = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed < '1900-01-02'  and assigned_to =0";
+    $sql .= "closed < '1900-01-02'  and assigned_to =0";
     $rows = query($sql, $dept_id);
     $message .= ",  Not assigned = " . $rows[0]["kount"];
     // -------------------
     $sql = "select count(*) as kount from tasks where dept_id=? and ";
-    $sql .= "date_closed > '1900-01-01'";
+    $sql .= "closed > '1900-01-01'";
     $rows = query($sql, $dept_id);
     $message .= ",  Closed = " . $rows[0]["kount"];
     render("../page/task_form.php", ["title" => "Open Tasks", 'message' => $message]);

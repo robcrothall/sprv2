@@ -377,7 +377,7 @@ actual_time, closed, actual_hours, project_id, user_id, changed)
 select id, originator_id, dept_id, 
 subject, description, criteria, asset_id, create_id, create_date, 
 due_date, read_date, estimated_hours, sched_date, sched_time, actual_date,
-actual_time, date_closed, actual_hours, project_id, user_id, changed
+actual_time, closed, actual_hours, project_id, user_id, changed
 from afpxyykk_sprv.tasks
 order by id;
 

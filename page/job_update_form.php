@@ -41,8 +41,8 @@ $sched_time = $data[0]["sched_time"];
 $actual_date = $data[0]["actual_date"]; 
 $actual_time = $data[0]["actual_time"]; 
 $actual_hours = $data[0]["actual_hours"]; 
-$date_closed = $data[0]["date_closed"]; 
-if ($date_closed == "0000-00-00 00:00:00") {
+$closed = $data[0]["closed"]; 
+if ($closed == "0000-00-00 00:00:00") {
     $closed = '';
 } else {
     $closed = " checked ";
@@ -322,7 +322,7 @@ foreach ($rows as $row) {
 echo '<input type="checkbox" id="closed" name="closed" ';
 echo 'value="closed"' . $closed . '>';
 if (!empty($closed)) {
-    echo " on " . $date_closed;
+    echo " on " . $closed;
 }
 ?>
             </td>

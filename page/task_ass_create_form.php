@@ -17,7 +17,7 @@
 		  		<?php
 		  			$sql = "SELECT a.id, a.surname, a.first_name, a.given_name ";
 					$sql .= "FROM people a where a.id in ";
-					$sql .= "(select distinct ass_id from tasks_ass) order by surname, first_name";
+					$sql .= "(select distinct ass_id from tasks_assigned) order by surname, first_name";
 		  			$rows = query($sql);
 		  				foreach ($rows as $row) {
 		  					if ($row["id"] == $assigned_to) {

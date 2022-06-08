@@ -34,9 +34,9 @@
 //		$rows = query("select create_date as `Date`, count(*) as `Created` " .
 //			"from tasks where create_date > date_add(now(), interval -30 days) order by create_date"
 //		);
-		$rows = query("SELECT date(date_closed) as Closed, count(*) as Jobs FROM `tasks` where date_closed > date_add(now(), interval -30 day) group by date(date_closed);");
+		$rows = query("SELECT date(closed) as Closed, count(*) as Tasks FROM `tasks` where closed > date_add(now(), interval -30 day) group by date(closed);");
 		foreach ($rows as $row){ 
-			echo "['" . $row["Closed"] . "', " . $row["Jobs"] . "],\r";
+			echo "['" . $row["Closed"] . "', " . $row["Tasks"] . "],\r";
 		} 
         echo "['', 0]\n\r";
 		?>

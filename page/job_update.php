@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $actual_date = $rows[0]["actual_date"];
     $actual_time = $rows[0]["actual_time"];
     $actual_hours = $rows[0]["actual_hours"];
-    $date_closed = $rows[0]["date_closed"];
+    $closed = $rows[0]["closed"];
 
     if (empty($_POST["subject"])) {
         $message .= "You must provide a task summary.  ";
@@ -165,20 +165,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($read_date == "0000-00-00 00:00:00") {
         $read_date = date("Y-m-d H:i:s");
     }
-    $date_closed = $rows[0]["date_closed"];
+    $closed = $rows[0]["closed"];
     if ($closed == '') {
-        $date_closed = '0000-00-00 00:00:00';
-    } elseif ($date_closed == '0000-00-00 00:00:00') {
-        $date_closed = date("Y-m-d H:i:s", time());
+        $closed = '0000-00-00 00:00:00';
+    } elseif ($closed == '0000-00-00 00:00:00') {
+        $closed = date("Y-m-d H:i:s", time());
         $email_subject = "completed";
     }
-    //$message = "Date closed = $date_closed";
+    //$message = "Date closed = $closed";
     // Back up the old record
     $sql = "insert into tasks_history select * from tasks where id=?";
     $rowCount = query($sql, $rec_id);
     // Tidy up old history records
-    $sql = "delete from tasks_history where date_closed > '1900-01-01' ";
-    $sql .= "and date_closed < NOW() - INTERVAL 180 DAY";
+    $sql = "delete from tasks_history where closed > '1900-01-01' ";
+    $sql .= "and closed < NOW() - INTERVAL 180 DAY";
     $rowCount = query($sql);
     // Tidy up some fields
     if (strlen($subject) > 120) {
@@ -205,14 +205,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql .= ", sched_date='" . $sched_date . "'";
     $sql .= ", sched_time='" . $sched_time . "', actual_date='" . $actual_date . "'";
     $sql .= ", actual_time='" . $actual_time . "', actual_hours=" . $actual_hours;
-    $sql .= ", date_closed='" . $date_closed . "', user_id=" . $user_id; 
+    $sql .= ", closed='" . $closed . "', user_id=" . $user_id; 
     $sql .= " where id=?";
     //$message .= "SQL = $sql;";
     $rowCount = query($sql, $rec_id);
     if ($rowCount === false) {
-        $message .= "Failed to update the Job record - please call support!";
+        $message .= "Failed to update the Task record - please call support!";
     } else {
-        $message .= "Job $rec_id updated successfully. ";
+        $message .= "Task $rec_id updated successfully. ";
         $_SESSION["current_task"] = $rec_id;
         $sql = "select dept_name, task_email from dept where id=?";
         $rows = query($sql, $dept_id);
@@ -297,8 +297,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($sched_time == "00:00:00") {
             $sched_time = "";
         }
-        if ($date_closed == "0000-00-00 00:00:00") {
-            $date_closed = "";
+        if ($closed == "0000-00-00 00:00:00") {
+            $closed = "";
         }
         if ($date_assigned == "0000-00-00 00:00:00") {
             $date_assigned = "";
@@ -331,10 +331,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $txt .= "<br>Due date: $due_date\r\n";
         $txt .= "<br>Scheduled date: $sched_date\r\n";
         $txt .= "<br>Scheduled time: $sched_time\r\n";
-        $txt .= "<br>Date closed: <strong>$date_closed</strong>\r\n";
+        $txt .= "<br>Date closed: <strong>$closed</strong>\r\n";
         $txt .= "<br>Submitter: $user_name\r\n";
         $txt .= "<br><br><br>Regards...\r\n ";
-        $txt .= "<br>Jobcards@settlerspark.co.za\r\n";
+        $txt .= "<br>Taskcards@settlerspark.co.za\r\n";
         $txt .= "</body></html>";
          
         $header = "From: " . HELPDESK_EMAIL . " \r\n";

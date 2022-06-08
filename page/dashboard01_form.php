@@ -76,12 +76,12 @@ if (count($rows) > 0) {
         <table>
             <thead>
                 <tr>
-                    <th>Jobs by Type</th>
+                    <th>Tasks by Type</th>
                 </tr>
             </thead>
             <thead>
                 <tr>
-                    <th>Job Type</th>
+                    <th>Task Type</th>
                     <th>Count</th>
                 </tr>
             </thead>

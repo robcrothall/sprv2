@@ -104,9 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $due_date, $create_id, $project_id, $user_id
         );
         if (!$rowCount == false) {
-            $message .= "Failed to add the Job record - please call support!  ";
+            $message .= "Failed to add the Task record - please call support!  ";
         } else {
-            $message .= "Job inserted successfully.  ";
+            $message .= "Task inserted successfully.  ";
             $task_no = $_SESSION["inserted_row_id"];
             $sql = "select dept_name, task_email from dept where id=?";
             $rows = query($sql, $dept_id);

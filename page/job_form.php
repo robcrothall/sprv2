@@ -365,7 +365,7 @@ if ($_SESSION["assigned_to"] != 0) {
 // if (!check_role("RESIDENT")) {
 switch($_SESSION["status"]) {
 case "open":
-    $cmd2 .= $where . " date_closed < '1900-01-02' "; 
+    $cmd2 .= $where . " closed < '1900-01-02' "; 
     $where = " and ";
     break;
 case "not_read":
@@ -381,21 +381,21 @@ case "not_scheduled":
     $where = " and ";
     break;
 case "closed":
-    $cmd2 .= $where . " date_closed > '1900-01-01' ";
+    $cmd2 .= $where . " closed > '1900-01-01' ";
     $where = " and ";
     break;
 case "not_assigned":
     $cmd2 .= $where . " date_assigned < '1900-01-02' ";
-    $cmd2 .= "and date_closed < '1900-01-02' ";
+    $cmd2 .= "and closed < '1900-01-02' ";
     $where = " and ";
     break;
 //----------------------------------------
 case "late":
-    $cmd2 .= $where . " due_date < date(now()) and date_closed < '1900-01-02' ";
+    $cmd2 .= $where . " due_date < date(now()) and closed < '1900-01-02' ";
     $where = " and ";
     break;
 case "due":
-    $cmd2 .= $where . " due_date = date(now()) and date_closed < '1900-01-02' ";
+    $cmd2 .= $where . " due_date = date(now()) and closed < '1900-01-02' ";
     $where = " and ";
     break;
 //----------------------------------------
@@ -407,7 +407,7 @@ $rows = query($cmd);
 if (count($rows) > 0) {
     $no_of_tasks = count($rows);
     foreach ($rows as $row) {
-        $date_closed = $row["date_closed"];
+        $closed = $row["closed"];
         $read_date = $row["read_date"];
         $sched_date = $row["sched_date"];
         $date_assigned = $row["date_assigned"];
@@ -457,7 +457,7 @@ if (count($rows) > 0) {
         }
         echo "<td>" . $create_date . "</td>";
         $status = "";
-        if ($date_closed < '1900-01-02') {
+        if ($closed < '1900-01-02') {
             $status .= "Open<br>";
         }
         if ($sched_date > '1900-01-01') {
@@ -466,8 +466,8 @@ if (count($rows) > 0) {
         if ($sched_date < '1900-01-02') {
             $status .= "Not Scheduled<br>";
         }
-        if ($date_closed > '1900-01-01') {
-            $status .= "Closed: $date_closed<br>";
+        if ($closed > '1900-01-01') {
+            $status .= "Closed: $closed<br>";
         }
         if ($date_assigned < '1900-01-02' | $assigned_to == 0) {
             $status .= "Not assigned<br>";
@@ -483,7 +483,7 @@ if (count($rows) > 0) {
             }
             $status .= "Resp: $resp_name <br>";
         }
-        if ($due_date < date("Y-m-d") and $date_closed < '1900-01-02') {
+        if ($due_date < date("Y-m-d") and $closed < '1900-01-02') {
             $status .= "Late - due " . $due_date . "<br>";
         }
         if ($read_date < '1900-01-01') {
