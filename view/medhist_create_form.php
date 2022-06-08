@@ -4,9 +4,9 @@
 	<input type='submit' value='Save' class='w3-button w3-green' />
 	<a href='../page/medhist.php' class='w3-button w3-green'>Back to medical history</a> Person selected: 
 	<?php
-		$rows = query("SELECT surname, first_name, other_name, given_name from people where ID = ?", $_SESSION["selected_people_id"]);
+		$rows = query("SELECT surname, first_name, other_names, given_name from people where ID = ?", $_SESSION["selected_people_id"]);
 		$row = $rows[0];
-		echo $row['surname'] . ", " . $row["first_name"] . " " . $row["other_name"];
+		echo $row['surname'] . ", " . $row["first_name"] . " " . $row["other_names"];
 		if (!empty($row["given_name"])) {
 			echo " (" . $row["given_name"] . ")";
 		}

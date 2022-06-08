@@ -132,7 +132,7 @@
 		}
       if ($error === true) {apologize($message);}
 		$rows = true;
-		$rows = query("insert into people (surname, first_name, other_name, given_name, title, account_no, " .
+		$rows = query("insert into people (surname, first_name, other_names, given_name, title, account_no, " .
 		"old_account_no, status, status_date, company_id, id_no, driver_lic, " .
 		"birth_date, bd_disclose, home_phone, hp_disclose, work_phone, wp_disclose, mobile_phone, " .
 		"mp_disclose, whatsapp, home_email, he_disclose, work_email, sex, " .
@@ -141,7 +141,7 @@
 		"?,?,?,?,?,?,?," .
 		"?,?,?,?,?,?," .
 		"?,?,?,?,?,?)",
-		$surname, $first_name, $other_name, $given_name, $title, $account_no, 
+		$surname, $first_name, $other_names, $given_name, $title, $account_no, 
 		$old_account_no, $status, $status_date, $company_id, $id_no, $driver_lic, 
 		$birth_date, $bd_disclose, $home_phone, $hp_disclose, $work_phone, $wp_disclose, $mobile_phone, 
 		$mp_disclose, $whatsapp, $home_email, $he_disclose, $work_email, $sex, 

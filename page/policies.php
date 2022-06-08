@@ -1,5 +1,5 @@
 <!--<div>
-<img src="../assets/img/construction.gif" alt="Under construction">
+<img src="../img/construction.gif" alt="Under construction">
 </div> -->
 <?php
 

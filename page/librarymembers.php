@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["rep_file"] = "rep_file" . $_SESSION["doc_date"] . ".txt";
     $uploads_dir = "../data";
     $column = 0;
-    include "../assets/inc/head.php";
-    include "../assets/inc/body.php";
+    include "../inc/head.php";
+    include "../inc/body.php";
     include "../page/menu.php";
     //var_dump($_SESSION);
     //echo "<hr>";
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = 0;
         $line_length = strlen($line);
         $line_no = 0;
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         //echo "<br>Line length = $line_length";
         while ($i < $line_length) {
             $k += 1;
@@ -361,8 +361,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //$_SESSION["yr"] = (int)date("Y");
     $_SESSION["doc_file"] = "none";
     $_SESSION["rep_file"] = "library_" . date("Ymd") . ".txt";
-    include "../assets/inc/head.php";
-    include "../assets/inc/body.php";
+    include "../inc/head.php";
+    include "../inc/body.php";
     include "../page/menu.php";
     //var_dump($_SESSION);
     echo '<h2 align="center">Library Members Reconciliation</h2>';
@@ -389,7 +389,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //    "../page/elec_form.php", 
     //    ["title" => "Electricity charges for current month"]
     //);
-    include "../assets/inc/footer.php";
+    include "../inc/footer.php";
 }
 
 ?>

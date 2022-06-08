@@ -21,18 +21,22 @@ function formatDate($val) {
  * Check Department
  */
 function check_dept($requested) {
-    $rows = query("select id from dept where dept_name = ?", $requested);
+    $rows = query("select id from groups where group_name = ?", $requested);
     if (count($rows) == 0) {
          return false;
     }
     if (!empty($rows[0]["id"])) {
         $my_dept_id = $rows[0]["id"];
     } else {
-        $my_dept_id = 0;    
+        $my_dept_id = 0; 
+        return false;   
     }
-    $sql = "select * from dept_role where user_id = " . $_SESSION["id"] . " and dept_id = " . $my_dept_id;
+    $sql = "select a.id from users a ";
+    $sql .= "where a.id = " . $_SESSION["id"];
+    $sql .= " and a.people_id in ";
+    $sql .= "(select people_id from memberships where group_id = " . $my_dept_id . ")";
     $rows = query($sql);
-    if (count($rows) == 1) {
+    if (count($rows) > 0) {
          return true; 
     } else {
          return false;

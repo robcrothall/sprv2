@@ -14,12 +14,12 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     ?>
 <h1>Add an unattended phone</h1>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </form>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add an unattended phone</h1>';
     $errorList = array();
     $asset_id = test_input($_POST["asset_id"]);
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $errorList[] = "Please enter a phone number.";
     }
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         $sql = "insert into asset_phone (asset_id, phone, descr, account_no) ";
         $sql .= "values (";
         $sql .= $asset_id . ", '" . $phone . "', '" . $descr . "', ";
@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a class="w3-button w3-green" ';
     echo 'href="../page/assphone_list.php">Back to unattended phone list</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

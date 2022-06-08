@@ -16,14 +16,14 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 $message = "";
 $people_id = $_SESSION["selected_people_id"];
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     ?>
 <h1>Add a Group Membership</h1>
 <table cellspacing="5" cellpadding="5">
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </table>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add a Group Membership</h1>';
     $people_id = $_SESSION["selected_people_id"];
     $errorList = array();
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if ($group_id == 0) {
         $errorList[] = "Please choose a group. ";
     }
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     if (sizeof($errorList) == 0) {
         $join_date = date("Y-m-d");
         $sql = "insert into memberships (person_id, group_id, is_manager, ";
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     echo '<a class="w3-button w3-green" ';
     echo 'href="../page/people_read.php?id=' . $people_id . '"';
     echo '>Return to person</a>&nbsp;';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

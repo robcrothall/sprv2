@@ -14,11 +14,11 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 echo '<h1>List of asset types</h1>';
 if (check_role("STAFF")) {
     echo '<a href="asstyp_add.php" class="w3-button w3-green">Add an asset type</a>';
@@ -53,6 +53,6 @@ foreach ($handle->query($sql) as $row) {
   </tbody>
 </table>
 <?php
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

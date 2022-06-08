@@ -95,10 +95,10 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 } else {
     // require ("../inc/config.php"); 
     // $_SESSION["module"] = $_SERVER["PHP_SELF"];
-    // require ("../assets/inc/head.php");
-    // require ("../assets/inc/body.php");
+    // require ("../inc/head.php");
+    // require ("../inc/body.php");
     // require ("../inc/menu.php");
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add a news item</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);

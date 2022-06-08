@@ -56,7 +56,7 @@ SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.people;
 insert into afpxyykk_sprv_v1.people (id, surname, first_name, other_names, 
 given_name, title, account_no, bd_disclose, sex, race, checked, user_id, changed) 
-select id, surname, first_name, other_name, 
+select id, surname, first_name, other_names, 
 given_name, title, account_no, bd_disclose, sex, 1, checked, user_id, changed
 from afpxyykk_sprv.peoplex;
 

@@ -2,13 +2,13 @@
 <?php
    require("../inc/config.php"); 
 	$_SESSION["module"] = $_SERVER["PHP_SELF"];
-   require("../assets/inc/head.php");
-   require("../assets/inc/body.php");
+   require("../inc/head.php");
+   require("../inc/body.php");
 	require("../inc/menu.php");
-	require("../assets/inc/msg.php");
+	require("../inc/msg.php");
 	if ($_SERVER["REQUEST_METHOD"] <> "POST")
 	{
-		require("../assets/inc/db_open.php");
+		require("../inc/db_open.php");
 		$id = test_input($_GET["id"]);
 		if(trim($id) == '') {die("No ID specified - please inform SysAdmin.");}
 		$sql = "select title, content, contact_id from news where id = " . $id;
@@ -67,10 +67,10 @@
 } else {
 //   require("../inc/config.php"); 
 //	$_SESSION["module"] = $_SERVER["PHP_SELF"];
-//   require("../assets/inc/head.php");
-//   require("../assets/inc/body.php");
+//   require("../inc/head.php");
+//   require("../inc/body.php");
 //	require("../inc/menu.php");
-	require("../assets/inc/msg.php");
+	require("../inc/msg.php");
 	echo '<h1>Add a news item</h1>';
 	$errorList = array();
 	$id = test_input($_POST["id"]);
@@ -81,7 +81,7 @@
 	if(trim($content) == '') {$errorList[] = "Please enter the message content.";}
 	if(trim($contact_id) == '') {$errorList[] = "Please select a contact person.";}
 	if(sizeof($errorList) == 0) {
-		require("../assets/inc/db_open.php");
+		require("../inc/db_open.php");
 		$sql = "update news set title='$title', content='$content', contact_id=$contact_id where id = $id";
 		$result = mysqli_query($handle, $sql) or die("Error in query: $sql. " . mysqli_error($handle));
 		echo "Update successful.<br><br>";
@@ -95,7 +95,7 @@
 		echo '</ul>';	
 	}
 	echo '<a href="../page/news_list.php" class="w3-button w3-green">Back to News List</a>';
-	require("../assets/inc/msg.php");
-	require("../assets/inc/footer.php");
+	require("../inc/msg.php");
+	require("../inc/footer.php");
 }
 ?>

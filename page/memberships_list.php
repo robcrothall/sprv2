@@ -14,11 +14,11 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 echo '<h1>List of Library Memberships</h1>';
 if (!check_role("LIBRARY")) {
     echo "Please ask someone in Administration ";
@@ -91,7 +91,7 @@ foreach ($handle->query($sql) as $row) {
   </tbody>
 </table>
 <?php
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 echo "<p></p>";
-require "../assets/inc/footer.php";
+require "../inc/footer.php";
 ?>

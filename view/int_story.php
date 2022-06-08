@@ -15,16 +15,16 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 echo '<h1>News item</h1>';
 if ((!isset($_GET['id'])) || (trim($_GET['id'] == ''))) {
     $message = 'Missing record ID - please inform SysAdmin.';
 }
 $req_id = test_input($_GET['id']);
-require "../assets/inc/db_open.php";
+require "../inc/db_open.php";
 $sql = "select a.title, a.content, a.effective_date, b.surname, b.first_name, ";
 $sql .= "b.given_name from news a, people b where a.contact_id = b.id and a.id = ";
 $sql .= $req_id;
@@ -50,6 +50,6 @@ $result = mysqli_query($handle, $sql);
 echo '<br><br><a class="w3-button w3-green" href="../page/news_list.php">Back to News List</a>';
 echo "&nbsp;";
 echo "This item will be removed from your news list.";
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

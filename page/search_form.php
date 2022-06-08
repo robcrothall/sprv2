@@ -36,12 +36,12 @@
                 <td align="left" width="70%"><input type=search name=other_name 
                 size="50" placeholder="Any other name"></td>
           </tr>  -->
-          <tr>
+          <!-- <tr>
                 <td align="right" width="30%">Cottage</td>
                 <td width="2%"></td>
                 <td align="left" width="70%"><input type=search name=cottage 
                 size="10" placeholder="Cottage No"></td>
-          </tr>
+          </tr> -->
 <?php
 if (check_role("STAFF")) {
     echo '<tr>';
@@ -80,7 +80,7 @@ if (check_role("STAFF")) {
     echo '</select>';
     echo '</td>';
     echo '</tr>';
-    echo '<tr>';
+/*    echo '<tr>';
     echo '<td align="right" width="30%">Status</td>';
     echo '<td width="2%"></td>';
     echo '<td align="left" width="70%">';
@@ -99,7 +99,7 @@ if (check_role("STAFF")) {
     echo '&nbsp;To:';
     echo '<input type=date name=date_to placeholder="YYYY-MM-DD">';
     echo '</td>';
-    echo '</tr>';
+    echo '</tr>'; */
     echo '<tr>';
     echo '<td align="right" width="30%">Occupation</td>';
     echo '<td width="2%"></td>';

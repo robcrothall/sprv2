@@ -16,12 +16,12 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     ?>
 <h1>Add a project</h1>
 <table cellspacing="5" cellpadding="5">
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </table>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add a project</h1>';
     $errorList = array();
     $proj_name = test_input($_POST["proj_name"]);
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (trim($proj_name) == '') {
         $errorList[] = "Please enter a project name.";
     }
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $sql = 'select count(*) as kount from projects where proj_name = "';
     $sql .= $proj_name . '"';
     $result = mysqli_query($handle, $sql)
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a class="w3-button w3-green" href="../page/proj_list.php">';
     echo 'Back to Project List</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

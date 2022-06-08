@@ -15,11 +15,11 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 if (file_exists("../data/phone_list.csv")) { 
     unlink("../data/phone_list.csv"); 
 }
@@ -72,7 +72,7 @@ create the full document in Excel.  You may want to print this page.</p>
 <h2>Error and warning list</h2> 
 <?php
 $errcount = 0;
-$sql = "select first_name, other_name, given_name, surname,";
+$sql = "select first_name, other_names, given_name, surname,";
 $sql .= " home_phone, mobile_phone, mp_disclose,";
 $sql .= " home_email, he_disclose, cottage, cottage_id";
 $sql .= " from people";
@@ -81,7 +81,7 @@ $sql .= " order by surname, cottage, first_name";
 $rows = query($sql);
 foreach ($rows as $row) {
     $first_name = ucwords(strtolower($row["first_name"]));
-    $other_name = ucwords(strtolower($row["other_name"]));
+    $other_name = ucwords(strtolower($row["other_names"]));
     $given_name = ucwords(strtolower($row["given_name"]));
     $surname = ucwords(strtolower($row["surname"]));
     $err_name = $surname . ", " . $first_name . " - Cottage: " . $row["cottage"];
@@ -140,6 +140,6 @@ foreach ($rows as $row) {
 }
 //echo '</ul>';
 fclose($fp);
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

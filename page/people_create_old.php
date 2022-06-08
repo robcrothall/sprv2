@@ -40,18 +40,18 @@
 		//print_r($row["rowCount"]);
 		if($row["rowCount"] > 0) {$message .= "Warning: This name already exists in our records.  ";}
         if ($error == true) {apologize($message);}
-		//$rows = query("insert into people (surname, first_name, other_name, given_name, title, marital_status, id_no, birth_date, home_phone, work_phone, mobile_phone, whatsapp, home_email, work_email, sex, passport_no, passport_expiry, " . 
+		//$rows = query("insert into people (surname, first_name, other_names, given_name, title, marital_status, id_no, birth_date, home_phone, work_phone, mobile_phone, whatsapp, home_email, work_email, sex, passport_no, passport_expiry, " . 
 		//"driver_lic, driver_expiry, company_id, occupation_id, rs_rep, cottage, notes, user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-		//$surname, $first_name, $other_name, $given_name, $title, $marital_status, $id_no, $birth_date, $home_phone, $work_phone, $mobile_phone, $whatsapp, $home_email, $work_email, $sex, $passport_no, $passport_expiry, $driver_lic, $driver_expiry, $company_id, $occupation_id, $rs_rep_id,$cottage, $notes, $user_id);
-		//$rows = query("insert into people (surname, first_name, other_name, given_name, title, marital_status, id_no, birth_date, home_phone, work_phone, mobile_phone, whatsapp, home_email, work_email, sex, passport_no, passport_expiry, " . 
+		//$surname, $first_name, $other_names, $given_name, $title, $marital_status, $id_no, $birth_date, $home_phone, $work_phone, $mobile_phone, $whatsapp, $home_email, $work_email, $sex, $passport_no, $passport_expiry, $driver_lic, $driver_expiry, $company_id, $occupation_id, $rs_rep_id,$cottage, $notes, $user_id);
+		//$rows = query("insert into people (surname, first_name, other_names, given_name, title, marital_status, id_no, birth_date, home_phone, work_phone, mobile_phone, whatsapp, home_email, work_email, sex, passport_no, passport_expiry, " . 
 		//"driver_lic, driver_expiry, company_id, occupation_id, rs_rep, cottage, notes, user_id) values (" .
-		//"$surname, $first_name, $other_name, $given_name, $title, $marital_status, $id_no, $birth_date, $home_phone, $work_phone, $mobile_phone, $whatsapp, $home_email, $work_email, $sex, $passport_no, $passport_expiry, $driver_lic, $driver_expiry, $company_id, $occupation_id, $rs_rep_id,$cottage, $notes, $user_id)";
+		//"$surname, $first_name, $other_names, $given_name, $title, $marital_status, $id_no, $birth_date, $home_phone, $work_phone, $mobile_phone, $whatsapp, $home_email, $work_email, $sex, $passport_no, $passport_expiry, $driver_lic, $driver_expiry, $company_id, $occupation_id, $rs_rep_id,$cottage, $notes, $user_id)";
 		$rows = true;
-		//$rows = query("insert into people (surname, first_name, other_name, given_name, title, marital_status, id_no, birth_date, home_phone, work_phone, mobile_phone) values (?,?,?,?,?,?,?,?,?,?,?)",
-		//	$surname, $first_name, $other_name, $given_name, $title, $marital_status, $id_no, $birth_date, $home_phone, $work_phone, $mobile_phone);
+		//$rows = query("insert into people (surname, first_name, other_names, given_name, title, marital_status, id_no, birth_date, home_phone, work_phone, mobile_phone) values (?,?,?,?,?,?,?,?,?,?,?)",
+		//	$surname, $first_name, $other_names, $given_name, $title, $marital_status, $id_no, $birth_date, $home_phone, $work_phone, $mobile_phone);
 		//print_r($rows);
-		$rows = query("insert into people (surname, first_name, other_name, given_name, title, marital_status, id_no) values (?,?,?,?,?,?,?)", 
-			$surname, $first_name, $other_name, $given_name, $title, $marital_status, $id_no);
+		$rows = query("insert into people (surname, first_name, other_names, given_name, title, marital_status, id_no) values (?,?,?,?,?,?,?)", 
+			$surname, $first_name, $other_names, $given_name, $title, $marital_status, $id_no);
 		if($rows !== false) 
 			{
 				 $message .= "Record inserted successfully.";

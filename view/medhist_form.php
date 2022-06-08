@@ -30,11 +30,11 @@
             <td width="20%">Medical events associated with:</td>
             <td width="80%">
 <?php
-$sql = "SELECT surname, first_name, other_name, given_name ";
+$sql = "SELECT surname, first_name, other_names, given_name ";
 $sql .= "FROM `people` where id = ?";
 $rows = query($sql, $_SESSION["selected_people_id"]);
 $row = $rows[0];
-echo $row['surname'] . ", " . $row["first_name"] . " " . $row["other_name"];
+echo $row['surname'] . ", " . $row["first_name"] . " " . $row["other_names"];
 if (!empty($row["given_name"])) {
     echo " (" . $row["given_name"] . ")";
 }

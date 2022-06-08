@@ -15,12 +15,12 @@
 require "../inc/config.php"; 
 $return_to = $_SESSION["module"];
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $id = test_input($_GET["id"]);
     if (trim($id) == '') {
         die("No ID specified - please inform SysAdmin.");
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         die("No result returned from memberships - please advise SysAdmin.");
     }
     $id = $row["id"];
-    $person_id = $row["person_id"];
+    $person_id = $row["people_id"];
     $group_id = $row["group_id"];
     $is_manager = $row["is_manager"];
     $join_date = $row["join_date"];
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $group_name = $row["group_name"];
     $sql = "select is_manager ";
     $sql .= "from memberships ";
-    $sql .= "where id = " . $group_id . " and person_id = " . $_SESSION["id"];
+    $sql .= "where id = " . $group_id . " and people_id = " . $_SESSION["id"];
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
     $row = $result->fetch_array();
@@ -159,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </form>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Edit Membership</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $status = test_input($_POST["status"]);
     $user_id = $_SESSION["id"];
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         $sql = "update memberships set is_manager='" . $is_manager . "'";
         $sql .= ", join_date='" . $join_date;
         $sql .= "', expiry_date='" . $expiry_date;
@@ -190,7 +190,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a href="../page/search.php" class="w3-button w3-green">';
     echo 'Back to Search</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

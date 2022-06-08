@@ -14,16 +14,16 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 echo '<h1>Delete a Library Membership</h1>';
 if ((!isset($_GET['id'])) || (trim($_GET['id'] == ''))) {
     $message = 'Missing record ID - please inform SysAdmin.';
 } else {
     $req_id = test_input($_GET['id']);
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $sql = "delete from memberships where id = " . $req_id;
     $result = mysqli_query($handle, $sql);
     if ($result <> false) {
@@ -35,6 +35,6 @@ if ((!isset($_GET['id'])) || (trim($_GET['id'] == ''))) {
 }
 echo '<br><br><a class="w3-button w3-green" ';
 echo 'href="../page/lib_memberships_list.php">Back to Membership List</a>';
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

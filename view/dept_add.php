@@ -16,12 +16,12 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     ?>
 <h1>Add a department</h1>
 <table cellspacing="5" cellpadding="5">
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </table>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add a Department</h1>';
     $errorList = array();
     $dept_name = test_input($_POST["dept_name"]);
@@ -87,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (trim($dept_name) == '') {
         $errorList[] = "Please enter a department name.";
     }
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $sql = 'select count(*) as kount from dept where dept_name = "';
     $sql .= $dept_name . '"';
     $result = mysqli_query($handle, $sql)
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a class="w3-button w3-green" href="../page/dept_list.php">';
     echo 'Back to Department List</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

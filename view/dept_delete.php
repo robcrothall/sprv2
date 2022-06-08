@@ -14,17 +14,17 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 echo '<h1>Delete a Department</h1>';
 $errorList = [];
 if ((!isset($_GET['id'])) || (trim($_GET['id'] == ''))) {
     $message = 'Missing record ID - please inform SysAdmin.';
 } else {
     $req_id = test_input($_GET['id']);
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $sql = "select count(*) as kount from dept_role where dept_id = ";
     $sql .= $req_id;
     $result = mysqli_query($handle, $sql)
@@ -54,6 +54,6 @@ if ((!isset($_GET['id'])) || (trim($_GET['id'] == ''))) {
 }
 echo '<br><br><a class="w3-button w3-green" ';
 echo 'href="../page/dept_list.php">Back to department list</a>';
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

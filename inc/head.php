@@ -8,10 +8,10 @@
    content="width=device-width, initial-scale=1, shrink-to-fit=yes">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
    <!-- SCRIPTS -->
-   <script src="../assets/js/myscripts.js"></script>
+   <script src="../js/myscripts.js"></script>
    <!-- JQuery -->
    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <script src="../assets/js/jquery-3.5.1.min.js"></script>
+   <script src="../js/jquery-3.5.1.min.js"></script>
    <!-- Latest compiled and minified Bootstrap JavaScript -->
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
@@ -23,7 +23,7 @@
    href="https://fonts.googleapis.com/icon?family=Material+Icons">
    <link rel="stylesheet" 
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="../assets/css/style.css">
+   <link rel="stylesheet" href="../css/style.css">
    <link rel="stylesheet" media="print" href="../css/print.css"/>
 <?php 
 if (isset($title)) {

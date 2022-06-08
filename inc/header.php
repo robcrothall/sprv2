@@ -54,7 +54,7 @@ require "../inc/menu.php";
 <?php
 if (!empty($message)) {
     echo '<p class="w3-sand">';
-    $message = htmlspecialchars($message); 
+    //$message = htmlspecialchars($message); 
     print $message; 
     echo '</p>';
 }

@@ -9,7 +9,7 @@ require "../inc/config.php";
    <meta name="viewport" 
      content="width=device-width, initial-scale=1, shrink-to-fit=yes">
    <meta http-equiv="x-ua-compatible" content="ie=edge">
-   <link href="../assets/css/style.css" rel="stylesheet">
+   <link href="../css/style.css" rel="stylesheet">
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
    <link rel="stylesheet" 
      href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -24,7 +24,7 @@ require "../inc/config.php";
    <!-- SCRIPTS -->
    <!-- JQuery -->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../assets/js/jquery-3.5.1.min.js"></script>
+<script src="../js/jquery-3.5.1.min.js"></script>
    
 <!-- Latest compiled and minified Bootstrap JavaScript -->
 <script 

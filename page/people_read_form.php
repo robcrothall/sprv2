@@ -16,52 +16,56 @@
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $people_id = htmlspecialchars(strip_tags($form_id));
 $data = query(
-    "select a.surname, a.first_name, a.other_name, a.given_name, a.title, " . 
-    "a.account_no, a.acc_pref, a.old_account_no, a.status, a.status_date, " .
-    "a.company_id, a.id_no, a.driver_lic, " . 
-    "a.birth_date, a.bd_disclose, a.home_phone, a.hp_disclose, a.work_phone, " .
-    "a.wp_disclose, a.mobile_phone, a.mp_disclose, a.whatsapp, " . 
-    "a.home_email, a.he_disclose, a.work_email, a.sex, a.cottage, " .
-    "a.photo_disclose, a.cottage_id, a.occupation_id, a.race, " . 
-    "a.checked, a.notes, a.user_id, a.changed from people a where a.id = ?", 
+    "select a.surname, a.first_name, a.other_names, a.given_name, a.title, " . 
+    "a.account_no, " . // a.status, a.status_date, " .
+    //" a.id_no, a.driver_lic, " . 
+    //"a.birth_date, 
+    "a.bd_disclose, " . 
+    //a.home_phone, a.hp_disclose, a.work_phone, " .
+    //"a.wp_disclose, a.mobile_phone, a.mp_disclose, a.whatsapp, " . 
+    //"a.home_email, a.he_disclose, a.work_email, 
+    "a.sex, " .
+    //"a.photo_disclose, a.occupation_id, a.notes, 
+    "a.race, " . 
+    "a.checked, a.user_id, a.changed from people a where a.id = ?", 
     $people_id
 ); 
 $_SESSION["selected_people_id"] = $people_id;
 $_SESSION["search_name_start"]  = $data[0]["surname"];
-$_SESSION["selected_cottage"]   = $data[0]["cottage"];
+//$_SESSION["selected_cottage"]   = $data[0]["cottage"];
 $surname        = $data[0]["surname"];
 $first_name     = $data[0]["first_name"];
-$other_name     = $data[0]["other_name"];
+$other_names    = $data[0]["other_names"];
 $given_name     = $data[0]["given_name"];
 $title          = $data[0]["title"];
 $account_no     = $data[0]["account_no"];
-$acc_pref       = $data[0]["acc_pref"];
-$old_account_no = $data[0]["old_account_no"];
-$status         = $data[0]["status"];
-$status_date    = $data[0]["status_date"];
-$company_id     = $data[0]["company_id"];
-$id_no          = $data[0]["id_no"];
-$driver_lic     = $data[0]["driver_lic"];
-$birth_date     = $data[0]["birth_date"];
-$bd_disclose    = $data[0]["bd_disclose"];
-$home_phone     = $data[0]["home_phone"];
-$hp_disclose    = $data[0]["hp_disclose"];
-$work_phone     = $data[0]["work_phone"];
-$wp_disclose    = $data[0]["wp_disclose"];
-$mobile_phone   = $data[0]["mobile_phone"]; 
-$mp_disclose    = $data[0]["mp_disclose"]; 
-$whatsapp       = $data[0]["whatsapp"];
-$home_email     = $data[0]["home_email"];
-$he_disclose    = $data[0]["he_disclose"];
-$work_email     = $data[0]["work_email"];
+//$acc_pref       = $data[0]["acc_pref"];
+//$old_account_no = $data[0]["old_account_no"];
+//$status         = $data[0]["status"];
+//$status_date    = $data[0]["status_date"];
+//$company_id     = $data[0]["company_id"];
+//$id_no          = $data[0]["id_no"];
+//$driver_lic     = $data[0]["driver_lic"];
+//$birth_date     = $data[0]["birth_date"];
+//$bd_disclose    = $data[0]["bd_disclose"];
+//$home_phone     = $data[0]["home_phone"];
+//$hp_disclose    = $data[0]["hp_disclose"];
+//$work_phone     = $data[0]["work_phone"];
+//$wp_disclose    = $data[0]["wp_disclose"];
+//$mobile_phone   = $data[0]["mobile_phone"]; 
+//$mp_disclose    = $data[0]["mp_disclose"]; 
+//$whatsapp       = $data[0]["whatsapp"];
+//$home_email     = $data[0]["home_email"];
+//$he_disclose    = $data[0]["he_disclose"];
+//$work_email     = $data[0]["work_email"];
 $sex            = $data[0]["sex"];
-$cottage        = $data[0]["cottage"];
-$cottage_id     = $data[0]["cottage_id"];
-$photo_disclose = $data[0]["photo_disclose"];
-$occupation_id  = $data[0]["occupation_id"];
+//$cottage        = $data[0]["cottage"];
+//$cottage_id     = $data[0]["cottage_id"];
+//$photo_disclose = $data[0]["photo_disclose"];
+//$occupation_id  = $data[0]["occupation_id"];
 $race           = $data[0]["race"];
 $checked        = $data[0]["checked"];
-$notes          = $data[0]["notes"];
+//$notes          = $data[0]["notes"];
 $user_id        = $data[0]["user_id"];
 $changed        = $data[0]["changed"];
 $full_name      = $surname . ", " . $first_name;
@@ -71,25 +75,61 @@ if (!empty($other_name)) {
 if (!empty($given_name)) {
     $full_name .= " (" . $given_name . ")";
 }
-$data = query("select b.occupation from occupation b where id = ?", $occupation_id);
-$occupation  = $data[0]["occupation"];
-$data = query("select co_name from company where id = ?", $company_id);
-$co_name        = $data[0]["co_name"];
+$sql = "select a.occupation from occupation a, people_occupation b ";
+$sql .= "where a.id = b.occupation_id ";
+$sql .= "and b.people_id = ?";
+$data = query($sql, $people_id); 
+$occupation = "";
+$spacer = "";
+foreach($data as $row) {
+    $occupation = $spacer . $row["occupation"];
+    $spacer = ", ";
+}
+$sql = "select co_name from company a, people_company b ";
+$sql .= "where a.id = b.company_id ";
+$sql .= "and b.people_id = ?";
+$data = query($sql, $people_id);
+$spacer = "";
+$co_name = "";
+foreach($data as $row) {
+    $co_name .= $spacer . $row["co_name"];
+    $spacer = ", ";
+}
 $staff = check_role("STAFF");
 $pr = check_role("PR");
-if ($cottage_id > 0) {
-    $sql = "select asset_name, asset_size from asset where id = ?";
-    $data = query($sql, $cottage_id);
-    if ($staff) {
-        $cottage_name  = $data[0]["asset_name"] . " (" . $data[0]["asset_size"];
-        $cottage_name .= " square metres)";
-    } else {
-        $cottage_name  = $data[0]["asset_name"];
+$sql = "select asset_name, asset_size, billable ";
+$sql .= "from asset a, people_asset b ";
+$sql .= "where a.id = b.asset_id ";
+$sql .= "and b.people_id = ?";
+$data = query($sql, $people_id);
+$spacer = "";
+$asset_name = "";
+if (count($data) > 0) {
+    foreach($data as $row) {
+        $asset_name .= $spacer;
+        if ($staff) {
+            $asset_name .= $row["asset_name"] . " (" . $row["asset_size"];
+            $asset_name .= " square metres";
+            if ($row["billable"]) {
+                $asset_name .= ", billable";
+            }
+            $asset_name .= ")";
+        } else { 
+            $asset_name .= $row["asset_name"];
+        }
+        $spacer = ", "; 
     }
 }
 $data = query("select * from users where id = ?", $user_id);
-$username       = $data[0]["username"];
-$user_name_given= $data[0]["surname"] . ", " . $data[0]["first_name"];
+$username = $data[0]["username"];
+$sql = "select surname, first_name, given_name ";
+$sql .= "from people ";
+$sql .= "where id = ?";
+$rows = query($sql, $data[0]["people_id"]);
+$user_full_name = $rows[0]["surname"] . ", " . $rows[0]["first_name"];
+if (strlen($rows[0]["given_name"]) > 0) {
+    $user_full_name .= " (" . $rows[0]["given_name"] . ")";
+}
 ?>
 <h2>Read about a Person</h2>
     <a class="w3-button w3-green" href="../page/people.php">Back</a>&nbsp;
@@ -126,21 +166,21 @@ if ($staff) {
     echo '<td width="2%"></td>';
     echo '<td align="left" width="70%">' . $account_no . '</td>';
     echo '</tr>';
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">Old Account number:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $old_account_no . '</td>';
-    echo '</tr>';
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">Status:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $status . '</td>';
-    echo '</tr>';
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">Status date:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $status_date . '</td>';
-    echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="30%">Old Account number:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $old_account_no . '</td>';
+    //echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="30%">Status:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $status . '</td>';
+    //echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="30%">Status date:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $status_date . '</td>';
+    //echo '</tr>';
 }
 echo '<tr>';
 echo '<td align="right" valign="top" width="28%">Company:</td>';
@@ -148,23 +188,23 @@ echo '<td width="2%"></td>';
 echo '<td align="left" width="70%">' . $co_name . '</td>';
 echo '</tr>';
 if ($staff) {
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">ID number:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $id_no . '</td>';
-    echo '</tr>';
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">Driver&#039;s license:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $driver_lic . '</td>';
-    echo '</tr>';
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">Birth date:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $birth_date . '</td>';
-    echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="30%">ID number:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $id_no . '</td>';
+    //echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="30%">Driver&#039;s license:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $driver_lic . '</td>';
+    //echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="30%">Birth date:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $birth_date . '</td>';
+    //echo '</tr>';
 }
-if ($staff | $hp_disclose == 'Y') {
+/*if ($staff | $hp_disclose == 'Y') {
     echo '<tr>';
     echo '<td align="right" valign="top" width="30%">Home phone:</td>';
     echo '<td width="2%"></td>';
@@ -207,7 +247,7 @@ if (!empty($work_email)) {
     echo '<td width="2%"></td>';
     echo '<td align="left" width="70%">' . $work_email . '</td>';
     echo '</tr>';
-}
+} */
 if ($staff) {
     echo '<tr>';
     echo '<td align="right" valign="top" width="30%">Sex:</td>';
@@ -215,20 +255,20 @@ if ($staff) {
     echo '<td align="left" width="70%">' . $sex . '</td>';
     echo '</tr>';
 }
-if ($cottage_id > 0) {
+if (strlen($asset_name) > 0) {
     echo '<tr>';
-    echo '<td align="right" valign="top" width="30%">Cottage (asset):</td>';
+    echo '<td align="right" valign="top" width="30%">Asset(s):</td>';
     echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $cottage_name . '</td>';
+    echo '<td align="left" width="70%">' . $asset_name . '</td>';
     echo '</tr>';
 }
-if ($pr) {
+/* if ($pr) {
     echo '<tr>';
     echo '<td align="right" valign="top" width="30%">Photo permitted:</td>';
     echo '<td width="2%"></td>';
     echo '<td align="left" width="70%">' . $photo_disclose . '</td>';
     echo '</tr>';
-}
+}*/
 if ($staff) {
     echo '<tr>';
     echo '<td align="right" valign="top" width="30%">Occupation:</td>';
@@ -238,7 +278,9 @@ if ($staff) {
     echo '<tr>';
     echo '<td align="right" valign="top" width="30%">Race:</td>';
     echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $race . '</td>';
+    $sql = "select race_name from race where id = ?";
+    $rows = query($sql, $race);
+    echo '<td align="left" width="70%">' . $rows[0]["race_name"] . '</td>';
     echo '</tr>';
     echo "<tr>";
     echo '<td align="right" valign="top" width="30%">Checked status:</td>';
@@ -249,18 +291,18 @@ if ($staff) {
     echo '<td align="right" valign="top" width="25%">Changed by:</td>';
     echo '<td width="2%"></td>';
     echo '<td align="left" width="70%">' . $username . ' - ';
-    echo $user_name_given . '</td>';
+    echo $user_full_name . '</td>';
     echo '</tr>';
     echo '<tr>';
     echo '<td align="right" valign="top" width="25%">Changed on:</td>';
     echo '<td width="2%"></td>';
     echo '<td align="left" width="70%">' . $changed . '</td>';
     echo '</tr>';
-    echo '<tr>';
-    echo '<td align="right" valign="top" width="25%">Notes:</td>';
-    echo '<td width="2%"></td>';
-    echo '<td align="left" width="70%">' . $notes . '</td>';
-    echo '</tr>';
+    //echo '<tr>';
+    //echo '<td align="right" valign="top" width="25%">Notes:</td>';
+    //echo '<td width="2%"></td>';
+    //echo '<td align="left" width="70%">' . $notes . '</td>';
+    //echo '</tr>';
 }
 ?>
     </table> 
@@ -282,12 +324,12 @@ if ($staff) {
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
-    $rsql  = "SELECT a.id, a.related_id, a.relationship, a.relationship_date, ";
+    $rsql  = "SELECT a.id, a.related_id, a.relationship, a.effective_date, ";
     $rsql .= "a.notes, b.surname, b.first_name, b.given_name, 'Primary' as source ";
     $rsql .= " from people_related a, people b ";
     $rsql .= " where a.people_id = ? and a.related_id = b.id ";
     $rsql .= " UNION ";
-    $rsql .= " SELECT c.id, c.people_id, c.relationship, c.relationship_date, ";
+    $rsql .= " SELECT c.id, c.people_id, c.relationship, c.effective_date, ";
     $rsql .= " c.notes, d.surname, d.first_name, d.given_name, ";
     $rsql .= " 'Secondary' as source "; 
     $rsql .= " from people_related c, people d ";
@@ -298,7 +340,7 @@ if ($staff) {
         foreach ($rows as $row) {
             echo '<tr>';
             echo '<td valign="top" style="width:100px">';
-            echo $row['relationship_date'] . '</td>';
+            echo $row['effective_date'] . '</td>';
             echo '<td>' . $row['relationship'] . '</td>';
             $r_url = '<a href="../page/people_read.php?id=';
             $r_url .= $row['related_id'] . '">' . $row['surname'] . ', ';
@@ -334,7 +376,7 @@ if ($staff) {
     $rsql  = "SELECT a.id, a.join_date, a.expiry_date, a.status, a.is_manager, ";
     $rsql .= "b.group_name, b.fee_reqd, b.start_month, b.duration_in_months ";
     $rsql .= " from memberships a, groups b ";
-    $rsql .= " where a.person_id = ? and a.group_id = b.id ";
+    $rsql .= " where a.people_id = ? and a.group_id = b.id ";
     $rsql .= " order by group_name ";
     $rows = query($rsql, $people_id);
     if (count($rows) > 0) {

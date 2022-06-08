@@ -14,12 +14,12 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $id = test_input($_GET["id"]);
     if (trim($id) == '') {
         die("No ID specified - please inform SysAdmin.");
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </form>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Edit Library Membership</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);
@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $status = test_input($_POST["status"]);
     $user_id = $_SESSION["id"];
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         $sql = "update memberships set is_manager='N'";
         $sql .= ", join_date='" . $join_date;
         $sql .= "', status='" . $status;
@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a href="../page/lib_memberships_list.php" class="w3-button w3-green">';
     echo 'Back to Membership List</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

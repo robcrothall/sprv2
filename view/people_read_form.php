@@ -16,7 +16,7 @@
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $people_id = htmlspecialchars(strip_tags($form_id));
 $data = query(
-    "select a.surname, a.first_name, a.other_name, a.given_name, a.title, " . 
+    "select a.surname, a.first_name, a.other_names, a.given_name, a.title, " . 
     "a.account_no, a.acc_pref, a.old_account_no, a.status, a.status_date, " .
     "a.company_id, a.id_no, a.driver_lic, " . 
     "a.birth_date, a.bd_disclose, a.home_phone, a.hp_disclose, a.work_phone, " .

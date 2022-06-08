@@ -25,7 +25,7 @@
                     if (count($rows) > 0) {
                         foreach ($rows as $row) {
                             $first_name = ucfirst(strtolower($row["first_name"]));
-                            $other_name = ucfirst(strtolower($row["other_name"]));
+                            $other_name = ucfirst(strtolower($row["other_names"]));
                             $given_name = ucfirst(strtolower($row["given_name"]));
                             $surname = ucfirst(strtolower($row["surname"]));
                             echo '<tr>';

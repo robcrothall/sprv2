@@ -16,12 +16,12 @@
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
 $successList = array();
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     if (!empty($_SESSION["selected_username"])) {
         $selected_username = $_SESSION["selected_username"];
     } else {
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         <select autofocus name="person_id">
     <?php
     echo '<option value="0" selected>Please choose</option>\n';
-    $sql = "SELECT id, surname, first_name, other_name, given_name ";
+    $sql = "SELECT id, surname, first_name, other_names, given_name ";
     $sql .= "FROM people ";
     $sql .= "where status in ('Staff', 'Contractor', 'Associate') ";
     $sql .= "order by surname, first_name";
@@ -113,8 +113,8 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         if (!empty($row["first_name"])) {
             $name .= ", " . $row["first_name"];
         }
-        if (!empty($row["other_name"])) {
-            $name .= " " . $row["other_name"];
+        if (!empty($row["other_names"])) {
+            $name .= " " . $row["other_names"];
         }
         if (!empty($row["given_name"])) {
             $name .= " (" . $row["given_name"] . ")";
@@ -182,7 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </table>
     <?php
 } else {
-    include "../assets/inc/msg.php";
+    include "../inc/msg.php";
     echo '<h1>Add a User</h1>';
     $errorList = array();
     $selected_username = test_input($_POST["selected_username"]);
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (strlen($selected_username) < 3) {
         $errorList[] = "Username is too short (<3). ";
     }
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     $sql = 'select count(*) as kount from users where username = "';
     $sql .= $selected_username . '"';
     $result = mysqli_query($handle, $sql)
@@ -326,7 +326,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a class="w3-button w3-green" href="../page/user_list.php">';
     echo 'Back to User List</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

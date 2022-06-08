@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             )
         );
     }
-    if (strpos($other_name, "&amp;") !== false) {
+    if (strpos($other_names, "&amp;") !== false) {
         $other_name = str_replace("&amp;", "&", $other_name);
     } 
     if ($other_name = strtoupper($other_name)) {
@@ -226,7 +226,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "he_disclose=?, work_email=?, driver_lic=?, " . 
         "company_id=?, cottage=?, cottage_id=?, occupation_id=?, checked=?, " . 
         "notes=?, user_id=?, changed=CURRENT_TIMESTAMP() where id=?",
-        $surname, $first_name, $other_name, $given_name, 
+        $surname, $first_name, $other_names, $given_name, 
         $title, $old_account_no, $status, $status_date, 
         $id_no, $birth_date, $bd_disclose, $home_phone, $sex, 
         $passport_no, $passport_expiry, $driver_expiry, $race,

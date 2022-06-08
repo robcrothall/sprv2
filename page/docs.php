@@ -40,7 +40,7 @@
 //		$_SESSION["yr"]          = $_POST["yr"];
 //		$_SESSION["phone_file"]  = $_POST["phone_file"];
 //		$_SESSION["trans_file"] = "phone_trans" . $_SESSION["yr_c"] . $_SESSION["mnth"] . ".csv";
-		$uploads_dir = "../assets/Docs/";
+		$uploads_dir = "../Docs/";
 //		foreach ($_FILES["phone_file")
 		render("../page/phone_ctl_form.php", ["title" => "Phone control report for current month"]);
     }

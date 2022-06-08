@@ -45,7 +45,7 @@ if (check_role("STAFF") or check_role("ADMIN")) {
 //print_r($_SESSION["search_name_start"]);
 //print_r(" Variable ");
 //print_r($search_name_start);
-$cmd1 = "SELECT a.id, a.surname, a.first_name, a.other_name, a.given_name, ";
+$cmd1 = "SELECT a.id, a.surname, a.first_name, a.other_names, a.given_name, ";
 $cmd1 .= "a.cottage, a.status, b.co_name"; 
 $cmd1 .= " from people a, company b where b.id = a.company_id ";
 if (!check_role("STAFF")) {

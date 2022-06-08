@@ -77,11 +77,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errorList[] = "Username not found - call support!";
         }
     } else {
-        echo 'The following errors were encountered:<br>';
-        echo '<ul>';
+        $message = 'The following errors were encountered:<br>';
+        $message .= '<ul>';
         for ($x=0; $x<sizeof($errorList); $x++) {
-            echo "<li>$errorList[$x]";
+            $message .= "<li>$errorList[$x]</li>";
         }
+        $message .= "</ul>";
+        render(
+            "../page/password_form.php", ["title" => "Change Password",
+            "message" => $message]
+        );
     }
 } else {
     // else render form

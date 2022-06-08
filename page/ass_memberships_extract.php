@@ -14,11 +14,11 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
-require "../assets/inc/db_open.php";
+require "../inc/msg.php";
+require "../inc/db_open.php";
 $trans_file  = "associates_as_at_" . date("Ymd") . ".csv";
 ?>
 <h2 align="center">Extract Associate Member details</h2>
@@ -54,8 +54,8 @@ foreach ($handle->query($sql) as $row) {
     //$first_name = str_replace("&amp;", "and", $row["first_name"]);
     $first_name = htmlspecialchars_decode($row["first_name"]);
     $first_name = str_replace("&#039;", "'", $first_name);
-    //$other_name = str_replace("&amp;", "and", $row["other_name"]);
-    $other_name = htmlspecialchars_decode($row["other_name"]);
+    //$other_name = str_replace("&amp;", "and", $row["other_names"]);
+    $other_name = htmlspecialchars_decode($row["other_names"]);
     $other_name = str_replace("&#039;", "'", $other_name);
     //$given_name = str_replace("&amp;", "and", $row["given_name"]);
     $given_name = htmlspecialchars_decode($row["given_name"]);
@@ -103,8 +103,8 @@ foreach ($handle->query($sql) as $row) {
     fwrite($fp, $trans);
 }
 fclose($fp);
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 echo "<p></p>";
-require "../assets/inc/footer.php";
+require "../inc/footer.php";
 ?>
 </div>

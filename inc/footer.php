@@ -16,8 +16,8 @@
  * @link     http://www.sprv.co.za
  */
 if (!empty($message)) {
-    $message = htmlspecialchars($message); 
-    echo '<p class="w3-sand">';
+    //$message = htmlspecialchars($message); 
+    echo '<p class="w3-red">';
     print $message; 
     echo '</p>';
 }

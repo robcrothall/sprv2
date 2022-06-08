@@ -15,12 +15,12 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
 }
 ?>
 <h1>Add an intervention</h1>
@@ -103,10 +103,10 @@ foreach ($handle->query($sql) as $row) {
 } else {
 //   require("../inc/config.php"); 
 //	$_SESSION["module"] = $_SERVER["PHP_SELF"];
-//   require("../assets/inc/head.php");
-//   require("../assets/inc/body.php");
+//   require("../inc/head.php");
+//   require("../inc/body.php");
 //	require("../inc/menu.php");
-	require("../assets/inc/msg.php");
+	require("../inc/msg.php");
 	echo '<h1>Add a news item</h1>';
 	$errorList = array();
 	$title = test_input($_POST["title"]);
@@ -116,7 +116,7 @@ foreach ($handle->query($sql) as $row) {
 	if(trim($content) == '') {$errorList[] = "Please enter the message content.";}
 	if(trim($person_id) == '') {$errorList[] = "Please select a contact person.";}
 	if(sizeof($errorList) == 0) {
-		require("../assets/inc/db_open.php");
+		require("../inc/db_open.php");
 		$sql = "insert into news (title, content, contact_id) values ('";
 		$sql .= $title . "','" . $content . "'," . $person_id . ")";
 		$result = mysqli_query($handle, $sql) or die("Error in query: $sql. " . mysqli_error($handle));
@@ -131,7 +131,7 @@ foreach ($handle->query($sql) as $row) {
 		echo '</ul>';	
 	}
 	echo '<a class="w3-button w3-green" href="../page/news_list.php">Back to News List</a>';
-	require("../assets/inc/msg.php");
-	require("../assets/inc/footer.php");
+	require("../inc/msg.php");
+	require("../inc/footer.php");
 }
 ?>

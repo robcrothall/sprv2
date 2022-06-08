@@ -13,7 +13,7 @@
 	$changed 			= $data[0]["changed"];
 	$data = query("select username from users where id = ?", $user_id);
 	$username 			= $data[0]["username"];
-	$data = query("select surname, first_name, other_name, given_name, cottage, account_no from people where id = ?", $people_id);
+	$data = query("select surname, first_name, other_names, given_name, cottage, account_no from people where id = ?", $people_id);
 	$surname 			= $data[0]["surname"];
 	$first_name			= $data[0]["first_name"];
 	$other_name         = $data[0]["other_name"];

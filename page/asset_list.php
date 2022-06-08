@@ -59,6 +59,6 @@ foreach ($handle->query($sql) as $row) {
   </tbody>
 </table>
 <?php
-require "../assets/inc/msg.php";
-require "../assets/inc/footer.php";
+require "../inc/msg.php";
+require "../inc/footer.php";
 ?>

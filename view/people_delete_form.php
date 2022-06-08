@@ -3,7 +3,7 @@
 	$_SESSION["module"] = $_SERVER["PHP_SELF"];
 	$people_id = htmlspecialchars(strip_tags($form_id));
 	$_SESSION["people_id"] = $people_id;
-	$data = query("select a.surname, a.first_name, a.other_name, a.given_name, a.title, a.account_no, a.notes, a.user_id, a.changed, b.occupation from people a, occupation b where a.occupation_id = b.id and a.id = ?", 
+	$data = query("select a.surname, a.first_name, a.other_names, a.given_name, a.title, a.account_no, a.notes, a.user_id, a.changed, b.occupation from people a, occupation b where a.occupation_id = b.id and a.id = ?", 
 						$people_id); 
 	$surname = $data[0]["surname"];
 	$_SESSION["surname"] = $surname;

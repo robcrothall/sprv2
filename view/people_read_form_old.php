@@ -2,7 +2,7 @@
 
 	$_SESSION["module"] = $_SERVER["PHP_SELF"];
 	$people_id = htmlspecialchars(strip_tags($form_id));
-	$data = query("select a.surname, a.first_name, a.other_name, a.given_name, a.title, a.marital_status, a.id_no, a.birth_date, a.home_phone, a.work_phone, a.mobile_phone, a.whatsapp, a.work_email, a.home_email, a.sex, a.passport_no, a.passport_expiry, a.driver_lic, a.driver_expiry, a.company_id, a.occupation_id, a.rs_rep, a.cottage, a.checked, a.notes, a.user_id, a.changed from people a where a.id = ?", 
+	$data = query("select a.surname, a.first_name, a.other_names, a.given_name, a.title, a.marital_status, a.id_no, a.birth_date, a.home_phone, a.work_phone, a.mobile_phone, a.whatsapp, a.work_email, a.home_email, a.sex, a.passport_no, a.passport_expiry, a.driver_lic, a.driver_expiry, a.company_id, a.occupation_id, a.rs_rep, a.cottage, a.checked, a.notes, a.user_id, a.changed from people a where a.id = ?", 
 						$people_id); 
 	$_SESSION["selected_people_id"] = $people_id;
     $_SESSION["search_name_start"] = $data[0]["surname"];
@@ -41,7 +41,7 @@
 	$occupation  = $data[0]["occupation"];
 	$data = query("select co_name from company where id = ?", $company_id);
 	$co_name        = $data[0]["co_name"];
-	$data = query("select surname, first_name, other_name, given_name from people where id = ?", $rs_rep_id);
+	$data = query("select surname, first_name, other_names, given_name from people where id = ?", $rs_rep_id);
 	$rs_surname     = $data[0]["surname"];
 	$rs_first_name  = $data[0]["first_name"];
 	$rs_other_name  = $data[0]["other_name"];

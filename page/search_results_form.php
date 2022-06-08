@@ -18,14 +18,14 @@
                     <?php 
                     $rows = query($search_string);
                     //$rows = query("SELECT a.id, a.surname, a.first_name, 
-                    // a.cottage, a.Party_id, b.occupation, c.party_name 
+                    // a.Party_id, b.occupation, c.party_name 
                     // from people a, occupation b, party c 
                     // where b.id = occupation_id and c.id = a.party_id 
                     //order by surname, first_name");
                     if (count($rows) > 0) {
                         foreach ($rows as $row) {
                             $first_name = ucfirst(strtolower($row["first_name"]));
-                            $other_name = ucfirst(strtolower($row["other_name"]));
+                            $other_name = ucfirst(strtolower($row["other_names"]));
                             $given_name = ucfirst(strtolower($row["given_name"]));
                             $surname = ucfirst(strtolower($row["surname"]));
                             echo '<tr>';
@@ -38,9 +38,9 @@
                                 echo ' (' . $given_name . ')';
                             }
                             echo '</td>';
-                            echo '<td>' . $row['cottage'] . '</td>';
-                            echo '<td>' . $row['status'] . '</td>';
-                            echo '<td>' . $row['co_name'] . '</td>';
+                            echo '<td>' . "in test" . '</td>'; // $row['cottage']
+                            echo '<td>' . "in test" . '</td>'; // $row['status']
+                            echo '<td>' . "in test" . '</td>'; // $row['co_name']
                             echo '<td>';
                             echo '<a class="w3-button w3-green"';
                             echo 'href="../page/people_read.php?id=' . $row['id'];

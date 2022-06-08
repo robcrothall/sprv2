@@ -14,12 +14,12 @@
  */
 require "../inc/config.php"; 
 $_SESSION["module"] = $_SERVER["PHP_SELF"];
-require "../assets/inc/head.php";
-require "../assets/inc/body.php";
+require "../inc/head.php";
+require "../inc/body.php";
 require "../inc/menu.php";
-require "../assets/inc/msg.php";
+require "../inc/msg.php";
 if ($_SERVER["REQUEST_METHOD"] <> "POST") {
-    include "../assets/inc/db_open.php";
+    include "../inc/db_open.php";
     if (!isset($_SESSION["start_date"])) {
         $_SESSION["start_date"] = date("Y-m-d");
     }
@@ -255,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </form>
     <?php
 } else {
-    //include "../assets/inc/msg.php";
+    //include "../inc/msg.php";
     echo '<h1>Add a calendar entry</h1>';
     $errorList = array();
     $schedule_id = 0;
@@ -344,7 +344,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $errorList[] = "Please enter an event name.";
     }
     if (sizeof($errorList) == 0) {
-        include "../assets/inc/db_open.php";
+        include "../inc/db_open.php";
         echo "<br>Scheduled for the following dates:<br><ul>";
         $date = strtotime($start_date);
         $date_end = strtotime($end_date);
@@ -378,7 +378,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     echo '<a class="w3-button w3-green" ';
     echo 'href="../page/calendar_list.php">Back to calendar list</a>';
-    include "../assets/inc/msg.php";
-    include "../assets/inc/footer.php";
+    include "../inc/msg.php";
+    include "../inc/footer.php";
 }
 ?>

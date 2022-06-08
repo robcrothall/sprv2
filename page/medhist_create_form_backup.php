@@ -10,7 +10,7 @@
 				<?php
 	//				$rows = query("SELECT surname, first_name, other_name FROM people where id = ?", $_SESSION["selected_people_id"]);
 	//				$row = $rows[0];
-	//				echo $row['surname'] . ", " . $row["first_name"] . " " . $row["other_name"];
+	//				echo $row['surname'] . ", " . $row["first_name"] . " " . $row["other_names"];
 				?>
 			</td>
 		</tr>
