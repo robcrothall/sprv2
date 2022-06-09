@@ -48,7 +48,7 @@ SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.users;
 
 insert into afpxyykk_sprv_v1.users (id, username, hash, people_id, expiry, last_logon, notes, user_id, changed) 
-select id, username, hash, person_id, member_exp, last_logon, notes, user_id, changed 
+select id, username, hash, people_id, member_exp, last_logon, notes, user_id, changed 
 from afpxyykk_sprv.users;
 
 # peoplex	
@@ -165,7 +165,7 @@ SET FOREIGN_KEY_CHECKS=0;
 delete from afpxyykk_sprv_v1.memberships;
 insert into afpxyykk_sprv_v1.memberships (people_id, group_id, is_manager, join_date, expiry_date, status, 
 status_date, user_id, changed) 
-select person_id, group_id, is_manager, join_date, expiry_date, status, status_date, user_id, changed
+select people_id, group_id, is_manager, join_date, expiry_date, status, status_date, user_id, changed
 from afpxyykk_sprv.memberships
 order by id;
 

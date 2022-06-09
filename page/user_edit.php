@@ -34,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     $id = $row["id"];
     $username = $row["username"];
-    $person_id = $row["person_id"];
+    $people_id = $row["people_id"];
     $notes = trim($row["notes"]);
     $sql = "select surname, first_name, given_name ";
-    $sql .= "from people where id = " . $person_id;
+    $sql .= "from people where id = " . $people_id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
     $row = $result->fetch_array();

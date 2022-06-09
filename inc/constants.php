@@ -46,4 +46,9 @@
     // Physical and Postal Addresses
     define("PHYSICAL_ADDR", "Settlers Park Retirement Village, Horton Road, Port Alfred 6170, South Africa");
     define("POSTAL_ADDR", "Settlers Park Association, Private Bag 6125, Port Alfred 6170, South Africa"); 
+
+    // Encryption values
+    define("CIPHERING", "AES-128-CTR");
+    define("ENCRYPTION_IV", "1952194720221972");
+    define("ENCRYPTION_KEY", "PropertyMatters");
 ?>

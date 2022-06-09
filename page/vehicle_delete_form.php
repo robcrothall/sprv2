@@ -30,7 +30,7 @@
 	// Check for dependencies
 	$message = "";
 	$error = 0;
-	$rows = query("select count(*) rowCount from address where person_id =?", $people_id);
+	$rows = query("select count(*) rowCount from address where people_id =?", $people_id);
 	$row = $rows[0];
 	if ($row["rowCount"] > 0) {
 		$message .= "Address lines still exist.  "; $error += 1;
@@ -45,7 +45,7 @@
 	if ($row["rowCount"] > 0) {
 		$message .= "Medical history lines still exist.  "; $error += 1;
 		}
-	$rows = query("select count(*) rowCount from payments where person_id =?", $people_id);
+	$rows = query("select count(*) rowCount from payments where people_id =?", $people_id);
 	$row = $rows[0];
 	if ($row["rowCount"] > 0) {
 		$message .= "Payment lines still exist.  "; $error += 1;

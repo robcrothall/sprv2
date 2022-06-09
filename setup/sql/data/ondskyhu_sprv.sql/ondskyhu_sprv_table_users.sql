@@ -3,7 +3,7 @@
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `hash`, `surname`, `first_name`, `phone`, `mobile`, `email`, `person_id`, `notes`, `member_exp`, `last_logon`, `user_role`, `user_id`, `changed`) VALUES
+INSERT INTO `users` (`id`, `username`, `hash`, `surname`, `first_name`, `phone`, `mobile`, `email`, `people_id`, `notes`, `member_exp`, `last_logon`, `user_role`, `user_id`, `changed`) VALUES
 (1, 'rob@crothall.co.za', 'roomdgp/XwvnU', 'Crothall', 'Rob', '046 604 0441', '083 678 5055', 'rob@crothall.co.za', 260, NULL, '2050-12-31', '2022-01-23', 'ADMIN', 1, '2022-01-23 10:23:38'),
 (12, 'gm@settlerspark.co.za', 'gmSWmwXXCbvc.', 'Thompson', 'Derek', '046 604 0200', '', 'gm@settlerspark.co.za', 1081, NULL, '2020-03-05', '2022-01-11', 'ADMIN', 13, '2022-01-11 07:40:59'),
 (13, 'irene@settlerspark.co.za', 'irYkFcLqfDzFM', 'Marais', 'Irene', '0466040502', '0826527522', 'irene@settlerspark.co.za', 522, NULL, '2021-04-27', '2022-01-25', 'ADMIN', 13, '2022-01-25 06:15:59'),

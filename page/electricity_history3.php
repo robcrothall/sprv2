@@ -20,10 +20,10 @@ $message = "";
 if (empty($_SESSION["selected_people_id"]) or check_role("RESIDENT")) {
     //$message .= "Please select 'Read' on the person before looking here";
     //$message .= " SESSION[id]: " . $_SESSION["id"];
-    $sql = "select person_id from users where id = ?";
+    $sql = "select people_id from users where id = ?";
     //var_dump("Session ID:", $_SESSION["id"]);
     $rows = query($sql, $_SESSION["id"]);
-    $_SESSION["selected_people_id"] = $rows[0]["person_id"];
+    $_SESSION["selected_people_id"] = $rows[0]["people_id"];
     //var_dump("Selected:", $_SESSION["selected_people_id"]);
     //$message .= " Selected: " . $_SESSION["selected_people_id"];
     //$sql = "select surname, first_name from people where id = ?";

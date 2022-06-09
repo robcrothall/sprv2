@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["password"] !== $_POST["confirmation"]) {
         apologize("Your password and confirmation password are not identical.");
     }
-    if (empty($_POST["person_id"])) {
+    if (empty($_POST["people_id"])) {
         apologize("You must select a person");
-    } elseif ($_POST["person_id"] == 0) {
+    } elseif ($_POST["people_id"] == 0) {
         apologize("You must select a person");
     }
     // query database for username
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     // if the person is already registered, refuse to register her/him again
     $rows = query(
-        "SELECT * FROM users WHERE person_id = ?", $_POST["person_id"]
+        "SELECT * FROM users WHERE people_id = ?", $_POST["people_id"]
     );
 
     // if we found user, tell him he is already registered
@@ -60,9 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             "contact Administration in Settlers Park."
         );
     }
-    $rows = query("select * from people where id = ?", $_POST["person_id"]);
+    $rows = query("select * from people where id = ?", $_POST["people_id"]);
     // insert the new user into the users table
-    $person_id = $rows[0]["id"];
+    $people_id = $rows[0]["id"];
     $username = test_input($_POST['username']);
     $surname = $rows[0]["surname"];
     $first_name = $rows[0]["first_name"];
@@ -89,11 +89,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $expdate = date("Y-m-d", strtotime("+1 year"));
     $role = strtoupper($rows[0]["status"]);
     $user_id = $_SESSION["id"];
-    $sql = "INSERT INTO users (username, hash, person_id, surname, first_name, ";
+    $sql = "INSERT INTO users (username, hash, people_id, surname, first_name, ";
     $sql .= "phone, mobile, email, member_exp, last_logon, user_role, user_id) ";
     $sql .= "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $rows = query(
-        $sql, $username, crypt($_POST["password"], $username), $person_id, 
+        $sql, $username, crypt($_POST["password"], $username), $people_id, 
         $surname, $first_name, $phone, $mobile, $email, $expdate, $mydate, 
         $role, $user_id
     );

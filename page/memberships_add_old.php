@@ -30,13 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top"><b>Member Name</b></td>
     <td>
-        <select name="person_id">
+        <select name="people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n"; 
     $sql = "SELECT id, surname, first_name, given_name ";
     $sql .= "FROM people ";
     $sql .= 'where status in ("Resident", "Associate", "Inactive") ';
-    $sql .= "and id not in (select person_id from memberships ";
+    $sql .= "and id not in (select people_id from memberships ";
     $sql .= "where group_id = 1) ";
     $sql .= "order by surname, first_name";
     $message .= $sql . ';';
@@ -77,18 +77,18 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     include "../inc/msg.php";
     echo '<h1>Add a Member</h1>';
     $errorList = array();
-    $person_id = test_input($_POST["person_id"]);
+    $people_id = test_input($_POST["people_id"]);
     $is_manager = test_input($_POST["is_manager"]);
     $user_id = $_SESSION["id"];
-    if ($person_id == 0) {
+    if ($people_id == 0) {
         $errorList[] = "Please choose a person. ";
     }
     include "../inc/db_open.php";
     if (sizeof($errorList) == 0) {
         $join_date = date("Y-m-d");
-        $sql = "insert into memberships (person_id, group_id, is_manager, ";
+        $sql = "insert into memberships (people_id, group_id, is_manager, ";
         $sql .= "join_date, status, user_id) values (";
-        $sql .= $person_id . ", 1, '" . $is_manager . "', '";
+        $sql .= $people_id . ", 1, '" . $is_manager . "', '";
         $sql .= $join_date . "', 'Validated', " . $user_id . ")";
         $result = mysqli_query($handle, $sql) 
             or die("Error in query: $sql. " . mysqli_error($handle));

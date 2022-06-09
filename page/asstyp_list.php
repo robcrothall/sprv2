@@ -33,12 +33,12 @@ if (check_role("STAFF")) {
   </thead>
   <tbody>
 <?php
-$sql = "select a.id, a.description ";
+$sql = "select a.id, a.asset_description ";
 $sql .= "from asset_type a ";
-$sql .= "order by a.description";
+$sql .= "order by a.asset_description";
 foreach ($handle->query($sql) as $row) {
     echo '<tr>';
-    echo '  <td>' . $row['description'] . '</td>';
+    echo '  <td>' . $row['asset_description'] . '</td>';
     echo '  <td>';
     if (check_role("STAFF")) {
         echo '<a class="w3-button w3-green" href="../page/asstyp_edit.php?id=';

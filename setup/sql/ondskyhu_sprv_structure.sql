@@ -39,7 +39,7 @@ USE `ondskyhu_sprv`;
 DROP TABLE IF EXISTS `address`;
 CREATE TABLE `address` (
   `id` int(8) NOT NULL,
-  `person_id` int(8) NOT NULL,
+  `people_id` int(8) NOT NULL,
   `addr_type` int(8) NOT NULL,
   `addr_line` varchar(50) NOT NULL,
   `addr_line2` varchar(50) DEFAULT NULL,
@@ -335,7 +335,7 @@ CREATE TABLE `countries` (
 DROP TABLE IF EXISTS `dates`;
 CREATE TABLE `dates` (
   `id` int(8) NOT NULL,
-  `person_id` int(8) NOT NULL,
+  `people_id` int(8) NOT NULL,
   `date_type` varchar(20) NOT NULL,
   `actual_date` date NOT NULL,
   `notes` varchar(60) DEFAULT NULL,
@@ -688,7 +688,7 @@ CREATE TABLE `med_procedures` (
 DROP TABLE IF EXISTS `memberships`;
 CREATE TABLE `memberships` (
   `id` int(8) NOT NULL,
-  `person_id` int(8) NOT NULL,
+  `people_id` int(8) NOT NULL,
   `group_id` int(8) NOT NULL,
   `is_manager` enum('Y','N') NOT NULL DEFAULT 'N',
   `join_date` date NOT NULL DEFAULT '1900-01-01',
@@ -783,7 +783,7 @@ CREATE TABLE `parms_char` (
 DROP TABLE IF EXISTS `payments`;
 CREATE TABLE `payments` (
   `id` int(8) NOT NULL,
-  `person_id` int(8) NOT NULL,
+  `people_id` int(8) NOT NULL,
   `amount` decimal(8,2) NOT NULL,
   `payment_date` date NOT NULL,
   `user_id` int(8) NOT NULL,
@@ -1005,7 +1005,7 @@ CREATE TABLE `people_log` (
 
 DROP TABLE IF EXISTS `people_news`;
 CREATE TABLE `people_news` (
-  `person_id` int(8) NOT NULL,
+  `people_id` int(8) NOT NULL,
   `news_id` int(8) NOT NULL,
   `changed` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -1188,7 +1188,7 @@ CREATE TABLE `regions` (
 DROP TABLE IF EXISTS `relationships`;
 CREATE TABLE `relationships` (
   `id` int(8) NOT NULL,
-  `person_id` int(8) NOT NULL,
+  `people_id` int(8) NOT NULL,
   `other_id` int(8) NOT NULL,
   `type` varchar(20) NOT NULL,
   `user_id` int(8) NOT NULL,
@@ -1370,7 +1370,7 @@ CREATE TABLE `users` (
   `phone` varchar(20) DEFAULT NULL,
   `mobile` varchar(20) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `person_id` int(8) DEFAULT NULL,
+  `people_id` int(8) DEFAULT NULL,
   `notes` text,
   `member_exp` date NOT NULL,
   `last_logon` date NOT NULL,
@@ -1701,7 +1701,7 @@ ALTER TABLE `med_procedures`
 --
 ALTER TABLE `memberships`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `person_id` (`person_id`,`group_id`),
+  ADD UNIQUE KEY `people_id` (`people_id`,`group_id`),
   ADD KEY `group_id_const` (`group_id`);
 
 --
@@ -1735,7 +1735,7 @@ ALTER TABLE `parms_char`
 --
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `People_Payments` (`person_id`);
+  ADD KEY `People_Payments` (`people_id`);
 
 --
 -- Indexes for table `people`
@@ -1779,7 +1779,7 @@ ALTER TABLE `people_log`
 -- Indexes for table `people_news`
 --
 ALTER TABLE `people_news`
-  ADD UNIQUE KEY `People_news` (`person_id`,`news_id`);
+  ADD UNIQUE KEY `People_news` (`people_id`,`news_id`);
 
 --
 -- Indexes for table `people_related`
@@ -2229,13 +2229,13 @@ ALTER TABLE `vehicle_model`
 --
 ALTER TABLE `memberships`
   ADD CONSTRAINT `group_id_const` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
-  ADD CONSTRAINT `person_id_const` FOREIGN KEY (`person_id`) REFERENCES `people` (`id`);
+  ADD CONSTRAINT `people_id_const` FOREIGN KEY (`people_id`) REFERENCES `people` (`id`);
 
 --
 -- Constraints for table `payments`
 --
 ALTER TABLE `payments`
-  ADD CONSTRAINT `People_Payments` FOREIGN KEY (`person_id`) REFERENCES `people` (`id`);
+  ADD CONSTRAINT `People_Payments` FOREIGN KEY (`people_id`) REFERENCES `people` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

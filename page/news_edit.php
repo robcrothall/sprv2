@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     }
     $title = $row["title"];
     $content = $row["content"];
-    $person_id = $row["contact_id"];
+    $people_id = $row["contact_id"];
     ?>
 <h1>Edit a news item</h1>
 <table cellspacing="5" cellpadding="5">
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top"><b>Contact person</b></td>
     <td>
-          <select name="person_id">
+          <select name="people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n"; 
     // $rows = query("SELECT id, surname, first_name, given_name 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $sql = "SELECT id, surname, first_name, given_name FROM `people` ";
     $sql .= "where status in ('Resident', 'Staff') order by surname, first_name";
     foreach ($handle->query($sql) as $row) {
-        if ($row["id"] == $person_id) {
+        if ($row["id"] == $people_id) {
             $selected = " selected";
         } else {
             $selected = "";
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $id = test_input($_POST["id"]);
     $title = test_input($_POST["title"]);
     $content = test_input($_POST["content"]);
-    $contact_id = test_input($_POST["person_id"]);
+    $contact_id = test_input($_POST["people_id"]);
     if (trim($title) == '') {
         $errorList[] = "Please enter a title.";
     }

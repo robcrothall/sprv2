@@ -363,7 +363,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["rep_file"] = "library_" . date("Ymd") . ".txt";
     include "../inc/head.php";
     include "../inc/body.php";
-    include "../page/menu.php";
+    include "../inc/menu.php";
     //var_dump($_SESSION);
     echo '<h2 align="center">Library Members Reconciliation</h2>';
     echo '<h3 align="left">Please select:</h3>';

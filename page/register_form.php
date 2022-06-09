@@ -33,7 +33,7 @@
         </div>
             <div class="form-group">
                 Name and details:<br>
-                <select name="person_id">
+                <select name="people_id">
 <?php
 echo '<option value="0" selected>Please choose</option>\n';
 $sql = "SELECT id, surname, first_name, given_name FROM `people` ";

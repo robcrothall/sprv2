@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $sql .= "FROM groups ";
     $sql .= 'where status like "open" ';
     $sql .= "and id not in (select distinct group_id from memberships ";
-    $sql .= "where person_id = " . $people_id . ") ";
+    $sql .= "where people_id = " . $people_id . ") ";
     $sql .= "order by group_name";
     $message .= $sql . ';';
     //echo $sql;
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     include "../inc/db_open.php";
     if (sizeof($errorList) == 0) {
         $join_date = date("Y-m-d");
-        $sql = "insert into memberships (person_id, group_id, is_manager, ";
+        $sql = "insert into memberships (people_id, group_id, is_manager, ";
         $sql .= "join_date, status, user_id) values (";
         $sql .= $people_id . ", " . $group_id . ", '" . $is_manager . "', '";
         $sql .= $join_date . "', 'Validated', " . $user_id . ")";

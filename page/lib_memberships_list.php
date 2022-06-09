@@ -41,13 +41,13 @@ echo "&nbsp";
   <tbody>
 
 <?php
-$sql = "select a.id, a.person_id, a.expiry_date, c.status, ";
+$sql = "select a.id, a.people_id, a.expiry_date, ";
 $sql .= "a.status as member_status, ";
 $sql .= "b.group_name, c.surname, c.first_name, c.given_name ";
 $sql .= "from memberships a, groups b, people c ";
-$sql .= "where a.group_id = b.id and a.person_id = c.id ";
+$sql .= "where a.group_id = b.id and a.people_id = c.id ";
 $sql .= "and a.group_id = 1 ";
-$sql .= "order by b.group_name, c.surname, c.first_name";
+$sql .= "order by c.surname, c.first_name";
 foreach ($handle->query($sql) as $row) {
     echo '<tr>';
     //echo '  <td>' . $row['group_name'] . '</td>';
@@ -59,7 +59,7 @@ foreach ($handle->query($sql) as $row) {
     //echo '  <td>' . $row['is_manager'] . '</td>';
     echo "  <td>";
     $sql = "select expiry_date from memberships ";
-    $sql .= "where person_id = " . $row["person_id"];
+    $sql .= "where people_id = " . $row["people_id"];
     $sql .= " and group_id = 2";
     $result = query($sql);
     echo $result[0]["expiry_date"];

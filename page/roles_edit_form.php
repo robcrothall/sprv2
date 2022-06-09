@@ -23,7 +23,7 @@
     $phone           = $data[0]["phone"];
     $mobile          = $data[0]["mobile"];
     $email           = $data[0]["email"];
-    $person_id       = $data[0]["person_id"];
+    $people_id       = $data[0]["people_id"];
     $user_role       = $data[0]["user_role"];
     $notes           = $data[0]["notes"];
     $user_id         = $data[0]["user_id"];

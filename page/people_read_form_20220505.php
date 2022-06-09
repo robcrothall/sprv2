@@ -334,7 +334,7 @@ if ($staff) {
     $rsql  = "SELECT a.id, a.join_date, a.expiry_date, a.status, a.is_manager, ";
     $rsql .= "b.group_name, b.fee_reqd, b.start_month, b.duration_in_months ";
     $rsql .= " from memberships a, groups b ";
-    $rsql .= " where a.person_id = ? and a.group_id = b.id ";
+    $rsql .= " where a.people_id = ? and a.group_id = b.id ";
     $rsql .= " order by group_name ";
     $rows = query($rsql, $people_id);
     if (count($rows) > 0) {

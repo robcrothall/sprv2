@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top"><b>Contact person</b></td>
     <td>
-          <select name="person_id">
+          <select name="people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n"; 
     $sql = "SELECT id, surname, first_name, given_name FROM `people` ";
@@ -74,20 +74,20 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $errorList = array();
     $title = test_input($_POST["title"]);
     $content = test_input($_POST["content"]);
-    $person_id = test_input($_POST["person_id"]);
+    $people_id = test_input($_POST["people_id"]);
     if (trim($title) == '') {
         $errorList[] = "Please enter a title.";
     }
     if (trim($content) == '') {
         $errorList[] = "Please enter the message content.";
     }
-    if (trim($person_id) == '') {
+    if (trim($people_id) == '') {
         $errorList[] = "Please select a contact person.";
     }
     if (sizeof($errorList) == 0) {
         include "../inc/db_open.php";
         $sql = "insert into news (title, content, contact_id) values ('";
-        $sql .= $title . "','" . $content . "'," . $person_id . ")";
+        $sql .= $title . "','" . $content . "'," . $people_id . ")";
         $result = mysqli_query($handle, $sql) 
             or die("Error in query: $sql. " . mysqli_error($handle));
         echo "Update successful.<br><br>";

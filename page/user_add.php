@@ -37,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     } else {
         $confirmation = "";
     }
-    if (!empty($_SESSION["selected_person_id"])) {
-        $selected_person_id = $_SESSION["selected_person_id"];
+    if (!empty($_SESSION["selected_people_id"])) {
+        $selected_people_id = $_SESSION["selected_people_id"];
     } else {
-        $selected_person_id = "";
+        $selected_people_id = "";
     }
     if (!empty($_SESSION[""])) {
         $surname = $_SESSION["surname"];
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top">Name and details:</td>
     <td>
-        <select autofocus name="person_id">
+        <select autofocus name="people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>\n';
     $sql = "SELECT id, surname, first_name, other_names, given_name ";
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $rows = query($sql);
     $selected = "";
     foreach ($rows as $row) {
-        if ($selected_person_id == $row["id"]) {
+        if ($selected_people_id == $row["id"]) {
             $selected = " selected ";
         } else {
             $selected = "";
@@ -186,14 +186,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     echo '<h1>Add a User</h1>';
     $errorList = array();
     $selected_username = test_input($_POST["selected_username"]);
-    $selected_person_id = test_input($_POST["person_id"]);
+    $selected_people_id = test_input($_POST["people_id"]);
     $password = test_input($_POST["password"]);
     $confirmation = test_input($_POST["confirmation"]);
     $member_expires = test_input($_POST["selected_member_exp"]);
     $notes = test_input($_POST["notes"]);
     $last_logon = "1900-01-01";
     $user_id = $_SESSION["id"];
-    if ($selected_person_id == 0) {
+    if ($selected_people_id == 0) {
         $errorList[] = "Please select the person.  ";
     }
     if (trim($selected_username) == '') {
@@ -233,7 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $selected_member_exp = $member_expires;
     }
     $sql = "select * from people where id = ?";
-    $rows = query($sql, $selected_person_id)
+    $rows = query($sql, $selected_people_id)
         or die("Cannot find the person.");
     foreach ($rows as $r) {
         $surname = $r["surname"];
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $_SESSION["selected_username"] = $selected_username;
     $_SESSION["password"] = $password;
     $_SESSION["confirmation"] = $confirmation;
-    $_SESSION["selected_person_id"] = $selected_person_id;
+    $_SESSION["selected_people_id"] = $selected_people_id;
     $_SESSION["surname"] = $surname;
     $_SESSION["first_name"] = $first_name;
     $_SESSION["phone"] = $phone;
@@ -263,12 +263,12 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (sizeof($errorList) == 0) {
         $mydate = date("Y-m-d");
         $user_id = $_SESSION["id"];
-        $sql = "INSERT INTO users (username, hash, person_id, surname, first_name, ";
+        $sql = "INSERT INTO users (username, hash, people_id, surname, first_name, ";
         $sql .= "phone, mobile, email, notes, member_exp, last_logon, user_role, ";
         $sql .= "user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $rows = query(
             $sql, $selected_username, crypt($password, $selected_username), 
-            $selected_person_id, $surname, $first_name, $phone, $mobile, $email,
+            $selected_people_id, $surname, $first_name, $phone, $mobile, $email,
             $notes, $selected_member_exp, $mydate, $selected_user_role, $user_id
         );
         if ($rows === false) {
@@ -299,7 +299,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         unset($_SESSION["selected_username"]);
         unset($_SESSION["password"]);
         unset($_SESSION["confirmation"]);
-        unset($_SESSION["selected_person_id"]);
+        unset($_SESSION["selected_people_id"]);
         unset($_SESSION["surname"]);
         unset($_SESSION["first_name"]);
         unset($_SESSION["phone"]);

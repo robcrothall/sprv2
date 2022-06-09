@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         die("No result returned from memberships - please advise SysAdmin.");
     }
     $id = $row["id"];
-    $person_id = $row["person_id"];
+    $people_id = $row["people_id"];
     $group_id = $row["group_id"];
     $is_manager = $row["is_manager"];
     $join_date = $row["join_date"];
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $status = $row["status"];
     $sql = "select surname, first_name, given_name ";
     $sql .= "from people ";
-    $sql .= "where id = " . $person_id;
+    $sql .= "where id = " . $people_id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
     $row = $result->fetch_array();
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $group_name = $row["group_name"];
     $sql = "select is_manager ";
     $sql .= "from memberships ";
-    $sql .= "where id = " . $group_id . " and person_id = " . $_SESSION["id"];
+    $sql .= "where id = " . $group_id . " and people_id = " . $_SESSION["id"];
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
     $row = $result->fetch_array();

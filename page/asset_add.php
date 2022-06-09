@@ -35,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
           <select name="asset_type">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n"; 
-    $sql = "SELECT id, description FROM `asset_type` ";
-    $sql .= "order by description";
+    $sql = "SELECT id, asset_description FROM asset_type ";
+    $sql .= "order by asset_description";
     foreach ($handle->query($sql) as $row) {
         echo '<option value="' . $row["id"] . '">';
-        echo $row["description"] . "</option>\n";
+        echo $row["asset_description"] . "</option>\n";
     }
     ?>
           </select>
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </tr>
 <tr>
     <td valign="top"><b>Asset Size (sq. m.)</b></td>
-    <td><input size="5" type="number" min="0" value="0" step="any" 
+    <td><input size="5" type="number" min="0" value="0" step="0.1" 
             name="asset_size"></input></td>
 </tr>
 <tr>

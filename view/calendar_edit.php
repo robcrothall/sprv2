@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         die("No ID specified - please inform SysAdmin.");
     }
     $sql = "select id, start_date, start_time, end_date, end_time, asset_id, ";
-    $sql .= "event_name, resp_person_id, contact_person_id, private_event, notes ";
+    $sql .= "event_name, resp_people_id, contact_people_id, private_event, notes ";
     $sql .= "from calendar where id = " . $id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $end_time = $row["end_time"];
     $asset_id = $row["asset_id"];
     $event_name = $row["event_name"];
-    $resp_person_id = $row["resp_person_id"];
-    $contact_person_id = $row["contact_person_id"];
+    $resp_people_id = $row["resp_people_id"];
+    $contact_people_id = $row["contact_people_id"];
     $private_event = $row["private_event"];
     $notes = $row["notes"];
     ?>
@@ -98,14 +98,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top">Responsible Person</td>
     <td>
-        <select name="resp_person_id">
+        <select name="resp_people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n";
     $sql  = 'select id, surname, first_name, given_name  ';
     $sql .= 'from people ';
     $sql .= 'order by surname, first_name ';
     foreach ($handle->query($sql) as $row) {
-        if ($row["id"] == $resp_person_id) {
+        if ($row["id"] == $resp_people_id) {
             $selected = " selected";
         } else {
             $selected = "";
@@ -124,14 +124,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <tr>
     <td valign="top">Contact Person</td>
     <td>
-        <select name="contact_person_id">
+        <select name="contact_people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n";
     $sql  = 'select id, surname, first_name, given_name  ';
     $sql .= 'from people ';
     $sql .= 'order by surname, first_name ';
     foreach ($handle->query($sql) as $row) {
-        if ($row["id"] == $contact_person_id) {
+        if ($row["id"] == $contact_people_id) {
             $selected = " selected";
         } else {
             $selected = "";
@@ -196,15 +196,15 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $end_time = test_input($_POST["end_time"]);
     $asset_id = test_input($_POST["asset_id"]);
     $event_name = test_input($_POST["event_name"]);
-    $resp_person_id = test_input($_POST["resp_person_id"]);
-    $contact_person_id = test_input($_POST["contact_person_id"]);
+    $resp_people_id = test_input($_POST["resp_people_id"]);
+    $contact_people_id = test_input($_POST["contact_people_id"]);
     $private_event = test_input($_POST["private_event"]);
     $notes = test_input($_POST["notes"]);
     $user_id = $_SESSION["id"];
     if (trim($event_name) == '') {
         $errorList[] = "Please enter a name for the event.";
     }
-    if (trim($resp_person_id) == 0) {
+    if (trim($resp_people_id) == 0) {
         $errorList[] = "Please select a responsible person";
     }
     if ($start_date > $end_date) {
@@ -223,8 +223,8 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $sql .= '", end_time="' . $end_time;
         $sql .= '", asset_id=' . $asset_id;
         $sql .= ', event_name="' . $event_name;
-        $sql .= '", resp_person_id=' . $resp_person_id;
-        $sql .= ', contact_person_id=' . $contact_person_id;
+        $sql .= '", resp_people_id=' . $resp_people_id;
+        $sql .= ', contact_people_id=' . $contact_people_id;
         $sql .= ', private_event="' . $private_event . '"';
         $sql .= ', notes="' . $notes . '"';
         $sql .= ", user_id='" . $user_id . "'";

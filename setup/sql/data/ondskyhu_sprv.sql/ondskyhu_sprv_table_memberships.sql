@@ -3,7 +3,7 @@
 -- Dumping data for table `memberships`
 --
 
-INSERT INTO `memberships` (`id`, `person_id`, `group_id`, `is_manager`, `join_date`, `expiry_date`, `status`, `status_date`, `user_id`, `changed`) VALUES
+INSERT INTO `memberships` (`id`, `people_id`, `group_id`, `is_manager`, `join_date`, `expiry_date`, `status`, `status_date`, `user_id`, `changed`) VALUES
 (1, 775, 2, 'N', '1900-01-01', '2022-03-31', 'Validated', '2022-01-07 09:52:43', 1, '2022-01-07 09:52:43'),
 (2, 777, 2, 'N', '1900-01-01', '2022-03-31', 'Validated', '2022-01-07 09:52:43', 1, '2022-01-07 09:52:43'),
 (3, 778, 2, 'N', '1900-01-01', '2022-03-31', 'Validated', '2022-01-07 09:52:43', 1, '2022-01-07 09:52:43'),

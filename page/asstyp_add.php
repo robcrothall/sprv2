@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
 <tr>
     <td valign="top"><b>Asset Type</b></td>
-    <td><input size="20" maxlength="20" type="text" name="description" required></td>
+    <td><input size="20" maxlength="20" type="text" name="asset_description" required></td>
 </tr>
 <tr>
     <td colspan=2>
@@ -46,13 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     include "../inc/msg.php";
     echo '<h1>Add an Asset Type</h1>';
     $errorList = array();
-    $description = test_input($_POST["description"]);
+    $description = test_input($_POST["asset_description"]);
     $user_id = $_SESSION["id"];
     if (trim($description) == '') {
         $errorList[] = "Please enter an asset description.";
     }
     include "../inc/db_open.php";
-    $sql = 'select count(*) as kount from asset_type where description = "';
+    $sql = 'select count(*) as kount from asset_type where asset_description = "';
     $sql .= $description . '"';
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
     }
     if (sizeof($errorList) == 0) {
-        $sql = "insert into asset_type (description, ";
+        $sql = "insert into asset_type (asset_description, ";
         $sql .= "user_id) values ('";
         $sql .= $description . "'," . $user_id . ")";
         $result = mysqli_query($handle, $sql) 

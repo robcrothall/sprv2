@@ -111,14 +111,14 @@ foreach ($handle->query($sql) as $row) {
 	$errorList = array();
 	$title = test_input($_POST["title"]);
 	$content = test_input($_POST["content"]);
-	$person_id = test_input($_POST["person_id"]);
+	$people_id = test_input($_POST["people_id"]);
 	if(trim($title) == '') {$errorList[] = "Please enter a title.";}
 	if(trim($content) == '') {$errorList[] = "Please enter the message content.";}
-	if(trim($person_id) == '') {$errorList[] = "Please select a contact person.";}
+	if(trim($people_id) == '') {$errorList[] = "Please select a contact person.";}
 	if(sizeof($errorList) == 0) {
 		require("../inc/db_open.php");
 		$sql = "insert into news (title, content, contact_id) values ('";
-		$sql .= $title . "','" . $content . "'," . $person_id . ")";
+		$sql .= $title . "','" . $content . "'," . $people_id . ")";
 		$result = mysqli_query($handle, $sql) or die("Error in query: $sql. " . mysqli_error($handle));
 		echo "Update successful.<br><br>";
 //		mysqli_free_result($result);

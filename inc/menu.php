@@ -83,8 +83,8 @@ if (check_role("STAFF") | check_role("ADMIN")) {
         echo '<a href="../page/roles.php" class="w3-bar-item w3-button">Roles</a>';
         echo '<a href="../page/user_list.php" ';
         echo 'class="w3-bar-item w3-button">Users</a>';
-        echo '<a href="../page/librarymembers.php" ';
-        echo 'class="w3-bar-item w3-button">Library Members</a>';
+        //echo '<a href="../page/librarymembers.php" ';
+        //echo 'class="w3-bar-item w3-button">Library Members</a>';
         // echo '<a href="../page/user_roles.php" ';
         // echo 'class="w3-bar-item w3-button">User roles</a>';
         // echo '<a href="../page/history_date_fix.php" ';

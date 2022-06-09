@@ -48,14 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $_SESSION["schedule_id"] = 0;
     }
     $schedule_id = $_SESSION["schedule_id"];
-    if (!isset($_SESSION["resp_person_id"])) {
-        $_SESSION["resp_person_id"] = 0;
+    if (!isset($_SESSION["resp_people_id"])) {
+        $_SESSION["resp_people_id"] = 0;
     }
-    $resp_person_id = $_SESSION["resp_person_id"];
-    if (!isset($_SESSION["contact_person_id"])) {
-        $_SESSION["contact_person_id"] = 0;
+    $resp_people_id = $_SESSION["resp_people_id"];
+    if (!isset($_SESSION["contact_people_id"])) {
+        $_SESSION["contact_people_id"] = 0;
     }
-    $contact_person_id = $_SESSION["contact_person_id"];
+    $contact_people_id = $_SESSION["contact_people_id"];
     if (!isset($_SESSION["private_event"])) {
         $_SESSION["private_event"] = "N";
     }
@@ -110,9 +110,9 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         required value=<?php echo $event_name; ?>></td>
 </tr>
 <tr>
-    <td><label for="resp_person_id"></label>Responsible Person</td>
+    <td><label for="resp_people_id"></label>Responsible Person</td>
     <td>
-        <select required name="resp_person_id">
+        <select required name="resp_people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n";
     $sql  = 'select id, surname, first_name, given_name  ';
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $sql .= 'where status in ("Staff", "Resident", "Associate") ';
     $sql .= 'order by surname, first_name ';
     foreach ($handle->query($sql) as $row) {
-        if ($row["id"] == $resp_person_id) {
+        if ($row["id"] == $resp_people_id) {
             $selected = " selected";
         } else {
             $selected = "";
@@ -137,9 +137,9 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     </td>
 </tr>
 <tr>
-    <td><label for="contact_person_id"></label>Contact Person</td>
+    <td><label for="contact_people_id"></label>Contact Person</td>
     <td>
-        <select required name="contact_person_id">
+        <select required name="contact_people_id">
     <?php
     echo '<option value="0" selected>Please choose</option>' . "\n";
     $sql  = 'select id, surname, first_name, given_name  ';
@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $sql .= 'where status in ("Staff", "Resident", "Associate") ';
     $sql .= 'order by surname, first_name ';
     foreach ($handle->query($sql) as $row) {
-        if ($row["id"] == $contact_person_id) {
+        if ($row["id"] == $contact_people_id) {
             $selected = " selected";
         } else {
             $selected = "";
@@ -274,8 +274,8 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $end_time = trim(test_input($_POST["end_time"]));
     $asset_id = trim(test_input($_POST["asset_id"]));
     $event_name = trim(test_input($_POST["event_name"]));
-    $resp_person_id= trim(test_input($_POST["resp_person_id"]));
-    $contact_person_id = trim(test_input($_POST["contact_person_id"]));
+    $resp_people_id= trim(test_input($_POST["resp_people_id"]));
+    $contact_people_id = trim(test_input($_POST["contact_people_id"]));
     $private_event = trim(test_input($_POST["private_event"]));
     $notes = trim(test_input($_POST["notes"]));
     $dow = array();
@@ -333,8 +333,8 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $_SESSION["asset_id"] = $asset_id;
     $_SESSION["event_name"] = $event_name;
     $_SESSION["schedule_id"] = $schedule_id;
-    $_SESSION["resp_person_id"] = $resp_person_id;
-    $_SESSION["contact_person_id"] = $contact_person_id;
+    $_SESSION["resp_people_id"] = $resp_people_id;
+    $_SESSION["contact_people_id"] = $contact_people_id;
     $_SESSION["private_event"] = $private_event;
     $_SESSION["notes"] = $notes;
     if ($asset_id == 0) {
@@ -356,13 +356,13 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo "</ul>";
         $sql = "insert into calendar (start_date, start_time, end_date, ";
-        $sql .= "end_time, asset_id, event_name, schedule_id, resp_person_id, ";
-        $sql .= "contact_person_id, private_event, notes, user_id";
+        $sql .= "end_time, asset_id, event_name, schedule_id, resp_people_id, ";
+        $sql .= "contact_people_id, private_event, notes, user_id";
         $sql .= ") values ('";
         $sql .= $start_date . "', '" . $start_time . "', '" . $end_date . "', ";
         $sql .= "'" . $end_time . "', " . $asset_id . ', ' . '"';
-        $sql .= $event_name . '", ' . $schedule_id . ", " . $resp_person_id . ', ';
-        $sql .= $contact_person_id . ', "' . $private_event . '", "';
+        $sql .= $event_name . '", ' . $schedule_id . ", " . $resp_people_id . ', ';
+        $sql .= $contact_people_id . ', "' . $private_event . '", "';
         $sql .= $notes . '", ' . $_SESSION["id"] . ')';
         echo "<br>" . $sql . "<br>";
         $result = mysqli_query($handle, $sql)

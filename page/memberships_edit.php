@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         die("No result returned from memberships - please advise SysAdmin.");
     }
     $id = $row["id"];
-    $person_id = $row["people_id"];
+    $people_id = $row["people_id"];
     $group_id = $row["group_id"];
     $is_manager = $row["is_manager"];
     $join_date = $row["join_date"];
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     $status = $row["status"];
     $sql = "select surname, first_name, given_name ";
     $sql .= "from people ";
-    $sql .= "where id = " . $person_id;
+    $sql .= "where id = " . $people_id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
     $row = $result->fetch_array();
@@ -82,12 +82,12 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         class='w3-button w3-green'/>&nbsp;
     <?php
     echo '<a class="w3-button w3-green" ';
-    //echo 'href="' . $return_to . '">Return to Memberships List</a> ';
-    // Should actually return to person_read
-    echo 'href="../page/search.php">Return to Search</a> ';
+    echo 'href="../page/people_read.php?id=' . $people_id . '"';
+    echo '>Return to person</a>&nbsp;';
     ?>
 <input type="hidden" name="id" value="<?php echo $id; ?>">&nbsp;
-<table cellspacing="5" cellpadding="5">
+<input type="hidden" name="people_id" value="<?php echo $people_id; ?>">&nbsp;
+<table cellspacing="2" cellpadding="2">
 <tr>
     <td valign="top">Member Name</td>
     <td><?php echo $full_name; ?></td>
@@ -147,11 +147,15 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     </td>
 </tr>
 <tr>
-    <td colspan=2><input type="submit" name="submit" value="Update" 
+    <td colspan=2>
+        <input type="submit" name="submit" value="Update" 
         class='w3-button w3-green'/>&nbsp;
         <a class="w3-button w3-green" 
-            href="../page/search.php">Return to Search</a>
         &nbsp;
+        <?php
+        echo 'href="../page/people_read.php?id=' . $people_id . '"';
+        echo '>Return to person</a>&nbsp;';
+        ?>
     </td>
 
 </tr>
@@ -163,6 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     echo '<h1>Edit Membership</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);
+    $people_id = test_input($_POST["people_id"]);
     $is_manager = test_input($_POST["is_manager"]);
     $join_date = test_input($_POST["join_date"]);
     $expiry_date = test_input($_POST["expiry_date"]);
@@ -188,8 +193,11 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         }
         echo '</ul>';    
     }
-    echo '<a href="../page/search.php" class="w3-button w3-green">';
-    echo 'Back to Search</a>';
+    echo '<a class="w3-button w3-green" ';
+    echo 'href="../page/people_read.php?id=' . $people_id . '"';
+    echo '>Return to person</a>&nbsp;';
+    //echo '<a href="../page/search.php" class="w3-button w3-green">';
+    //echo 'Back to Search</a>';
     include "../inc/msg.php";
     include "../inc/footer.php";
 }

@@ -47,13 +47,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         required value="<?php echo $asset_name; ?>"></td>
 </tr>
 <tr>
-    <td valign="top">Asset type</td>
+    <td valign="top">Asset type
+    </td>
     <td>
         <select name="asset_type">
     <?php
     echo '<option value="0" selected>Please choose</option>\n';
-    $sql  = "select id, description from asset_type ";
-    $sql .= "order by description ";
+    $sql  = "select id, asset_description from asset_type ";
+    $sql .= "order by asset_description ";
     foreach ($handle->query($sql) as $row) {
         if ($row["id"] == $asset_type) {
             $selected = " selected";
@@ -61,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
             $selected = "";
         }
         echo '<option value="' . $row["id"] . '"' . $selected . ">";
-        echo $row["description"] . "</option>\n";
+        echo $row["asset_description"] . "</option>\n";
     }
     ?>
         </select>
@@ -69,8 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 </tr>
 <tr>
     <td valign="top">Asset size (sq. m.) (Optional)</td>
-    <td><input size="10" maxlength="10" type="number" name="asset_size"
-        value="<?php echo $asset_size; ?>"></td>
+    <td><input size="5" type="number" min="0" step="0.1" 
+        value=<?php echo $asset_size; ?>
+        name="asset_size">
+    </td>
 </tr>
 <tr>
     <td colspan=2><input type="submit" name="submit" value="Update" 

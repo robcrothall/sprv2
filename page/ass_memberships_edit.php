@@ -33,14 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         die("No result returned from memberships - please advise SysAdmin.");
     }
     $id = $row["id"];
-    $person_id = $row["person_id"];
+    $people_id = $row["people_id"];
     $group_id = $row["group_id"];
     $join_date = $row["join_date"];
     $expiry_date = $row["expiry_date"];
     $status = $row["status"];
     $sql = "select surname, first_name, given_name ";
     $sql .= "from people ";
-    $sql .= "where id = " . $person_id;
+    $sql .= "where id = " . $people_id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
     $row = $result->fetch_array();
@@ -123,21 +123,21 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         $result = mysqli_query($handle, $sql) 
             or die("Error in query: $sql. " . mysqli_error($handle));
         $message = "Update successful.  ";
-        $sql = 'select person_id from memberships ';
+        $sql = 'select people_id from memberships ';
         $sql .= 'where id = ' . $id;
         $result = mysqli_query($handle, $sql)
             or die("Error in query: $sql. " . mysqli_error($handle));
         $finfo = mysqli_fetch_assoc($result);
-        $person_id = $finfo["person_id"];
+        $people_id = $finfo["people_id"];
         // Find potential partners - add those who have linked to the person
         $sql = 'select related_id, relationship ';
         $sql .= 'from people_related ';
-        $sql .= 'where people_id = ' . $person_id . ' ';
+        $sql .= 'where people_id = ' . $people_id . ' ';
         $sql .= 'and relationship in ("Spouse", "Partner", "Family", "Friend") ';
         $sql .= 'UNION ';
         $sql .= 'select people_id, relationship ';
         $sql .= 'from people_related ';
-        $sql .= 'where related_id = ' . $person_id . ' ';
+        $sql .= 'where related_id = ' . $people_id . ' ';
         $sql .= 'and relationship in ("Spouse", "Partner", "Family", "Friend") ';
         $sql .= 'order by relationship desc; ';
         $first = true;
@@ -147,14 +147,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
             // Is this person an associate who needs to renew?
             //var_dump("Found a related person", $row);
             //echo "<br>";
-            $new_person_id = $row["related_id"];
+            $new_people_id = $row["related_id"];
             $relationship_other = $row["relationship"];
-            //var_dump("New person id", $new_person_id);
+            //var_dump("New person id", $new_people_id);
             //echo "<br>";
             $sql = 'select id, expiry_date from memberships ';
             $sql .= 'where group_id = 2 ';
             //$sql .= 'and expiry_date < ' . date("Y-m-d", strtotime("+30 days"));
-            $sql .= ' and person_id = ' . $row["related_id"] . " limit 1"; 
+            $sql .= ' and people_id = ' . $row["related_id"] . " limit 1"; 
             //var_dump("Check date", $sql);
             //echo "<br>";
             $result = $handle->query($sql);
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
                 }
                 $sql2 = "select surname, first_name, given_name ";
                 $sql2 .= "from people ";
-                $sql2 .= "where id = " . $new_person_id;
+                $sql2 .= "where id = " . $new_people_id;
                 //var_dump("Fetch names", $sql2);
                 //echo "<br>";
                 $result = mysqli_query($handle, $sql2)
@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
                     //echo "<br>";
                     $sql3 = 'select id from memberships ';
                     $sql3 .= 'where group_id = 2 ';
-                    $sql3 .= 'and person_id = ' . $new_person_id;
+                    $sql3 .= 'and people_id = ' . $new_people_id;
                     $sql3 .= ' limit 1';
                     //echo "<br>";
                     //var_dump("Get membership number", $sql3);

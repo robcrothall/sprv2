@@ -19,7 +19,7 @@ CREATE TABLE `usersx` (
   `phone` varchar(20) DEFAULT NULL,
   `mobile` varchar(20) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `person_id` int(8) DEFAULT NULL,
+  `people_id` int(8) DEFAULT NULL,
   `notes` text,
   `member_exp` date NOT NULL,
   `last_logon` date NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `usersx` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 TRUNCATE TABLE `usersx`;
-INSERT INTO `usersx` (`id`, `username`, `hash`, `surname`, `first_name`, `phone`, `mobile`, `email`, `person_id`, `notes`, `member_exp`, `last_logon`, `user_role`, `user_id`, `changed`) VALUES
+INSERT INTO `usersx` (`id`, `username`, `hash`, `surname`, `first_name`, `phone`, `mobile`, `email`, `people_id`, `notes`, `member_exp`, `last_logon`, `user_role`, `user_id`, `changed`) VALUES
 (1, 'rob@crothall.co.za', 'roomdgp/XwvnU', 'Crothall', 'Rob', '046 604 0441', '083 678 5055', 'rob@crothall.co.za', 260, NULL, '2050-12-31', '2022-01-23', 'ADMIN', 1, '2022-01-23 10:23:38'),
 (12, 'gm@settlerspark.co.za', 'gmSWmwXXCbvc.', 'Thompson', 'Derek', '046 604 0200', '', 'gm@settlerspark.co.za', 1081, NULL, '2020-03-05', '2022-01-11', 'ADMIN', 13, '2022-01-11 07:40:59'),
 (13, 'irene@settlerspark.co.za', 'irYkFcLqfDzFM', 'Marais', 'Irene', '0466040502', '0826527522', 'irene@settlerspark.co.za', 522, NULL, '2021-04-27', '2022-01-27', 'ADMIN', 13, '2022-01-27 06:21:01'),
@@ -1606,7 +1606,7 @@ ALTER TABLE `med_procedures`
 
 ALTER TABLE `memberships`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `person_id` (`person_id`,`group_id`),
+  ADD UNIQUE KEY `people_id` (`people_id`,`group_id`),
   ADD KEY `group_id_const` (`group_id`);
 
 ALTER TABLE `news`
@@ -1625,7 +1625,7 @@ ALTER TABLE `parms_char`
 
 ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `People_Payments` (`person_id`);
+  ADD KEY `People_Payments` (`people_id`);
 
 ALTER TABLE `people`
   ADD PRIMARY KEY (`id`),
@@ -1648,7 +1648,7 @@ ALTER TABLE `people_log`
   ADD PRIMARY KEY (`id`,`changed`);
 
 ALTER TABLE `people_news`
-  ADD UNIQUE KEY `People_news` (`person_id`,`news_id`);
+  ADD UNIQUE KEY `People_news` (`people_id`,`news_id`);
 
 ALTER TABLE `people_related`
   ADD PRIMARY KEY (`id`);

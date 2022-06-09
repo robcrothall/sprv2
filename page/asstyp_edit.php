@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     if (trim($id) == '') {
         die("No ID specified - please inform SysAdmin.");
     }
-    $sql = "select id, description ";
+    $sql = "select id, asset_description ";
     $sql .= "from asset_type where id = " . $id;
     $result = mysqli_query($handle, $sql)
         or die("Error in query: $sql. " . mysqli_error($handle));
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
         die("No result returned from database - please advise SysAdmin.");
     }
     $id = $row["id"];
-    $description = $row["description"];
+    $description = $row["asset_description"];
     ?>
 <h1>Edit asset type</h1>
 <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
 <table cellspacing="5" cellpadding="5">
 <tr>
     <td valign="top">Asset Type</td>
-    <td><input size="20" maxlength="20" type="text" name="description"
+    <td><input size="20" maxlength="20" type="text" name="asset_description"
         required value="<?php echo $description; ?>"></td>
 </tr>
 <tr>
@@ -60,14 +60,14 @@ if ($_SERVER["REQUEST_METHOD"] <> "POST") {
     echo '<h1>Edit an asset type</h1>';
     $errorList = array();
     $id = test_input($_POST["id"]);
-    $description = test_input($_POST["description"]);
+    $description = test_input($_POST["asset_description"]);
     $user_id = $_SESSION["id"];
     if (trim($description) == '') {
         $errorList[] = "Please enter an asset description.";
     }
     if (sizeof($errorList) == 0) {
         include "../inc/db_open.php";
-        $sql = "update asset_type set description='" . $description . "'";
+        $sql = "update asset_type set asset_description='" . $description . "'";
         $sql .= ", user_id='" . $user_id . "'";
         $sql .= " where id = $id";
         $result = mysqli_query($handle, $sql) 

@@ -40,11 +40,11 @@ echo "&nbsp";
   <tbody>
 
 <?php
-$sql = "select a.id, a.person_id, a.expiry_date, c.status, ";
+$sql = "select a.id, a.people_id, a.expiry_date, c.status, ";
 $sql .= "a.status as member_status, ";
 $sql .= "b.group_name, c.surname, c.first_name, c.given_name ";
 $sql .= "from memberships a, groups b, people c ";
-$sql .= "where a.group_id = b.id and a.person_id = c.id ";
+$sql .= "where a.group_id = b.id and a.people_id = c.id ";
 $sql .= "and a.group_id = 2 ";
 $sql .= "order by b.group_name, c.surname, c.first_name";
 foreach ($handle->query($sql) as $row) {
